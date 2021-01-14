@@ -8,8 +8,8 @@
 import Foundation
 
 protocol SetCardable {
-    var quantity: Quantity { get }
-    var shape: Shapes { get }
-    var shading: Shading { get }
-    var cardColor: CardColor { get }
+    var featureOne: FeatureOne { get }
+    var featureTwo: FeatureTwo { get }
+    var featureThree: FeatureThree { get }
+    var featureFour: FeatureFour { get }
 }

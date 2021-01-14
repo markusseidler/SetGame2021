@@ -7,18 +7,18 @@
 
 import Foundation
 
-enum Quantity: CaseIterable {
+enum FeatureOne: CaseIterable {
     case one, two, three
 }
 
-enum Shapes: CaseIterable {
+enum FeatureTwo: CaseIterable {
     case one, two, three
 }
 
-enum Shading: CaseIterable {
+enum FeatureThree: CaseIterable {
     case one, two, three
 }
 
-enum CardColor: CaseIterable {
+enum FeatureFour: CaseIterable {
     case one, two, three
 }

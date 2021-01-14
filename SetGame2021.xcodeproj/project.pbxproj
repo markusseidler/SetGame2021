@@ -16,6 +16,7 @@
 		280A564325AFFAF0004B92A5 /* Cardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564225AFFAF0004B92A5 /* Cardable.swift */; };
 		280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564A25AFFC19004B92A5 /* SetCardable.swift */; };
 		280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */; };
+		280A565825AFFD61004B92A5 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565725AFFD61004B92A5 /* SetCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		280A564225AFFAF0004B92A5 /* Cardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardable.swift; sourceTree = "<group>"; };
 		280A564A25AFFC19004B92A5 /* SetCardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardable.swift; sourceTree = "<group>"; };
 		280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardableEnums.swift; sourceTree = "<group>"; };
+		280A565725AFFD61004B92A5 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				280A564225AFFAF0004B92A5 /* Cardable.swift */,
 				280A564A25AFFC19004B92A5 /* SetCardable.swift */,
 				280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */,
+				280A565725AFFD61004B92A5 /* SetCard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				280A565825AFFD61004B92A5 /* SetCard.swift in Sources */,
 				280A561625AFF6F4004B92A5 /* ContentView.swift in Sources */,
 				280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */,
 				280A564325AFFAF0004B92A5 /* Cardable.swift in Sources */,
