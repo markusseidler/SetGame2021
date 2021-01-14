@@ -13,6 +13,9 @@
 		280A561B25AFF6F5004B92A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 280A561A25AFF6F5004B92A5 /* Preview Assets.xcassets */; };
 		280A562625AFF6F5004B92A5 /* SetGame2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A562525AFF6F5004B92A5 /* SetGame2021Tests.swift */; };
 		280A563125AFF6F5004B92A5 /* SetGame2021UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A563025AFF6F5004B92A5 /* SetGame2021UITests.swift */; };
+		280A564325AFFAF0004B92A5 /* Cardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564225AFFAF0004B92A5 /* Cardable.swift */; };
+		280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564A25AFFC19004B92A5 /* SetCardable.swift */; };
+		280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		280A562C25AFF6F5004B92A5 /* SetGame2021UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SetGame2021UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		280A563025AFF6F5004B92A5 /* SetGame2021UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame2021UITests.swift; sourceTree = "<group>"; };
 		280A563225AFF6F5004B92A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		280A564225AFFAF0004B92A5 /* Cardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardable.swift; sourceTree = "<group>"; };
+		280A564A25AFFC19004B92A5 /* SetCardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardable.swift; sourceTree = "<group>"; };
+		280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardableEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 		280A561225AFF6F4004B92A5 /* SetGame2021 */ = {
 			isa = PBXGroup;
 			children = (
+				280A564125AFFADE004B92A5 /* Model */,
 				280A561325AFF6F4004B92A5 /* SetGame2021App.swift */,
 				280A561525AFF6F4004B92A5 /* ContentView.swift */,
 				280A561725AFF6F5004B92A5 /* Assets.xcassets */,
@@ -128,6 +135,16 @@
 				280A563225AFF6F5004B92A5 /* Info.plist */,
 			);
 			path = SetGame2021UITests;
+			sourceTree = "<group>";
+		};
+		280A564125AFFADE004B92A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				280A564225AFFAF0004B92A5 /* Cardable.swift */,
+				280A564A25AFFC19004B92A5 /* SetCardable.swift */,
+				280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				280A561625AFF6F4004B92A5 /* ContentView.swift in Sources */,
+				280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */,
+				280A564325AFFAF0004B92A5 /* Cardable.swift in Sources */,
+				280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */,
 				280A561425AFF6F4004B92A5 /* SetGame2021App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
