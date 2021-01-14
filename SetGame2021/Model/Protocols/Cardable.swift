@@ -12,6 +12,7 @@ protocol Cardable: Identifiable {
     var isDealt: Bool { get }
     var isSelected: Bool { get }
     var isMatched: Bool { get }
+    var wasUsed: Bool { get }
     var id: UUID { get }
     
     
