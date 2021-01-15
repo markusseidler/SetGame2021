@@ -8,6 +8,8 @@
 import Foundation
 
 protocol CardGameable {
+    // basic functions of a card game
+    
     associatedtype Content where Content: Cardable
     var setOfCards: [Content] { get }
     

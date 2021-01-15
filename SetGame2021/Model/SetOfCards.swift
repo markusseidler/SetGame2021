@@ -8,6 +8,8 @@
 import Foundation
 
 struct SetOfCards: CardGameable {
+    
+    // Model for Set Game
 
     typealias Content = SetCard
     
@@ -19,6 +21,7 @@ struct SetOfCards: CardGameable {
         resetGame()
     }
     
+    // creates a game of new cards with all available features. Tested
     mutating func resetGame() {
         for featOne in FeatureOne.allCases {
             for featTwo in FeatureTwo.allCases {
@@ -31,14 +34,17 @@ struct SetOfCards: CardGameable {
         }
     }
     
+    // function to select Card which will be visually shown in the View. Tested.
     mutating func selectCard(at cardIndex: Int) {
         setOfCards[cardIndex].isSelected = true
     }
     
+    // function to de-select Card which will be visually shown in the View. Tested.
     mutating func deSelectCard(at cardIndex: Int) {
         setOfCards[cardIndex].isSelected = false
     }
     
+    // changes randomly cards from isDealt false to true. NumberOfCards controls how many cards should be changed. Tested. 
     mutating func dealCards(numberOfCards: Int) {
         
         // how many cards are with isDealt false in the total set?

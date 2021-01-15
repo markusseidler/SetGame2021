@@ -8,6 +8,8 @@
 import Foundation
 
 struct SetCard: Cardable, SetCardable {
+    // Low level data structure. A Set Card that owns behaviour of a Card and the features determined in SetCard protocol
+    
     var featureOne: FeatureOne
     var featureTwo: FeatureTwo
     var featureThree: FeatureThree

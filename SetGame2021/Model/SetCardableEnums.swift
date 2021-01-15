@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Standard way to have four features each of them three outcomes
+
 enum FeatureOne: CaseIterable {
     case one, two, three
 }

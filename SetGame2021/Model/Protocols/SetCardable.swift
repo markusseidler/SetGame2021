@@ -8,6 +8,8 @@
 import Foundation
 
 protocol SetCardable {
+    // Specific to Set Card. Four features per card.
+    
     var featureOne: FeatureOne { get }
     var featureTwo: FeatureTwo { get }
     var featureThree: FeatureThree { get }
