@@ -114,7 +114,29 @@ class SetGame2021Tests: XCTestCase {
         XCTAssertFalse(testResultIsDealtTrue)
         XCTAssertFalse(testResultIsSelectedTrue)
         XCTAssertFalse(testResultIsMatchedTrue)
-        
     }
-
+    
+    func testDealCardTen() throws {
+        var testSet = SetOfCards()
+        let expectedResult = 10
+        testSet.dealCards(numberOfCards: 10)
+        let testResult = testSet.setOfCards.filter { $0.isDealt }.count
+        
+        XCTAssertEqual(testResult, expectedResult)
+    }
+    
+    func testDealCardHundred() throws {
+        var testSet = SetOfCards()
+        let expectedResult = 81
+        testSet.dealCards(numberOfCards: 100)
+        let testResult = testSet.setOfCards.filter { $0.isDealt }.count
+        
+        XCTAssertEqual(testResult, expectedResult)
+    }
+    
+    
+    
+    
+    
+    
 }

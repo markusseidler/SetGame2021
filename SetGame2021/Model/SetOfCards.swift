@@ -17,7 +17,6 @@ struct SetOfCards: CardGameable {
     // MARK: - Public API Methods
     init() {
         resetGame()
-        dealCards(numberOfCards: 10)
     }
     
     mutating func resetGame() {
