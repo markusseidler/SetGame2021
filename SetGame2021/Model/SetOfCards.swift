@@ -30,12 +30,6 @@ struct SetOfCards: CardGameable {
     init() {
         resetGame()
         print(setOfCards)
-//        selectCard(at: 0)
-//        selectCard(at: 48)
-//        selectCard(at: 80)
-//        print(isSelectedCards)
-//        checkSelectedCardsIfMatchAndChange()
-//        print(isMatchedCards)
     }
     
     // creates a game of new cards with all available features. Tested
@@ -93,7 +87,7 @@ struct SetOfCards: CardGameable {
 
     }
     
-    // changes cards to isMatched = true when check is successful. 
+    // changes cards to isMatched = true when check is successful. Tested.
     mutating func checkSelectedCardsIfMatchAndChange() {
         guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
         
@@ -104,6 +98,18 @@ struct SetOfCards: CardGameable {
                 }
             }
         }
+    }
+    
+    // changes cards to wasUsed and deselect while deMatch. Tested.
+    mutating func moveToWasUsedCards() {
+        for matchedCard in isMatchedCards {
+            if let matchingIndex = setOfCards.getMatchedIndexByID(of: matchedCard) {
+                setOfCards[matchingIndex].isMatched = false
+                setOfCards[matchingIndex].isSelected = false
+                setOfCards[matchingIndex].wasUsed = true
+             }
+        }
+        
     }
     
     

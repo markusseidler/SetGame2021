@@ -256,7 +256,7 @@ class SetGame2021Tests: XCTestCase {
     func testCheckMatchFeatureOneTwoThreeEqual() {
         var testSet = SetOfCards()
 
-        // select three cards true with features all equal
+        // select three cards true with features all equal except FeatureFour
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one))
         let indexCardTwo = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .two))
         let indexCardThree = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .three))
@@ -274,7 +274,7 @@ class SetGame2021Tests: XCTestCase {
     func testCheckMatchFeatureTwoThreeFourEqual() {
         var testSet = SetOfCards()
 
-        // select three cards true with features all equal
+        // select three cards true with features all equal except FeatureOne
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .three))
         let indexCardTwo = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .two, featureTwo: .two, featureThree: .three, featureFour: .three))
         let indexCardThree = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .three, featureTwo: .two, featureThree: .three, featureFour: .three))
@@ -289,5 +289,32 @@ class SetGame2021Tests: XCTestCase {
 
     }
     
+    func testMoveToWasUsedCards() {
+        var testSet = SetOfCards()
+        
+        // select three cards true with features all equal except FeatureTwo
+        let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .two, featureTwo: .one, featureThree: .three, featureFour: .three))
+        let indexCardTwo = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .two, featureTwo: .two, featureThree: .three, featureFour: .three))
+        let indexCardThree = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .two, featureTwo: .three, featureThree: .three, featureFour: .three))
+        let indexArray = [indexCardOne!, indexCardTwo!, indexCardThree!]
+        let _ = indexArray.map { testSet.selectCard(at: $0)}
+        
+        // check Match - and expect true
+        testSet.checkSelectedCardsIfMatchAndChange()
+        let testResult = [testSet.setOfCards[indexCardOne!].isMatched, testSet.setOfCards[indexCardTwo!].isMatched, testSet.setOfCards[indexCardThree!].isMatched].allSatisfy { $0 }
 
+        XCTAssertTrue(testResult)
+        
+        // change to wasUsed
+        testSet.moveToWasUsedCards()
+        let expectedCount = 0
+        let expectedCountWasUsed = 3
+        let countSelectedCards = testSet.isSelectedCards.count
+        let countMatchedCards = testSet.isMatchedCards.count
+        let countWasUsedCards = testSet.wasUsedCards.count
+        
+        XCTAssertEqual(countSelectedCards, expectedCount)
+        XCTAssertEqual(countMatchedCards, expectedCount)
+        XCTAssertEqual(countWasUsedCards, expectedCountWasUsed)
+    }
 }
