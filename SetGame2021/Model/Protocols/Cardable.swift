@@ -9,7 +9,7 @@ import Foundation
 
 // Protocol with standard feature ofa Card
 protocol Cardable: Identifiable {
-    var isDealt: Bool { get }
+    var isDealt: Bool { get set }
     var isSelected: Bool { get }
     var isMatched: Bool { get }
     var wasUsed: Bool { get }
@@ -18,10 +18,10 @@ protocol Cardable: Identifiable {
     
 }
 
-extension Cardable {
-    var id: UUID {
-        UUID()
-    }
-}
-
+//extension Cardable {
+//    var id: UUID {
+//        UUID()
+//    }
+//}
+//
 

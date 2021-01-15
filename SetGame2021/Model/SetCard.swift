@@ -17,6 +17,16 @@ struct SetCard: Cardable, SetCardable {
     var isSelected: Bool = false
     var isMatched: Bool = false
     var wasUsed: Bool = false
+    var id = UUID()
     
+//    var iteratingCount: Int = 1
     
 }
+
+////https://www.hackingwithswift.com/example-code/language/how-to-make-a-custom-sequence
+//extension SetCard: Sequence, IteratorProtocol {
+//
+//    mutating func next() -> UUID? {
+//        return id
+//    }
+//}

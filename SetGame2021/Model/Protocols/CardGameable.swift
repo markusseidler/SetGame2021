@@ -14,4 +14,6 @@ protocol CardGameable {
     mutating func resetGame()
     mutating func selectCard(at cardIndex: Int)
     mutating func deSelectCard(at cardIndex: Int)
+    mutating func dealCards(numberOfCards: Int)
+    
 }
