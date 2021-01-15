@@ -29,6 +29,13 @@ struct SetOfCards: CardGameable {
     // MARK: - Public API Methods
     init() {
         resetGame()
+        print(setOfCards)
+//        selectCard(at: 0)
+//        selectCard(at: 48)
+//        selectCard(at: 80)
+//        print(isSelectedCards)
+//        checkSelectedCardsIfMatchAndChange()
+//        print(isMatchedCards)
     }
     
     // creates a game of new cards with all available features. Tested
@@ -77,7 +84,8 @@ struct SetOfCards: CardGameable {
         
         // find those cards in the original setOfCards and set their isDealt to true
         for tempCard in tempCardSetToBeChanged {
-            let realIndex = setOfCards.firstIndex { $0.id == tempCard.id }
+//            let realIndex = setOfCards.firstIndex { $0.id == tempCard.id }
+            let realIndex = setOfCards.getMatchedIndexByID(of: tempCard)
             if let realIndexUnwrapped = realIndex {
                 setOfCards[realIndexUnwrapped].isDealt = true
             }
@@ -85,12 +93,13 @@ struct SetOfCards: CardGameable {
 
     }
     
+    // changes cards to isMatched = true when check is successful. 
     mutating func checkSelectedCardsIfMatchAndChange() {
         guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
         
         if checkMatch() {
             for selectedCard in isSelectedCards {
-                if let matchingIndex = setOfCards.getMatchedIndex(of: selectedCard) {
+                if let matchingIndex = setOfCards.getMatchedIndexByID(of: selectedCard) {
                     setOfCards[matchingIndex].isMatched = true
                 }
             }
@@ -105,19 +114,25 @@ struct SetOfCards: CardGameable {
     
     // MARK: - Private API Methods
     
+    //
     private func checkMatch() -> Bool {
+        
+        // checking if only 3 cards are selected
         guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
         
+        // extracts each feature for each card
         let featureOneSelected = isSelectedCards.map { $0.featureOne }
         let featureTwoSelected = isSelectedCards.map { $0.featureTwo }
         let featureThreeSelected = isSelectedCards.map { $0.featureThree }
         let featureFourSelected = isSelectedCards.map { $0.featureFour }
         
+        // checks if all features are either all equal or all different. If yes, returns true
         let featureCheck: Bool = singleFeatureCheck(feature: featureOneSelected) && singleFeatureCheck(feature: featureTwoSelected) && singleFeatureCheck(feature: featureThreeSelected) && singleFeatureCheck(feature: featureFourSelected)
         
         return featureCheck
     }
     
+    // runs check on a single feature. Logic is if all elements of one feature are the same or if they are all different then it is a match. Implementation with two Array extensions.
     private func singleFeatureCheck<T> (feature: [T]) -> Bool where T: Equatable {
             return feature.allEqual() || feature.allDifferent()
     }

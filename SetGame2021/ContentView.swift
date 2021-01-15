@@ -11,7 +11,8 @@ struct ContentView: View {
     var body: some View {
         Text("Hello, Singapur!")
             .padding()
-            .onAppear { let _ = SetOfCards() }
+            .onAppear { let _ = SetOfCards()
+            }
     }
 }
 
