@@ -120,7 +120,7 @@ class SetGame2021Tests: XCTestCase {
         var testSet = SetOfCards()
         let expectedResult = 10
         testSet.dealCards(numberOfCards: 10)
-        let testResult = testSet.setOfCards.filter { $0.isDealt }.count
+        let testResult = testSet.isDealtCards.count
         
         XCTAssertEqual(testResult, expectedResult)
     }
@@ -129,7 +129,7 @@ class SetGame2021Tests: XCTestCase {
         var testSet = SetOfCards()
         let expectedResult = 81
         testSet.dealCards(numberOfCards: 100)
-        let testResult = testSet.setOfCards.filter { $0.isDealt }.count
+        let testResult = testSet.isDealtCards.count
         
         XCTAssertEqual(testResult, expectedResult)
     }
@@ -138,7 +138,7 @@ class SetGame2021Tests: XCTestCase {
         var testSet = SetOfCards()
         testSet.selectCard(at: 5)
         let expectedCount = 1
-        let testCount = testSet.setOfCards.filter { $0.isSelected }.count
+        let testCount = testSet.isSelectedCards.count
         
         XCTAssertEqual(testCount, expectedCount)
         XCTAssertTrue(testSet.setOfCards[5].isSelected)

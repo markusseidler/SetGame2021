@@ -14,7 +14,17 @@ struct SetOfCards: CardGameable {
     typealias Content = SetCard
     
     // MARK: - Public API Properties
+    // all cards
     var setOfCards = [SetCard]()
+    // only cards on the screen (dealt)
+    var isDealtCards: [SetCard] { setOfCards.filter { $0.isDealt } }
+    // only cards which are currently matched (and on the screen) or already matched (and removed from the screen)
+    var isMatchedCards: [SetCard] { setOfCards.filter { $0.isMatched } }
+    // only cards which are already removed from the screen
+    var wasUsedCards: [SetCard] { setOfCards.filter { $0.wasUsed } }
+    // only cards which are currently on the screen and are selected by the user
+    var isSelectedCards: [SetCard] { setOfCards.filter { $0.isSelected } }
+    
     
     // MARK: - Public API Methods
     init() {
@@ -75,7 +85,42 @@ struct SetOfCards: CardGameable {
 
     }
     
+    mutating func checkSelectedCardsIfMatchAndChange() {
+        guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
+        
+        if checkMatch() {
+            for selectedCard in isSelectedCards {
+                if let matchingIndex = setOfCards.getMatchedIndex(of: selectedCard) {
+                    setOfCards[matchingIndex].isMatched = true
+                }
+            }
+        }
+    }
+    
+    
+    
     // MARK: - Private API Properties
+    
+    
+    
+    // MARK: - Private API Methods
+    
+    private func checkMatch() -> Bool {
+        guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
+        
+        let featureOneSelected = isSelectedCards.map { $0.featureOne }
+        let featureTwoSelected = isSelectedCards.map { $0.featureTwo }
+        let featureThreeSelected = isSelectedCards.map { $0.featureThree }
+        let featureFourSelected = isSelectedCards.map { $0.featureFour }
+        
+        let featureCheck: Bool = singleFeatureCheck(feature: featureOneSelected) && singleFeatureCheck(feature: featureTwoSelected) && singleFeatureCheck(feature: featureThreeSelected) && singleFeatureCheck(feature: featureFourSelected)
+        
+        return featureCheck
+    }
+    
+    private func singleFeatureCheck<T> (feature: [T]) -> Bool where T: Equatable {
+            return feature.allEqual() || feature.allDifferent()
+    }
     
     
     
