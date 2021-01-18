@@ -11,7 +11,7 @@ import SwiftUI
 struct SetGame2021App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
         }
     }
 }

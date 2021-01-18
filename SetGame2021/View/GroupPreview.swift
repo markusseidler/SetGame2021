@@ -5,8 +5,6 @@
 //  Created by Markus Seidler on 16/1/21.
 //
 
-import Foundation
-
 import SwiftUI
 
 //https://stackoverflow.com/questions/56938805/how-to-pass-one-swiftui-view-as-a-variable-to-another-view-struct
