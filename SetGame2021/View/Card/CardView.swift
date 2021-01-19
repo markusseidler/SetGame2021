@@ -16,7 +16,7 @@ struct CardView: View, CardViewable {
     
     // MARK: - Private API Properties
     private let viewCornerRadius: CGFloat = 25.0
-    private let widthHeightRatio: CGFloat = 1.5
+    private let widthHeightRatio: CGFloat = 2.0
     
     private let stripsRatio: CGFloat = 0.5
     private let stripsWidthRatio: CGFloat = 20
@@ -27,11 +27,19 @@ struct CardView: View, CardViewable {
     
     var body: some View {
             ZStack {
-                getRoundedRectangleWithShading()
+                RoundedRectangle(cornerRadius: viewCornerRadius)
+                    .stroke(viewCard.color)
+                VStack(spacing: 0) {
+                    getRoundedRectangleWithShapeAndQuantity()
+                        .padding(.horizontal)
+                }
+                .padding(.vertical)
+
+//                getRoundedRectangleWithShading()
+               
             }
             .frame(width: baseWidth, height: baseHeight, alignment: .center)
     }
-    
     
     private func getRoundedRectangleWithShading() -> some View {
         switch viewCard.cardShading {
@@ -46,17 +54,50 @@ struct CardView: View, CardViewable {
         }
     }
     
-    private func get
+    private func getRoundedRectangleWithShapeAndQuantity() -> some View {
+        switch viewCard.cardShape {
+        case .diamond:
+            return AnyView(ForEach(0..<viewCard.quantity) { _ in
+                ZStack {
+                    Diamond()
+                        .stroke(viewCard.color)
+                    Diamond()
+                        .fill()
+                }
+            })
+        case .squiggle:
+            return AnyView(ForEach(0..<viewCard.quantity) { _ in
+                Squiggle()
+                    .stroke(viewCard.color)
+            })
+        case .oval:
+            return AnyView(ForEach(0..<viewCard.quantity) { _ in
+                Oval()
+                    .stroke(viewCard.color)
+                
+            })
+        }
+    }
+
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         
-        GroupPreview {
-                ZStack {
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.example)
-                }
-        }
+//        GroupPreview {
+//                ZStack {
+//                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.example)
+//                }
+//        }
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleThree)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondThree)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalThree)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleTwo)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondTwo)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalTwo)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondOne)
+        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalOne)
         
         
     }

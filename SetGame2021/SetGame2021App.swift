@@ -12,7 +12,7 @@ struct SetGame2021App: App {
     var body: some Scene {
         WindowGroup {
             // LaunchView()
-            CardView(baseWidth: 100, viewCard: SetGame.ViewCard.example)
+            CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
         }
     }
 }

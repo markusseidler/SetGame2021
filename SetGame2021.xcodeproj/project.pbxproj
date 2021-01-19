@@ -31,6 +31,9 @@
 		28B4A9E425B2BAAE00E51CD3 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4A9E325B2BAAE00E51CD3 /* LaunchView.swift */; };
 		28B4A9E925B2BC3F00E51CD3 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4A9E825B2BC3F00E51CD3 /* Animations.swift */; };
 		28FF168625B6907E007E4F7F /* ViewCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF168525B6907E007E4F7F /* ViewCardable.swift */; };
+		28FF168E25B6AE45007E4F7F /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF168D25B6AE45007E4F7F /* Diamond.swift */; };
+		28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF169525B6B3B3007E4F7F /* Squiggle.swift */; };
+		28FF169E25B6D637007E4F7F /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF169D25B6D637007E4F7F /* Oval.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		28B4A9E325B2BAAE00E51CD3 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		28B4A9E825B2BC3F00E51CD3 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		28FF168525B6907E007E4F7F /* ViewCardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCardable.swift; sourceTree = "<group>"; };
+		28FF168D25B6AE45007E4F7F /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		28FF169525B6B3B3007E4F7F /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
+		28FF169D25B6D637007E4F7F /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				2826DECE25B58EE10066F6DC /* CardView.swift */,
+				28FF168D25B6AE45007E4F7F /* Diamond.swift */,
+				28FF169D25B6D637007E4F7F /* Oval.swift */,
+				28FF169525B6B3B3007E4F7F /* Squiggle.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -377,9 +386,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */,
 				28B4A9D625B2B9B400E51CD3 /* GroupPreview.swift in Sources */,
 				280A565825AFFD61004B92A5 /* SetCard.swift in Sources */,
 				28FF168625B6907E007E4F7F /* ViewCardable.swift in Sources */,
+				28FF168E25B6AE45007E4F7F /* Diamond.swift in Sources */,
 				280A561625AFF6F4004B92A5 /* ContentView.swift in Sources */,
 				28B4A9E425B2BAAE00E51CD3 /* LaunchView.swift in Sources */,
 				280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */,
@@ -387,6 +398,7 @@
 				2826DEED25B590720066F6DC /* CardViewable.swift in Sources */,
 				281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */,
 				28B4422425B03C950077217D /* SetOfCards.swift in Sources */,
+				28FF169E25B6D637007E4F7F /* Oval.swift in Sources */,
 				2826DEDC25B58F530066F6DC /* SetGame.swift in Sources */,
 				2842B73C25B66DF200A2D88D /* CGImage+stripes.swift in Sources */,
 				28B4A9DE25B2B9D500E51CD3 /* Devices.swift in Sources */,
