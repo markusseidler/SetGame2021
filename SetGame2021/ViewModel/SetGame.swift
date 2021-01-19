@@ -32,6 +32,8 @@ class SetGame: ObservableObject {
         var isMatched: Bool
         var wasUsed: Bool
         var id: UUID
+        
+        static var example = ViewCard(color: .red, quantity: 3, cardShape: .oval, cardShading: .striped, isDealt: true, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
     
     }
     // all cards for the view

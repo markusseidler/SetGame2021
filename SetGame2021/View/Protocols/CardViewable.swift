@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-protocol CardViewable {
-    associatedtype Content
-    associatedtype ContentShading
+protocol CardViewable: View {
     
     var baseLength: CGFloat { get }
-    var featureColor: Color { get }
-    var featureQuantity: Int { get }
-    var featureShape: Content { get }
-    var featureShading: ContentShading { get }
+    var viewCard: SetGame.ViewCard { get }
     
 }

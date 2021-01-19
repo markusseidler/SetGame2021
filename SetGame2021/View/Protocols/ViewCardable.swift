@@ -1,9 +1,10 @@
 //
-//  ViewCard.swift
+//  ViewCardable.swift
 //  SetGame2021
 //
-//  Created by Markus Seidler on 18/1/21.
+//  Created by Markus Seidler on 19/1/21.
 //
+
 
 import SwiftUI
 
