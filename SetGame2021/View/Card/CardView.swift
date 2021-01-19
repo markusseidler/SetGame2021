@@ -89,24 +89,29 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         
         GroupPreview {
+            GeometryReader { geometry in
+//                let minLength = min(geometry.size.height, geometry.size.width) / 3.5
+                let minLength: CGFloat = 100
             VStack {
                 HStack {
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleThree)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondThree)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalThree)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleSquiggleThree)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleDiamondThree)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleOvalThree)
                 }
                 HStack {
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleTwo)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondTwo)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalTwo)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleSquiggleTwo)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleDiamondTwo)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleOvalTwo)
                 }
                 
                 HStack {
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondOne)
-                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalOne)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleSquiggleOne)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleDiamondOne)
+                    CardView(baseWidth: minLength, viewCard: SetGame.ViewCard.exampleOvalOne)
                 }
             }
+            
+        }
         }
     }
 }
