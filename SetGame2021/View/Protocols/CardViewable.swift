@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol CardViewable: View {
     
-    var baseLength: CGFloat { get }
+    var baseWidth: CGFloat { get }
     var viewCard: SetGame.ViewCard { get }
     
 }
