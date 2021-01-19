@@ -12,15 +12,18 @@ struct GameView: View {
             GeometryReader { geometry in
                 VStack {
                     HStack(alignment: .center) {
+                        Spacer()
                         Button(action: {
                             print("Button pressed")
                         }, label: {
                             Text("\(TextContent.newGame)")
                         })
-                        .convertToStandardLabel(size: geometry.size, opacity: 1.0, color: Color.blue, widthPercentage: 35)
-                        Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: geometry.size, opacity: 0.5, widthPercentage: 30)
-                        Text("\(TextContent.totalScore)10").convertToStandardLabel(size: geometry.size, opacity: 1.0, widthPercentage: 30)
-                        // new Game button, New Points, Total Score
+                        .convertToStandardLabel(size: geometry.size, opacity: 1.0, color: Color.blue, widthPercentage: 33)
+                        Spacer()
+                        Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: geometry.size, opacity: 0.5, widthPercentage: 28)
+                        Spacer()
+                        Text("\(TextContent.totalScore)10").convertToStandardLabel(size: geometry.size, opacity: 1.0, widthPercentage: 28)
+                        Spacer()
                     }
                     // Lazy Grid
                     HStack {
