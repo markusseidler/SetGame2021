@@ -34,6 +34,7 @@
 		28FF168E25B6AE45007E4F7F /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF168D25B6AE45007E4F7F /* Diamond.swift */; };
 		28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF169525B6B3B3007E4F7F /* Squiggle.swift */; };
 		28FF169E25B6D637007E4F7F /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF169D25B6D637007E4F7F /* Oval.swift */; };
+		28FF16A825B6DC47007E4F7F /* Shape+FillWithShading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF16A725B6DC47007E4F7F /* Shape+FillWithShading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		28FF168D25B6AE45007E4F7F /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		28FF169525B6B3B3007E4F7F /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		28FF169D25B6D637007E4F7F /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
+		28FF16A725B6DC47007E4F7F /* Shape+FillWithShading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+FillWithShading.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				281AD08F25B179140054FDBD /* Array+AllDifferent.swift */,
 				281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */,
 				2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */,
+				28FF16A725B6DC47007E4F7F /* Shape+FillWithShading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				280A564325AFFAF0004B92A5 /* Cardable.swift in Sources */,
 				2826DEED25B590720066F6DC /* CardViewable.swift in Sources */,
 				281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */,
+				28FF16A825B6DC47007E4F7F /* Shape+FillWithShading.swift in Sources */,
 				28B4422425B03C950077217D /* SetOfCards.swift in Sources */,
 				28FF169E25B6D637007E4F7F /* Oval.swift in Sources */,
 				2826DEDC25B58F530066F6DC /* SetGame.swift in Sources */,

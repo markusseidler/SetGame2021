@@ -17,9 +17,6 @@ struct CardView: View, CardViewable {
     // MARK: - Private API Properties
     private let viewCornerRadius: CGFloat = 25.0
     private let widthHeightRatio: CGFloat = 2.0
-    
-    private let stripsRatio: CGFloat = 0.5
-    private let stripsWidthRatio: CGFloat = 20
 
     private var baseHeight: CGFloat {
         baseWidth * widthHeightRatio
@@ -41,18 +38,18 @@ struct CardView: View, CardViewable {
             .frame(width: baseWidth, height: baseHeight, alignment: .center)
     }
     
-    private func getRoundedRectangleWithShading() -> some View {
-        switch viewCard.cardShading {
-        case .none:
-            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius))
-        case .solid:
-            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius)
-                .fill(viewCard.color))
-        case .striped:
-            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius)
-                .fill(ImagePaint(image: Image(decorative: CGImage.stripes(colors: (UIColor(viewCard.color), UIColor.white), width: baseWidth / stripsWidthRatio , ratio: stripsRatio), scale: 1))))
-        }
-    }
+//    private func getRoundedRectangleWithShading() -> some View {
+//        switch viewCard.cardShading {
+//        case .none:
+//            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius))
+//        case .solid:
+//            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius)
+//                .fill(viewCard.color))
+//        case .striped:
+//            return AnyView(RoundedRectangle(cornerRadius: viewCornerRadius)
+//                .fill(ImagePaint(image: Image(decorative: CGImage.stripes(colors: (UIColor(viewCard.color), UIColor.white), width: baseWidth / stripsWidthRatio , ratio: stripsRatio), scale: 1))))
+//        }
+//    }
     
     private func getRoundedRectangleWithShapeAndQuantity() -> some View {
         switch viewCard.cardShape {
@@ -62,19 +59,26 @@ struct CardView: View, CardViewable {
                     Diamond()
                         .stroke(viewCard.color)
                     Diamond()
-                        .fill()
+                        .fillWithShading(viewCard: viewCard, baseWidth: baseWidth)
                 }
             })
         case .squiggle:
             return AnyView(ForEach(0..<viewCard.quantity) { _ in
-                Squiggle()
-                    .stroke(viewCard.color)
+                ZStack {
+                    Squiggle()
+                        .stroke(viewCard.color)
+                    Squiggle()
+                        .fillWithShading(viewCard: viewCard, baseWidth: baseWidth)
+                }
             })
         case .oval:
             return AnyView(ForEach(0..<viewCard.quantity) { _ in
-                Oval()
-                    .stroke(viewCard.color)
-                
+                ZStack {
+                    Oval()
+                        .stroke(viewCard.color)
+                    Oval()
+                        .fillWithShading(viewCard: viewCard, baseWidth: baseWidth)
+                }
             })
         }
     }
@@ -84,21 +88,25 @@ struct CardView: View, CardViewable {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         
-//        GroupPreview {
-//                ZStack {
-//                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.example)
-//                }
-//        }
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleThree)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondThree)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalThree)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleTwo)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondTwo)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalTwo)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondOne)
-        CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalOne)
-        
-        
+        GroupPreview {
+            VStack {
+                HStack {
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleThree)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondThree)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalThree)
+                }
+                HStack {
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleTwo)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondTwo)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalTwo)
+                }
+                
+                HStack {
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleDiamondOne)
+                    CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleOvalOne)
+                }
+            }
+        }
     }
 }
