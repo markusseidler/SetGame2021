@@ -17,6 +17,8 @@
 		280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564A25AFFC19004B92A5 /* SetCardable.swift */; };
 		280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */; };
 		280A565825AFFD61004B92A5 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565725AFFD61004B92A5 /* SetCard.swift */; };
+		2814ED2425B9425700802262 /* LazyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2325B9425700802262 /* LazyGridView.swift */; };
+		2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2B25B947D300802262 /* View+Stacked.swift */; };
 		281AD08825B179090054FDBD /* Array+AllEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08725B179090054FDBD /* Array+AllEqual.swift */; };
 		281AD09025B179140054FDBD /* Array+AllDifferent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08F25B179140054FDBD /* Array+AllDifferent.swift */; };
 		281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */; };
@@ -75,6 +77,8 @@
 		280A564A25AFFC19004B92A5 /* SetCardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardable.swift; sourceTree = "<group>"; };
 		280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardableEnums.swift; sourceTree = "<group>"; };
 		280A565725AFFD61004B92A5 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		2814ED2325B9425700802262 /* LazyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyGridView.swift; sourceTree = "<group>"; };
+		2814ED2B25B947D300802262 /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		281AD08725B179090054FDBD /* Array+AllEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllEqual.swift"; sourceTree = "<group>"; };
 		281AD08F25B179140054FDBD /* Array+AllDifferent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllDifferent.swift"; sourceTree = "<group>"; };
 		281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GetMatchedIndex.swift"; sourceTree = "<group>"; };
@@ -197,6 +201,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2814ED2225B9424800802262 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				2814ED2325B9425700802262 /* LazyGridView.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
 		281AD08625B178F60054FDBD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +218,7 @@
 				2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */,
 				28FF16A725B6DC47007E4F7F /* Shape+FillWithShading.swift */,
 				28FF16B925B6F00D007E4F7F /* View+LabelVM.swift */,
+				2814ED2B25B947D300802262 /* View+Stacked.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,6 +256,7 @@
 		28B4A9D325B2B95900E51CD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2814ED2225B9424800802262 /* Grid */,
 				2842B73A25B66DC000A2D88D /* Card */,
 				2826DEE025B5904A0066F6DC /* Protocols */,
 				28B4A9E225B2BA9100E51CD3 /* MainViews */,
@@ -401,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */,
 				28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */,
 				28B4A9D625B2B9B400E51CD3 /* GroupPreview.swift in Sources */,
 				280A565825AFFD61004B92A5 /* SetCard.swift in Sources */,
@@ -414,6 +429,7 @@
 				2826DEED25B590720066F6DC /* CardViewable.swift in Sources */,
 				281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */,
 				28FF16A825B6DC47007E4F7F /* Shape+FillWithShading.swift in Sources */,
+				2814ED2425B9425700802262 /* LazyGridView.swift in Sources */,
 				28B4422425B03C950077217D /* SetOfCards.swift in Sources */,
 				28FF169E25B6D637007E4F7F /* Oval.swift in Sources */,
 				28FF16B025B6E1C2007E4F7F /* GameView.swift in Sources */,

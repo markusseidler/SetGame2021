@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+// TODO: - LazyGrid bauen und Card deck... fix the size for both
+
 struct GameView: View {
+    
+    @StateObject var game = SetGame() 
+    
     var body: some View {
             GeometryReader { geometry in
                 VStack {
@@ -25,9 +30,13 @@ struct GameView: View {
                         Text("\(TextContent.totalScore)10").convertToStandardLabel(size: geometry.size, opacity: 1.0, widthPercentage: 28)
                         Spacer()
                     }
-                    // Lazy Grid
+                    LazyGridView(game: game)
                     HStack {
-                        // Deck of Cards
+                        ZStack {
+                            ForEach(0..<game.isInDeckViewCards.count) { index in
+                                CardView(baseWidth: 100, viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+                            }
+                        }
                         VStack {
                             // Cheat Button, Deal Button
                         }
