@@ -19,7 +19,7 @@ struct LazyGridView: View {
             
             ScrollView {
                 LazyVGrid(columns: getColumns(itemWidth: itemBaseWidth)) {
-                    ForEach(game.allViewCards) {card in
+                    ForEach(game.isDealtViewCards) {card in
                         CardView(baseWidth: itemBaseWidth, viewCard: card)
                     }
                 }

@@ -11,7 +11,7 @@ import SwiftUI
 
 extension View {
     func stacked(at position: Int, in total: Int) -> some View {
-        let offset = CGFloat (total - position)
+        let offset = CGFloat(position) * 0.1
         return self.offset(CGSize(width: 0, height: offset))
     }
 }

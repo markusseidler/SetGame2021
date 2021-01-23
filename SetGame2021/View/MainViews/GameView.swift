@@ -16,20 +16,7 @@ struct GameView: View {
     var body: some View {
             GeometryReader { geometry in
                 VStack {
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Button(action: {
-                            print("Button pressed")
-                        }, label: {
-                            Text("\(TextContent.newGame)")
-                        })
-                        .convertToStandardLabel(size: geometry.size, opacity: 1.0, color: Color.blue, widthPercentage: 33)
-                        Spacer()
-                        Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: geometry.size, opacity: 0.5, widthPercentage: 28)
-                        Spacer()
-                        Text("\(TextContent.totalScore)10").convertToStandardLabel(size: geometry.size, opacity: 1.0, widthPercentage: 28)
-                        Spacer()
-                    }
+                    createUpperScreen(size: geometry.size)
                     LazyGridView(game: game)
                     HStack {
                         ZStack {
@@ -45,14 +32,33 @@ struct GameView: View {
                 
             }
     }
+    
+    private func createUpperScreen(size: CGSize) -> some View {
+        HStack(alignment: .center) {
+            Spacer()
+            Button(action: {
+                print("Button pressed")
+            }, label: {
+                Text("\(TextContent.newGame)")
+            })
+            .convertToStandardLabel(size: size, opacity: 1.0, color: Color.blue, widthPercentage: 33)
+            Spacer()
+            Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: size, opacity: 0.5, widthPercentage: 28)
+            Spacer()
+            Text("\(TextContent.totalScore)10").convertToStandardLabel(size: size, opacity: 1.0, widthPercentage: 28)
+            Spacer()
+        }
+    }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         
-        GroupPreview {
-            GameView()
-        }
+//        GroupPreview {
+//            GameView()
+//        }
+        
+        GameView()
        
     }
 }

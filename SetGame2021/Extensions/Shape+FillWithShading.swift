@@ -14,7 +14,7 @@ extension Shape {
 
         switch viewCard.cardShading {
         case .none:
-            return AnyView(self.fill(Color.white))
+            return AnyView(self.fill(Color.offWhite))
         case .solid:
             return AnyView(self.fill(viewCard.color))
         case .striped:
