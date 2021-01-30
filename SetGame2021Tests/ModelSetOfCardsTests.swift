@@ -8,13 +8,15 @@
 import XCTest
 @testable import SetGame2021
 
-class SetGame2021Tests: XCTestCase {
+class ModelSetOfCardsTests: XCTestCase {
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        try super.tearDownWithError()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 

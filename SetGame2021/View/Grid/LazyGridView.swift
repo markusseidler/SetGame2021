@@ -28,7 +28,7 @@ struct LazyGridView: View {
         
     }
     
-    func getColumns(itemWidth: CGFloat) -> [GridItem] {
+    private func getColumns(itemWidth: CGFloat) -> [GridItem] {
         [GridItem(.adaptive(minimum: itemWidth))]
     }
 }
