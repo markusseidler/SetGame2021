@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: adjust to fit with new grid, take out widthHeightRatio? baseWidth?
+
 struct CardView: View, CardViewable {
     
     // MARK: - Public API Properties

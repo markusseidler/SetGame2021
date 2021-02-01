@@ -10,7 +10,9 @@ import XCTest
 
 class ViewModelGridLayoutTsts: XCTestCase {
     
-    var gridLayout: GridConstructor?
+    var gridConstructor: GridConstructor?
+    var gridConstructorZeroWidth: GridConstructor?
+    var gridConstructorZeroHeight: GridConstructor?
 
     override func setUpWithError() throws {
         
@@ -18,14 +20,17 @@ class ViewModelGridLayoutTsts: XCTestCase {
         
         let itemCount = 12
         let geoSize = CGSize(width: 400, height: 800)
-        gridLayout = GridConstructor(itemCount: itemCount, geoSize: geoSize)
+        gridConstructor = GridConstructor(itemCount: itemCount, geoSize: geoSize)
+        
+        gridConstructorZeroWidth = GridConstructor(itemCount: 10, geoSize: CGSize(width: 0, height: 800))
+        gridConstructorZeroHeight = GridConstructor(itemCount: 10, geoSize: CGSize(width: 400, height: 0))
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-        gridLayout = nil
+        gridConstructor = nil
         
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -43,36 +48,55 @@ class ViewModelGridLayoutTsts: XCTestCase {
     }
     
     func testStructInitiation() {
-        XCTAssertTrue(gridLayout != nil)
+        XCTAssertTrue(gridConstructor != nil)
     }
     
     func testGetRowAndColumnCountWithItemCountZero() {
-        let newGridLayout = GridConstructor(itemCount: 0, geoSize: CGSize(width: 100, height: 100))
-        XCTAssertEqual(newGridLayout.rowCount, 0)
-        XCTAssertEqual(newGridLayout.columnCount, 0)
+        let newGridConstructor = GridConstructor(itemCount: 0, geoSize: CGSize(width: 100, height: 100))
+        XCTAssertEqual(newGridConstructor.rowCount, 0)
+        XCTAssertEqual(newGridConstructor.columnCount, 0)
     }
     
     func testGetRowAndColumnCountWithWidthZero() {
-        let newGridLayout = GridConstructor(itemCount: 10, geoSize: CGSize(width: 0, height: 100))
-        XCTAssertEqual(newGridLayout.rowCount, 0)
-        XCTAssertEqual(newGridLayout.columnCount, 0)
+        let newGridConstructor = GridConstructor(itemCount: 10, geoSize: CGSize(width: 0, height: 100))
+        XCTAssertEqual(newGridConstructor.rowCount, 0)
+        XCTAssertEqual(newGridConstructor.columnCount, 0)
         
     }
     
     func testGetRowAndColumnCountWithHeightZero() {
-        let newGridLayout = GridConstructor(itemCount: 10, geoSize: CGSize(width: 100, height: 0))
-        XCTAssertEqual(newGridLayout.rowCount, 0)
-        XCTAssertEqual(newGridLayout.columnCount, 0)
+        let newGridConstructor = GridConstructor(itemCount: 10, geoSize: CGSize(width: 100, height: 0))
+        XCTAssertEqual(newGridConstructor.rowCount, 0)
+        XCTAssertEqual(newGridConstructor.columnCount, 0)
     }
     
     func testSizeAspectRatio() {
         let expectedResult: Double = 0.5
-        XCTAssertEqual(gridLayout!.geoSizeAspectRatio, expectedResult)
+        XCTAssertEqual(gridConstructor!.geoSizeAspectRatio, expectedResult)
     }
     
     func testGetRowAndColumnCountWithRegularInstance() {
-        XCTAssertEqual(gridLayout!.rowCount, 3)
-        XCTAssertEqual(gridLayout!.columnCount, 4)
+        XCTAssertEqual(gridConstructor!.rowCount, 3)
+        XCTAssertEqual(gridConstructor!.columnCount, 4)
+    }
+    
+    func testGetItemSizeWithRegularInstance() {
+        XCTAssertEqual(gridConstructor!.itemSize, CGSize(width: 100.0, height: 800.0 / 3.0))
+    }
+    
+    func testGetItemSizeWithZeroWidthOrZeroHeight() {
+        
+        XCTAssertEqual(gridConstructorZeroWidth!.itemSize, CGSize.zero)
+        XCTAssertEqual(gridConstructorZeroHeight!.itemSize, CGSize.zero)
+    }
+    
+    func testLocationOfItemWithZeroWidthOrZeroHeight() {
+        XCTAssertEqual(gridConstructorZeroWidth!.location(at: 3), CGPoint.zero)
+        XCTAssertEqual(gridConstructorZeroHeight!.location(at: 3), CGPoint.zero)
+    }
+    
+    func testLocationOfItemWithRegularInstance() {
+        XCTAssertEqual(gridConstructor!.location(at: 9), CGPoint(x: 150, y: (800 / 3.0) * 2.5))
     }
     
     

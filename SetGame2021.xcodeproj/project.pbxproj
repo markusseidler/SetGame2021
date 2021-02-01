@@ -17,6 +17,7 @@
 		280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A564A25AFFC19004B92A5 /* SetCardable.swift */; };
 		280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */; };
 		280A565825AFFD61004B92A5 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565725AFFD61004B92A5 /* SetCard.swift */; };
+		28114D0725C7CAFF0047D8E8 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28114D0625C7CAFF0047D8E8 /* NewGridView.swift */; };
 		2814ED2425B9425700802262 /* LazyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2325B9425700802262 /* LazyGridView.swift */; };
 		2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2B25B947D300802262 /* View+Stacked.swift */; };
 		281AD08825B179090054FDBD /* Array+AllEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08725B179090054FDBD /* Array+AllEqual.swift */; };
@@ -80,6 +81,7 @@
 		280A564A25AFFC19004B92A5 /* SetCardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardable.swift; sourceTree = "<group>"; };
 		280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardableEnums.swift; sourceTree = "<group>"; };
 		280A565725AFFD61004B92A5 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		28114D0625C7CAFF0047D8E8 /* NewGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGridView.swift; sourceTree = "<group>"; };
 		2814ED2325B9425700802262 /* LazyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyGridView.swift; sourceTree = "<group>"; };
 		2814ED2B25B947D300802262 /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		281AD08725B179090054FDBD /* Array+AllEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllEqual.swift"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				2814ED2325B9425700802262 /* LazyGridView.swift */,
+				28114D0625C7CAFF0047D8E8 /* NewGridView.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */,
 				28B4A9D625B2B9B400E51CD3 /* GroupPreview.swift in Sources */,
 				280A565825AFFD61004B92A5 /* SetCard.swift in Sources */,
+				28114D0725C7CAFF0047D8E8 /* NewGridView.swift in Sources */,
 				28FF168625B6907E007E4F7F /* ViewCardable.swift in Sources */,
 				28FF16C725B6F0EA007E4F7F /* TextContent.swift in Sources */,
 				28FF168E25B6AE45007E4F7F /* Diamond.swift in Sources */,

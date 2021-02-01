@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// TODO: Add itemSize and itemPosition
-// TODO: Create Grid
 // TODO: Add animation of flying from deck
 // TODO: Add flipping cards from deck to playfield
 
@@ -23,8 +21,26 @@ struct GridConstructor {
         
     }
     
+    var itemSize: CGSize {
+        if rowCount == 0 || columnCount == 0 {
+            return CGSize.zero
+        } else {
+            return CGSize(width: geoSize.width / CGFloat(columnCount), height: geoSize.height / CGFloat(rowCount))
+        }
+    }
+    
     var geoSizeAspectRatio: Double {
         Double(geoSize.width / geoSize.height)
+    }
+    
+    func location(at index: Int) -> CGPoint {
+        if rowCount == 0 || columnCount == 0 {
+            return CGPoint.zero
+        } else {
+            return CGPoint(
+                x: (CGFloat(index % columnCount) + 0.5) * itemSize.width,
+                y: (CGFloat(index / columnCount) + 0.5) * itemSize.height)
+        }
     }
     
     private var itemCount: Int
