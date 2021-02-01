@@ -16,9 +16,10 @@ struct GameView: View {
     var body: some View {
             GeometryReader { geometry in
                 ZStack {
-                    Color.offWhite.edgesIgnoringSafeArea(.all)
+                    Color.green.opacity(0.3).edgesIgnoringSafeArea(.all)
                     VStack {
                         createUpperScreen(size: geometry.size)
+                            .padding(.top)
                         //                    LazyGridView(game: game)
                         NewGridView(game.isDealtViewCards) { card in
                             NewCardView(viewCard: card)
@@ -26,6 +27,7 @@ struct GameView: View {
                             //                        TestCardView(viewCard: card)
                             
                         }
+                        .padding(10)
                         HStack {
                             ZStack {
                                 ForEach(0..<game.isInDeckViewCards.count) { index in
@@ -57,7 +59,7 @@ struct GameView: View {
             }, label: {
                 Text("\(TextContent.newGame)")
             })
-            .convertToStandardLabel(size: size, opacity: 1.0, color: Color.blue, widthPercentage: 33)
+            .convertToStandardLabel(size: size, opacity: 1.0, color: Color.green, widthPercentage: 33)
             Spacer()
             Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: size, opacity: 0.5, widthPercentage: 28)
             Spacer()
