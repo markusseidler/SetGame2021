@@ -5,8 +5,6 @@
 //  Created by Markus Seidler on 1/2/21.
 //
 
-// TODO: Create
-
 import SwiftUI
 
 struct NewGridView<Item, ItemView>: View where Item: Identifiable, ItemView: View {
@@ -19,7 +17,20 @@ struct NewGridView<Item, ItemView>: View where Item: Identifiable, ItemView: Vie
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geo in
+            ForEach(itemArray) { item in
+                buildFrameAndPositionForSingleItemView(for: item, in: GridConstructor(itemCount: itemArray.count, geoSize: geo.size))
+            }
+        }
+    }
+    
+    func buildFrameAndPositionForSingleItemView(for item: Item, in gridConstructor: GridConstructor) -> some View {
+        
+        let index = itemArray.getMatchedIndexByID(of: item)!
+        
+        return viewForSingleItem(item)
+            .frame(width: gridConstructor.itemSize.width, height: gridConstructor.itemSize.height, alignment: .center)
+            .position(gridConstructor.location(at: index))
     }
 }
 
@@ -32,7 +43,7 @@ struct NewGridView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        NewGridView([myNumber(integer: 1), myNumber(integer: 2)]) { (number) in
+        NewGridView([myNumber(integer: 1), myNumber(integer: 2), myNumber(integer: 3), myNumber(integer: 4), myNumber(integer: 5)]) { (number) in
             Text("\(number.integer)")
         }
     }

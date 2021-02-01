@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// TODO: - LazyGrid bauen und Card deck... fix the size for both
+// TODO: - Recording Size of Griditems and apply to Deck... and then add animations flying from Deck and flipping over...
 
 struct GameView: View {
     
@@ -15,21 +15,37 @@ struct GameView: View {
     
     var body: some View {
             GeometryReader { geometry in
-                VStack {
-                    createUpperScreen(size: geometry.size)
-                    LazyGridView(game: game)
-                    HStack {
-                        ZStack {
-                            ForEach(0..<game.isInDeckViewCards.count) { index in
-                                CardView(baseWidth: 100, viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+                ZStack {
+                    Color.offWhite.edgesIgnoringSafeArea(.all)
+                    VStack {
+                        createUpperScreen(size: geometry.size)
+                        //                    LazyGridView(game: game)
+                        NewGridView(game.isDealtViewCards) { card in
+                            NewCardView(viewCard: card)
+                                .padding(4)
+                            //                        TestCardView(viewCard: card)
+                            
+                        }
+                        HStack {
+                            ZStack {
+                                ForEach(0..<game.isInDeckViewCards.count) { index in
+                                    NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+                                        .frame(width: 50, height: 100)
+                                }
+                            }
+                            VStack {
+                                // Cheat Button, Deal Button
                             }
                         }
-                        VStack {
-                            // Cheat Button, Deal Button
-                        }
                     }
+                    
                 }
                 
+            }
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: 1)) {
+                    game.dealFirstTwelveCards()
+                }
             }
     }
     

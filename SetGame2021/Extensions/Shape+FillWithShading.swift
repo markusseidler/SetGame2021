@@ -8,17 +8,19 @@
 import SwiftUI
 
 extension Shape {
-    func fillWithShading(viewCard: ViewCardable, baseWidth: CGFloat) -> some View {
+    func fillWithShading(viewCard: ViewCardable, baseWidth: CGFloat = 100) -> some View {
         let stripsRatio: CGFloat = 0.5
         let stripsWidthRatio: CGFloat = 20
 
         switch viewCard.cardShading {
         case .none:
-            return AnyView(self.fill(Color.offWhite))
+            return AnyView(self.fill(Color.white))
         case .solid:
             return AnyView(self.fill(viewCard.color))
         case .striped:
-            return AnyView(self.fill(ImagePaint(image: Image(decorative: CGImage.stripes(colors: (UIColor(viewCard.color), UIColor.white), width: baseWidth / stripsWidthRatio , ratio: stripsRatio), scale: 1))))
+            return
+                AnyView(
+                    self.fill(ImagePaint(image: Image(decorative: CGImage.stripes(colors: (UIColor(viewCard.color), UIColor.white), width: baseWidth / stripsWidthRatio , ratio: stripsRatio), scale: 1))))
         }
         
     }

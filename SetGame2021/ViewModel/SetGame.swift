@@ -43,7 +43,6 @@ class SetGame: ObservableObject {
         static var exampleOvalTwo = ViewCard(color: .red, quantity: 2, cardShape: .oval, cardShading: .solid, isDealt: true, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
         static var exampleOvalThree = ViewCard(color: .red, quantity: 3, cardShape: .oval, cardShading: .striped, isDealt: true, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
     
-    
     }
     // all cards for the view
     var allViewCards: [ViewCard] { game.setOfCards.map { createViewCard(with: $0) } }
@@ -60,10 +59,14 @@ class SetGame: ObservableObject {
 
     init() {
         self.game = SetOfCards()
+        
     }
     
     // MARK: - Public API Methods
     
+    func dealFirstTwelveCards() {
+        game.dealCards(numberOfCards: 12)
+    }
     
     
     // MARK: - Private API Properties

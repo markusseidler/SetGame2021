@@ -16,10 +16,9 @@ struct Squiggle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        let centerOffset: CGFloat = min(rect.height, rect.width) / 5
+        let centerOffset: CGFloat = min(rect.height, rect.width) / 4
         
-        
-        let radius = rect.width / 5
+        let radius = min(rect.width, rect.height) / 4
         let leftLeftAngle = Angle(degrees: 180)
         let rightLeftAngle = Angle(degrees: 330)
         let leftRightAngle = Angle(degrees: 150)
