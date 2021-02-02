@@ -72,11 +72,11 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         
-//        GroupPreview {
-//            GameView()
-//        }
+        GroupPreview {
+            GameView()
+        }
         
-        GameView()
+//        GameView()
        
     }
 }

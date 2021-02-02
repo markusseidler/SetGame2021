@@ -8,7 +8,7 @@
 import XCTest
 @testable import SetGame2021
 
-class ViewModelGridLayoutTsts: XCTestCase {
+class ViewModelGridLayoutTests: XCTestCase {
     
     var gridConstructor: GridConstructor?
     var gridConstructorZeroWidth: GridConstructor?

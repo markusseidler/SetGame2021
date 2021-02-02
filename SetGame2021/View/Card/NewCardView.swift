@@ -55,11 +55,19 @@ struct NewCardView: View, CardViewable {
         return AnyView(ForEach(0..<viewCard.quantity) { _ in
             switch viewCard.cardShape {
             case .diamond:
-                ZStack {
-                    Diamond()
-                        .stroke(viewCard.color)
-                    Diamond()
-                        .fillWithShading(viewCard: viewCard)
+                GeometryReader { geo in
+                    let minLength = min(geo.size.width, geo.size.height)
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            Diamond()
+                                .stroke(viewCard.color)
+                            Diamond()
+                                .fillWithShading(viewCard: viewCard)
+                        }
+                       Spacer()
+                    }
+                    .frame(width: minLength, height: minLength, alignment: .center)
                 }
             case .squiggle:
                 ZStack {
@@ -80,6 +88,44 @@ struct NewCardView: View, CardViewable {
         })
         
     }
+    
+    private func getCardsWithContent() -> some View {
+        
+        // TODO: fix this and see if it can be more generalized...
+        // idea is to change opactiy due to number of counts
+        // hstack for potrait... vstack for landscape
+        // and size depending on offered space
+        // need to add spacers?
+        
+        if verticalSizeClass == .regular {
+            GeometryReader { geo in
+                Group {
+                    switch viewCard.cardShape {
+                    case .diamond:
+                        HStack {
+                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                            .opacity(viewCard.quantity > 1 ? 1 : 0)
+                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                            .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)
+                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                            .opacity(viewCard.quantity > 1 ? 1 : 0)
+                            
+                        }
+                        
+                    case .default:
+                        return Text("test")
+                    }
+                    
+                   
+                }
+                
+            }
+        }
+    }
+    
+
+    
+    
 }
 
 struct NewCardView_Previews: PreviewProvider {
