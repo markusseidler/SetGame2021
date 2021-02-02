@@ -18,14 +18,12 @@
 		280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */; };
 		280A565825AFFD61004B92A5 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565725AFFD61004B92A5 /* SetCard.swift */; };
 		28114D0725C7CAFF0047D8E8 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28114D0625C7CAFF0047D8E8 /* NewGridView.swift */; };
-		2814ED2425B9425700802262 /* LazyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2325B9425700802262 /* LazyGridView.swift */; };
 		2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2B25B947D300802262 /* View+Stacked.swift */; };
 		281AD08825B179090054FDBD /* Array+AllEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08725B179090054FDBD /* Array+AllEqual.swift */; };
 		281AD09025B179140054FDBD /* Array+AllDifferent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08F25B179140054FDBD /* Array+AllDifferent.swift */; };
 		281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */; };
 		2822DB8325C834CF004B54B3 /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822DB8225C834CF004B54B3 /* NewCardView.swift */; };
 		2826059225BBF6FC002EA47E /* Color+OffWhite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826059125BBF6FC002EA47E /* Color+OffWhite.swift */; };
-		2826DECF25B58EE10066F6DC /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826DECE25B58EE10066F6DC /* CardView.swift */; };
 		2826DEDC25B58F530066F6DC /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826DEDB25B58F530066F6DC /* SetGame.swift */; };
 		2826DEED25B590720066F6DC /* CardViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826DEEC25B590720066F6DC /* CardViewable.swift */; };
 		2842B73C25B66DF200A2D88D /* CGImage+stripes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */; };
@@ -84,14 +82,12 @@
 		280A565225AFFC9A004B92A5 /* SetCardableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardableEnums.swift; sourceTree = "<group>"; };
 		280A565725AFFD61004B92A5 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		28114D0625C7CAFF0047D8E8 /* NewGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGridView.swift; sourceTree = "<group>"; };
-		2814ED2325B9425700802262 /* LazyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyGridView.swift; sourceTree = "<group>"; };
 		2814ED2B25B947D300802262 /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		281AD08725B179090054FDBD /* Array+AllEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllEqual.swift"; sourceTree = "<group>"; };
 		281AD08F25B179140054FDBD /* Array+AllDifferent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllDifferent.swift"; sourceTree = "<group>"; };
 		281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GetMatchedIndex.swift"; sourceTree = "<group>"; };
 		2822DB8225C834CF004B54B3 /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
 		2826059125BBF6FC002EA47E /* Color+OffWhite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OffWhite.swift"; sourceTree = "<group>"; };
-		2826DECE25B58EE10066F6DC /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2826DEDB25B58F530066F6DC /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		2826DEEC25B590720066F6DC /* CardViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewable.swift; sourceTree = "<group>"; };
 		2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+stripes.swift"; sourceTree = "<group>"; };
@@ -217,7 +213,6 @@
 		2814ED2225B9424800802262 /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				2814ED2325B9425700802262 /* LazyGridView.swift */,
 				28114D0625C7CAFF0047D8E8 /* NewGridView.swift */,
 			);
 			path = Grid;
@@ -250,7 +245,6 @@
 		2842B73A25B66DC000A2D88D /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				2826DECE25B58EE10066F6DC /* CardView.swift */,
 				28FF168D25B6AE45007E4F7F /* Diamond.swift */,
 				28FF169D25B6D637007E4F7F /* Oval.swift */,
 				28FF169525B6B3B3007E4F7F /* Squiggle.swift */,
@@ -451,7 +445,6 @@
 				28FF16A825B6DC47007E4F7F /* Shape+FillWithShading.swift in Sources */,
 				2826059225BBF6FC002EA47E /* Color+OffWhite.swift in Sources */,
 				28D3BCD625C589BE004040B7 /* GridConstructor.swift in Sources */,
-				2814ED2425B9425700802262 /* LazyGridView.swift in Sources */,
 				28B4422425B03C950077217D /* SetOfCards.swift in Sources */,
 				28FF169E25B6D637007E4F7F /* Oval.swift in Sources */,
 				28FF16B025B6E1C2007E4F7F /* GameView.swift in Sources */,
@@ -466,7 +459,6 @@
 				2822DB8325C834CF004B54B3 /* NewCardView.swift in Sources */,
 				28B4422A25B03DCE0077217D /* CardGameable.swift in Sources */,
 				280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */,
-				2826DECF25B58EE10066F6DC /* CardView.swift in Sources */,
 				280A561425AFF6F4004B92A5 /* SetGame2021App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

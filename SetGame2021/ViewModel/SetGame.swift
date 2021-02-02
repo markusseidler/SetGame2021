@@ -14,6 +14,7 @@ class SetGame: ObservableObject {
     // card features enum
     enum CardShapes {
         case oval, diamond, squiggle
+        
     }
     
     enum CardShading {

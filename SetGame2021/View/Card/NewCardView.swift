@@ -21,110 +21,91 @@ struct NewCardView: View, CardViewable {
                 .fill(Color.white)
             if viewCard.isDealt {
                 if verticalSizeClass == .regular {
-                    VStack(spacing: stackSpacing) {
-                        getRoundedRectangleWithShapeAndQuantity()
-                            .padding(.horizontal)
-                    }
-                    .padding(.vertical)
+                    getCardsWithContent()
+                        .padding(.vertical)
                 } else {
-                    HStack(spacing: stackSpacing) {
-                        getRoundedRectangleWithShapeAndQuantity()
-                            .padding(.horizontal)
-                    }
-                    .padding(.vertical)
+                    getCardsWithContent()
+                        .padding(.horizontal)
                 }
+                
             } else {
                 // TODO: Needs to set the size as same as size as GridCards... use preferenceKeys?
                 
                 ZStack {
-                RoundedRectangle(cornerRadius: 25.0)
-                    .fill(Color.white)
-                RoundedRectangle(cornerRadius: 25.0)
-                    .stroke(Color.black)
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .fill(Color.white)
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .stroke(Color.black)
                 }
                 
-//                Image("CardBack")
-//                    .resizable()
-//                    .scaledToFill()
+                //                Image("CardBack")
+                //                    .resizable()
+                //                    .scaledToFill()
             }
         }
-    }
-    
-    private func getRoundedRectangleWithShapeAndQuantity() -> some View {
-        
-        return AnyView(ForEach(0..<viewCard.quantity) { _ in
-            switch viewCard.cardShape {
-            case .diamond:
-                GeometryReader { geo in
-                    let minLength = min(geo.size.width, geo.size.height)
-                    VStack {
-                        Spacer()
-                        ZStack {
-                            Diamond()
-                                .stroke(viewCard.color)
-                            Diamond()
-                                .fillWithShading(viewCard: viewCard)
-                        }
-                       Spacer()
-                    }
-                    .frame(width: minLength, height: minLength, alignment: .center)
-                }
-            case .squiggle:
-                ZStack {
-                    Squiggle()
-                        .stroke(viewCard.color)
-                    Squiggle()
-                        .fillWithShading(viewCard: viewCard)
-                }
-            case .oval:
-                ZStack {
-                    Oval()
-                        .stroke(viewCard.color)
-                    Oval()
-                        .fillWithShading(viewCard: viewCard)
-                }
-            }
-            
-        })
-        
     }
     
     private func getCardsWithContent() -> some View {
         
-        // TODO: fix this and see if it can be more generalized...
-        // idea is to change opactiy due to number of counts
-        // hstack for potrait... vstack for landscape
-        // and size depending on offered space
-        // need to add spacers?
-        
         if verticalSizeClass == .regular {
-            GeometryReader { geo in
-                Group {
-                    switch viewCard.cardShape {
-                    case .diamond:
-                        HStack {
-                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
-                            .opacity(viewCard.quantity > 1 ? 1 : 0)
-                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
-                            .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)
-                        SingleCardContentView(content: Diamond(), viewCard: viewCard)
-                            .opacity(viewCard.quantity > 1 ? 1 : 0)
-                            
-                        }
-                        
-                    case .default:
-                        return Text("test")
-                    }
-                    
-                   
-                }
-                
-            }
+            return AnyView(VStack(spacing: -5) {
+                groupSingleCardContentViews()
+            })
+        } else {
+            return AnyView(HStack(spacing: -8) {
+                groupSingleCardContentViews()
+            })
         }
     }
     
-
-    
+    private func groupSingleCardContentViews() -> some View {
+        switch viewCard.cardShape {
+        case .diamond:
+            return AnyView(
+                Group {
+                SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                    .padding(.horizontal)
+                    .opacity(viewCard.quantity > 1 ? 1 : 0)
+                SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                    .padding(.horizontal)
+                    .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)
+                SingleCardContentView(content: Diamond(), viewCard: viewCard)
+                    .padding(.horizontal)
+                    .opacity(viewCard.quantity > 1 ? 1 : 0)
+                }
+        )
+      
+        case .oval:
+            return AnyView(
+                Group {
+                    SingleCardContentView(content: Oval(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity > 1 ? 1 : 0)
+                    SingleCardContentView(content: Oval(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)
+                    SingleCardContentView(content: Oval(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity > 1 ? 1 : 0)
+                }
+            )
+            
+        case .squiggle:
+            return AnyView(
+                Group {
+                    SingleCardContentView(content: Squiggle(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity > 1 ? 1 : 0)
+                    SingleCardContentView(content: Squiggle(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)
+                    SingleCardContentView(content: Squiggle(), viewCard: viewCard)
+                        .padding(.horizontal)
+                        .opacity(viewCard.quantity > 1 ? 1 : 0)
+                }
+            )
+        }
+    }
     
 }
 
