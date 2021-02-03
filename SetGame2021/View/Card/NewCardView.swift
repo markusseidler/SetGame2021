@@ -24,26 +24,31 @@ struct NewCardView: View, CardViewable {
                 .fill(Color.white)
                 .opacity(viewCard.isFaceUp ? 1 : 0)
             if viewCard.isDealt {
-                if verticalSizeClass == .regular {
-                    getCardsWithContent()
-                        .padding(.vertical)
-                        .opacity(viewCard.isFaceUp ? 1 : 0)
-                } else {
-                    getCardsWithContent()
-                        .padding(.horizontal)
-                        .opacity(viewCard.isFaceUp ? 1 : 0)
-                }
-                
+                cardFrontView
             } else {
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25.0)
-                        .fill(Color.gray)
-                    RoundedRectangle(cornerRadius: 25.0)
-                        .stroke(Color.black)
-                }
-
+                cardBackView
             }
+        }
+    }
+    
+    private var cardFrontView: some View {
+        if verticalSizeClass == .regular {
+            return getCardsWithContent()
+                .padding(.vertical)
+                .opacity(viewCard.isFaceUp ? 1 : 0)
+        } else {
+            return getCardsWithContent()
+                .padding(.horizontal)
+                .opacity(viewCard.isFaceUp ? 1 : 0)
+        }
+    }
+    
+    private var cardBackView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 25.0)
+                .fill(Color.gray)
+            RoundedRectangle(cornerRadius: 25.0)
+                .stroke(Color.black)
         }
     }
     
