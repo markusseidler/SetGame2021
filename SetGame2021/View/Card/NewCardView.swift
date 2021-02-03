@@ -15,8 +15,6 @@ struct NewCardView: View, CardViewable {
     
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     
-    @State private var cardSize: CGSize = CGSize.zero
-    
     private let viewCornerRadius: CGFloat = 25.0
     private let stackSpacing: CGFloat = 0.0
     
@@ -24,10 +22,6 @@ struct NewCardView: View, CardViewable {
         ZStack {
             RoundedRectangle(cornerRadius: viewCornerRadius)
                 .fill(Color.white)
-//                .trackingCGSize()
-//                .onPreferenceChange(SizePreferenceKey.self) {
-//                    print(cardSize.width, cardSize.height)
-//                                        cardSize = $0 }
             if viewCard.isDealt {
                 if verticalSizeClass == .regular {
                     getCardsWithContent()
@@ -43,10 +37,8 @@ struct NewCardView: View, CardViewable {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25.0)
                         .fill(Color.white)
-//                        .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
                     RoundedRectangle(cornerRadius: 25.0)
                         .stroke(Color.black)
-//                        .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
                 }
                 
                 //                Image("CardBack")
@@ -76,11 +68,7 @@ struct NewCardView: View, CardViewable {
                 Group {
                 SingleCardContentView(content: Diamond(), viewCard: viewCard)
                     .padding(.horizontal)
-//                    .trackingCGSize()
                     .opacity(viewCard.quantity > 1 ? 1 : 0)
-//                    .onPreferenceChange(SizePreferenceKey.self) {
-//                        print(cardSize)
-//                        cardSize = $0 }
                 SingleCardContentView(content: Diamond(), viewCard: viewCard)
                     .padding(.horizontal)
                     .opacity(viewCard.quantity == 3 || viewCard.quantity == 1 ? 1 : 0)

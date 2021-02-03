@@ -11,7 +11,9 @@ import SwiftUI
 
 struct GameView: View {
     
-    @StateObject var game = SetGame() 
+    @StateObject var game = SetGame()
+    @State private var cardSize: CGSize = CGSize.zero
+    
     
     var body: some View {
             GeometryReader { geometry in
@@ -20,19 +22,27 @@ struct GameView: View {
                     VStack {
                         createUpperScreen(size: geometry.size)
                             .padding(.top)
-                        //                    LazyGridView(game: game)
+                        
                         NewGridView(game.isDealtViewCards) { card in
-                            NewCardView(viewCard: card)
+                            GeometryReader { geo in
+                                NewCardView(viewCard: card)
+                                    .trackingCGSize()
+                                    // makes sure that at start cardSize is overwriting initial value of zero
+                                    .onAppear {
+                                        cardSize = geo.size
+                                    }
+                                    .onChange(of: geo.size, perform: { (size) in
+                                        cardSize = size
+                                    })
                                 .padding(4)
-                            //                        TestCardView(viewCard: card)
-                            
+                            }
                         }
                         .padding(10)
                         HStack {
                             ZStack {
                                 ForEach(0..<game.isInDeckViewCards.count) { index in
                                     NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-                                        .frame(width: 50, height: 100)
+                                        .frame(width: cardSize.width, height: cardSize.height)
                                 }
                             }
                             VStack {
