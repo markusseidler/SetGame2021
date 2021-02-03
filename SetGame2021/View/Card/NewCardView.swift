@@ -22,28 +22,27 @@ struct NewCardView: View, CardViewable {
         ZStack {
             RoundedRectangle(cornerRadius: viewCornerRadius)
                 .fill(Color.white)
+                .opacity(viewCard.isFaceUp ? 1 : 0)
             if viewCard.isDealt {
                 if verticalSizeClass == .regular {
                     getCardsWithContent()
                         .padding(.vertical)
+                        .opacity(viewCard.isFaceUp ? 1 : 0)
                 } else {
                     getCardsWithContent()
                         .padding(.horizontal)
+                        .opacity(viewCard.isFaceUp ? 1 : 0)
                 }
                 
             } else {
-                // TODO: Needs to set the size as same as size as GridCards... use preferenceKeys?
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 25.0)
-                        .fill(Color.white)
+                        .fill(Color.gray)
                     RoundedRectangle(cornerRadius: 25.0)
                         .stroke(Color.black)
                 }
-                
-                //                Image("CardBack")
-                //                    .resizable()
-                //                    .scaledToFill()
+
             }
         }
     }

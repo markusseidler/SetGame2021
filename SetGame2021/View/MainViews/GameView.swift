@@ -13,6 +13,7 @@ struct GameView: View {
     
     @StateObject var game = SetGame()
     @State private var cardSize: CGSize = CGSize.zero
+    @State private var cardDeckPosition: CGRect = CGRect.zero
     
     
     var body: some View {
@@ -23,7 +24,7 @@ struct GameView: View {
                         createUpperScreen(size: geometry.size)
                             .padding(.top)
                         
-                        NewGridView(game.isDealtViewCards) { card in
+                        NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
                             GeometryReader { geo in
                                 NewCardView(viewCard: card)
                                     // makes sure that at start cardSize is overwriting initial value of zero
@@ -42,6 +43,7 @@ struct GameView: View {
                                 ForEach(0..<game.isInDeckViewCards.count) { index in
                                     NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
                                         .frame(width: cardSize.width, height: cardSize.height)
+                                        .trackPosition()
                                 }
                             }
                             VStack {

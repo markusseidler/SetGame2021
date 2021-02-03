@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct NewGridView<Item, ItemView>: View where Item: Identifiable, ItemView: View {
+    @Binding var cardDeckPosition: CGRect
+    
     private var itemArray: [Item]
     private var viewForSingleItem: (Item) -> ItemView
     
-    init(_ itemArray: [Item], viewForSingleItem: @escaping (Item) -> ItemView) {
+    init(_ itemArray: [Item], cardDeckPosition: Binding<CGRect>, viewForSingleItem: @escaping (Item) -> ItemView) {
         self.itemArray = itemArray
+        self._cardDeckPosition = cardDeckPosition
         self.viewForSingleItem = viewForSingleItem
     }
     
@@ -43,7 +46,7 @@ struct NewGridView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        NewGridView([myNumber(integer: 1), myNumber(integer: 2), myNumber(integer: 3), myNumber(integer: 4), myNumber(integer: 5)]) { (number) in
+        NewGridView([myNumber(integer: 1), myNumber(integer: 2), myNumber(integer: 3), myNumber(integer: 4), myNumber(integer: 5)], cardDeckPosition: .constant(CGRect(origin: CGPoint.zero, size: CGSize(width: 100,height: 100)))) { (number) in
             Text("\(number.integer)")
         }
     }
