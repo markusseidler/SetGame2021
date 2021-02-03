@@ -12,6 +12,7 @@ protocol Cardable: Identifiable {
     // Basic metrics of each card
     
     var isDealt: Bool { get set }
+    var isFaceUp: Bool { get }
     var isSelected: Bool { get }
     var isMatched: Bool { get }
     var wasUsed: Bool { get }

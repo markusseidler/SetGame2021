@@ -16,6 +16,7 @@ struct SetCard: Cardable, SetCardable {
     var featureFour: FeatureFour
    
     var isDealt: Bool = false
+    var isFaceUp: Bool = false
     var isSelected: Bool = false
     var isMatched: Bool = false
     var wasUsed: Bool = false

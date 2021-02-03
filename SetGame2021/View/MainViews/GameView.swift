@@ -26,7 +26,6 @@ struct GameView: View {
                         NewGridView(game.isDealtViewCards) { card in
                             GeometryReader { geo in
                                 NewCardView(viewCard: card)
-                                    .trackingCGSize()
                                     // makes sure that at start cardSize is overwriting initial value of zero
                                     .onAppear {
                                         cardSize = geo.size
