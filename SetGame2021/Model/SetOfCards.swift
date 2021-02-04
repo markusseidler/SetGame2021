@@ -46,6 +46,8 @@ struct SetOfCards: CardGameable {
                 }
             }
         }
+        
+        setOfCards.shuffle()
     }
     
     // function to select Card which will be visually shown in the View. Tested.
@@ -67,26 +69,34 @@ struct SetOfCards: CardGameable {
         // making sure that numberOfCards looking to be dealt does not exceed total count of available not-yet-dealt cards in the set
         let numberToChange = min(numberOfCards, notDealtCards.count)
         
-        // putting it into a temporary set to ensure no double counting of random indices.
-        var tempIndexSet = Set<Int>()
-        while tempIndexSet.count < numberToChange {
-            tempIndexSet.insert(Int.random(in: 0..<notDealtCards.count))
-        }
-        
-        // based on the random indices, get the cards which are not dealt yet
-        var tempCardSetToBeChanged = [SetCard]()
-        for index in tempIndexSet {
-            tempCardSetToBeChanged.append(notDealtCards[index])
-        }
-        
-        // find those cards in the original setOfCards and set their isDealt to true
-        for tempCard in tempCardSetToBeChanged {
-//            let realIndex = setOfCards.firstIndex { $0.id == tempCard.id }
-            let realIndex = setOfCards.getMatchedIndexByID(of: tempCard)
-            if let realIndexUnwrapped = realIndex {
-                setOfCards[realIndexUnwrapped].isDealt = true
+        for number in 0..<numberToChange {
+            let cardToChange = notDealtCards[number]
+            let indexToChange = setOfCards.getMatchedIndexByID(of: cardToChange)
+            if let indexUnwrapped = indexToChange {
+                setOfCards[indexUnwrapped].isDealt = true
             }
         }
+        
+        // putting it into a temporary set to ensure no double counting of random indices.
+//        var tempIndexSet = Set<Int>()
+//        while tempIndexSet.count < numberToChange {
+//            tempIndexSet.insert(Int.random(in: 0..<notDealtCards.count))
+//        }
+        
+        // based on the random indices, get the cards which are not dealt yet
+//        var tempCardSetToBeChanged = [SetCard]()
+//        for index in tempIndexSet {
+//            tempCardSetToBeChanged.append(notDealtCards[index])
+//        }
+        
+        // find those cards in the original setOfCards and set their isDealt to true
+//        for tempCard in tempCardSetToBeChanged {
+////            let realIndex = setOfCards.firstIndex { $0.id == tempCard.id }
+//            let realIndex = setOfCards.getMatchedIndexByID(of: tempCard)
+//            if let realIndexUnwrapped = realIndex {
+//                setOfCards[realIndexUnwrapped].isDealt = true
+//            }
+//        }
 
     }
     

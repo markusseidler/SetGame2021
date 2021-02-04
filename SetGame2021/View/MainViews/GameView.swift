@@ -58,7 +58,6 @@ struct GameView: View {
                                             .trackPosition()
                                             .onPreferenceChange(PositionPreferenceKey.self) {
                                                 cardDeckPosition = $0
-                                                print(cardDeckPosition)
                                             }
                                     }
 //
@@ -79,11 +78,17 @@ struct GameView: View {
                                 Button {
                                     withAnimation(Animation.easeInOut(duration: 2)) {
                                         game.turnCardFaceUp()
-                                        print("\nisFaceUpCards\n\(game.isFaceUpCards)")
-                                        print("\nisDealtCards\n\(game.isDealtViewCards)")
                                     }
                                 } label: {
                                     Text("Deal")
+                                }
+                                Button {
+                                    withAnimation(Animation.easeInOut(duration: 2)) {
+                                        game.dealThreeMoreCards()
+                                        game.turnCardFaceUp()
+                                    }
+                                } label: {
+                                    Text("Deal 3 more")
                                 }
                                 
 
@@ -97,8 +102,8 @@ struct GameView: View {
             }
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 1)) {
+                    TrialTest().testCheckFeatureThreeNoMatch()
                     game.dealFirstTwelveCards()
-                    print("\nisDealtCards\n\(game.isDealtViewCards)")
                 }
             }
     }

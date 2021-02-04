@@ -14,7 +14,6 @@ class SetGame: ObservableObject {
     // card features enum
     enum CardShapes {
         case oval, diamond, squiggle
-        
     }
     
     enum CardShading {
@@ -63,13 +62,16 @@ class SetGame: ObservableObject {
 
     init() {
         self.game = SetOfCards()
-        
     }
     
     // MARK: - Public API Methods
     
     func dealFirstTwelveCards() {
         game.dealCards(numberOfCards: 12)
+    }
+    
+    func dealThreeMoreCards() {
+        game.dealCards(numberOfCards: 3)
     }
     
     func turnCardFaceUp() {
