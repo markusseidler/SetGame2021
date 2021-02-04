@@ -124,13 +124,17 @@ struct SetOfCards: CardGameable {
         }
     }
     
-    mutating func turnCardFaceUp() {
+    mutating func turnAllCardsFaceUp() {
         for dealtCard in isDealtCards {
             if let matchingIndex = setOfCards.getMatchedIndexByID(of: dealtCard) {
                 setOfCards[matchingIndex].isFaceUp = true
             }
         }
-    }    
+    }
+    
+    mutating func turnSingleCardFaceUp(at index: Int) {
+        setOfCards[index].isFaceUp = true
+    }
     
     // MARK: - Private API Properties
     

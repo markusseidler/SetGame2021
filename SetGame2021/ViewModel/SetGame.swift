@@ -74,8 +74,16 @@ class SetGame: ObservableObject {
         game.dealCards(numberOfCards: 3)
     }
     
-    func turnCardFaceUp() {
-        game.turnCardFaceUp()
+    func turnAllCardsFaceUp() {
+        game.turnAllCardsFaceUp()
+    }
+    
+    func turnSingleCardFaceUp(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        if let indexUnwrapped = index {
+            game.turnSingleCardFaceUp(at: indexUnwrapped)
+        }
+        
     }
     
     func chooseCard(_ viewCard: ViewCard) {

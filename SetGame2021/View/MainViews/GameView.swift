@@ -86,21 +86,20 @@ struct GameView: View {
             cardDeck
             VStack {
                 Button {
-                    withAnimation(Animation.easeInOut(duration: 1)) {
-                        game.turnCardFaceUp()
-                    }
+                    startDealing()
                 } label: {
                     Text("Deal")
                 }
                 Button {
-                    withAnimation(Animation.easeInOut(duration: 1.0)) {
-                        game.dealThreeMoreCards()
-                        
-                    }
-                    
-                    withAnimation(Animation.easeInOut(duration: 1).delay(0.5)) {
-                        game.turnCardFaceUp()
-                    }
+                    dealMoreCards()
+//                    withAnimation(Animation.easeInOut(duration: 1.0)) {
+//                        game.dealThreeMoreCards()
+//
+//                    }
+//
+//                    withAnimation(Animation.easeInOut(duration: 1).delay(0.5)) {
+//                        game.turnAllCardsFaceUp()
+//                    }
                 } label: {
                     Text("Deal 3 more")
                 }
@@ -135,6 +134,38 @@ struct GameView: View {
             }
         }
     }
+    
+    private func startDealing() {
+        let delayFactor: Double = 0.3
+        let animationDuration: Double = 1.0
+        
+        for cardNumber in 0..<game.isDealtViewCards.count {
+            let delayTime = delayFactor * Double(cardNumber)
+            withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
+                game.turnSingleCardFaceUp(game.isDealtViewCards[cardNumber])
+            }
+        }
+    }
+    
+    private func dealMoreCards() {
+        let delayFactor: Double = 0.3
+        let animationDuration: Double = 1.0
+        
+        let tempCount = game.isDealtViewCards.count
+        
+        withAnimation(Animation.easeInOut(duration: 1.0)) {
+            game.dealThreeMoreCards()
+        }
+        let updatedCount = game.isDealtViewCards.count - tempCount
+  
+        for cardNumber in 0..<updatedCount {
+            let delayTime = delayFactor * Double(cardNumber)
+            withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
+                game.turnSingleCardFaceUp(game.isDealtViewCards[tempCount + cardNumber])
+            }
+        }
+    }
+    
 }
 
 struct GameView_Previews: PreviewProvider {
