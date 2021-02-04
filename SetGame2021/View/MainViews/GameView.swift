@@ -45,7 +45,7 @@ struct GameView: View {
         HStack(alignment: .center) {
             Spacer()
             Button(action: {
-                print("Button pressed")
+                game.newGame()
             }, label: {
                 Text("\(TextContent.newGame)")
             })

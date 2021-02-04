@@ -66,6 +66,11 @@ class SetGame: ObservableObject {
     
     // MARK: - Public API Methods
     
+    func newGame() {
+        game.resetGame()
+        dealFirstTwelveCards()
+    }
+    
     func dealFirstTwelveCards() {
         game.dealCards(numberOfCards: 12)
     }

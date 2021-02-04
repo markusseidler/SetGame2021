@@ -37,6 +37,8 @@ struct SetOfCards: CardGameable {
     
     // creates a game of new cards with all available features. Tested
     mutating func resetGame() {
+        setOfCards = []
+        
         for featOne in FeatureOne.allCases {
             for featTwo in FeatureTwo.allCases {
                 for featThree in FeatureThree.allCases {
