@@ -21,80 +21,9 @@ struct GameView: View {
                 ZStack {
                     Color.green.opacity(0.3).edgesIgnoringSafeArea(.all)
                     VStack {
-                        createUpperScreen(size: geometry.size)
-                            .padding(.top)
-                        
-                        NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
-                            GeometryReader { geo in
-                                ZStack {
-                                    NewCardView(viewCard: card).opacity(0)
-                                        .onAppear { cardSize = geo.size }
-                                        .onChange(of: geo.size, perform: { (size) in
-                                            cardSize = size
-                                        })
-                                    GeometryReader { geoNewCard in
-                                        let xOffset = geoNewCard.frame(in: .global).minX
-                                        let yOffset = geoNewCard.frame(in: .global).minY
-                                        
-                                        if card.isFaceUp {
-                                            NewCardView(viewCard: card)
-                                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
-                                        }
-                                    }
-                                }
-                             
-                                    // makes sure that at start cardSize is overwriting initial value of zero
-                                .padding(4)
-                            }
-                        }
-                        .padding(10)
-                        HStack {
-                            ZStack {
-//                                ForEach(0..<game.isInDeckViewCards.count) { index in
-                                ForEach(0..<1) { _ in
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 25.0)
-                                            .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
-                                            .trackPosition()
-                                            .onPreferenceChange(PositionPreferenceKey.self) {
-                                                cardDeckPosition = $0
-                                            }
-                                    }
-//
-//                                    if index == 0 {
-//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-//                                            .frame(width: cardSize.width, height: cardSize.height)
-//                                    } else {
-//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-//                                            .frame(width: cardSize.width, height: cardSize.height)
-//                                            .onAppear {
-//                                                print(cardDeckPosition.origin, cardDeckPosition.size)
-//                                            }
-//                                    }
-//
-                                }
-                            }
-                            VStack {
-                                Button {
-                                    withAnimation(Animation.easeInOut(duration: 2)) {
-                                        game.turnCardFaceUp()
-                                    }
-                                } label: {
-                                    Text("Deal")
-                                }
-                                Button {
-                                    withAnimation(Animation.easeInOut(duration: 2)) {
-                                        game.dealThreeMoreCards()
-                                        game.turnCardFaceUp()
-                                    }
-                                } label: {
-                                    Text("Deal 3 more")
-                                }
-                                
-
-                                // Cheat Button, Deal Button
-                            }
-                        }
+                        createUpperScreen(size: geometry.size).padding(.top)
+                        gridBody.padding(10)
+                        lowerScreen
                     }
                     
                 }
@@ -122,6 +51,85 @@ struct GameView: View {
             Spacer()
             Text("\(TextContent.totalScore)10").convertToStandardLabel(size: size, opacity: 1.0, widthPercentage: 28)
             Spacer()
+        }
+    }
+    
+    private var gridBody: some View {
+        NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
+            GeometryReader { geo in
+                ZStack {
+                    NewCardView(viewCard: card).opacity(0)
+                        .onAppear { cardSize = geo.size }
+                        .onChange(of: geo.size, perform: { (size) in
+                            cardSize = size
+                        })
+                    GeometryReader { geoNewCard in
+                        let xOffset = geoNewCard.frame(in: .global).minX
+                        let yOffset = geoNewCard.frame(in: .global).minY
+                        
+                        if card.isFaceUp {
+                            NewCardView(viewCard: card)
+                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
+                        }
+                    }
+                }
+                .padding(4)
+            }
+        }
+    }
+    
+    private var lowerScreen: some View {
+        HStack {
+            cardDeck
+            VStack {
+                Button {
+                    withAnimation(Animation.easeInOut(duration: 1)) {
+                        game.turnCardFaceUp()
+                    }
+                } label: {
+                    Text("Deal")
+                }
+                Button {
+                    withAnimation(Animation.easeInOut(duration: 1.0)) {
+                        game.dealThreeMoreCards()
+                        
+                    }
+                    
+                    withAnimation(Animation.easeInOut(duration: 1).delay(0.5)) {
+                        game.turnCardFaceUp()
+                    }
+                } label: {
+                    Text("Deal 3 more")
+                }
+                // Cheat Button, Deal Button
+            }
+        }
+    }
+    
+    private var cardDeck: some View {
+        ZStack {
+//                                ForEach(0..<game.isInDeckViewCards.count) { index in
+            ForEach(0..<1) { _ in
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
+                        .trackPosition()
+                        .onPreferenceChange(PositionPreferenceKey.self) {
+                            cardDeckPosition = $0
+                        }
+                }
+//                                    if index == 0 {
+//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+//                                            .frame(width: cardSize.width, height: cardSize.height)
+//                                    } else {
+//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+//                                            .frame(width: cardSize.width, height: cardSize.height)
+//                                            .onAppear {
+//                                                print(cardDeckPosition.origin, cardDeckPosition.size)
+//                                            }
+//                                    }
+//
+            }
         }
     }
 }
