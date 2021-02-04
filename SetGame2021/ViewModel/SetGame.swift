@@ -78,6 +78,17 @@ class SetGame: ObservableObject {
         game.turnCardFaceUp()
     }
     
+    func chooseCard(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        
+        if let indexUnwrapped = index {
+            if !viewCard.isSelected {
+                game.selectCard(at: indexUnwrapped)
+            } else {
+                game.deSelectCard(at: indexUnwrapped)
+            }
+        }
+    }
     
     // MARK: - Private API Properties
     
@@ -140,6 +151,22 @@ class SetGame: ObservableObject {
         case.three:
             return CardShading.striped
 
+        }
+    }
+    
+    private func selectCard(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        
+        if let indexUnwrapped = index {
+            game.selectCard(at: indexUnwrapped)
+        }
+    }
+    
+    private func deSelectCard(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        
+        if let indexUnwrapped = index {
+            game.deSelectCard(at: indexUnwrapped)
         }
     }
     

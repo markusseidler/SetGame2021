@@ -130,9 +130,7 @@ struct SetOfCards: CardGameable {
                 setOfCards[matchingIndex].isFaceUp = true
             }
         }
-    }
-    
-    
+    }    
     
     // MARK: - Private API Properties
     

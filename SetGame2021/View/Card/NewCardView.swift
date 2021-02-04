@@ -17,12 +17,14 @@ struct NewCardView: View, CardViewable {
     
     private let viewCornerRadius: CGFloat = 25.0
     private let stackSpacing: CGFloat = 0.0
+    private let borderLineWidth: CGFloat = 4.0
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: viewCornerRadius)
                 .fill(Color.white)
-//                .opacity(viewCard.isFaceUp ? 1 : 0)
+            RoundedRectangle(cornerRadius: viewCornerRadius)
+                .stroke(viewCard.isSelected ? Color.black : Color.clear, lineWidth: borderLineWidth)
             if viewCard.isDealt {
                 cardFrontView
             } else {

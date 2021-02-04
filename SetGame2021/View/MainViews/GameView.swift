@@ -69,6 +69,9 @@ struct GameView: View {
                         
                         if card.isFaceUp {
                             NewCardView(viewCard: card)
+                                .onTapGesture {
+                                    game.chooseCard(card)
+                                }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
                         }
                     }
