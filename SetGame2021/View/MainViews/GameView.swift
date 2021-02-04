@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-// TODO: - Recording Size of Griditems and apply to Deck... and then add animations flying from Deck and flipping over...
+// TODO: - Flip Card
+// TODO: - select card.. check with match.. animate if match... if not match
+// TODO: deal new card...
+/// add cheat button
+
 
 struct GameView: View {
     

@@ -7,17 +7,34 @@
 
 import SwiftUI
 
-// TODO: Fix sizetracking for deck ... check also gameView which has its size fixed now at 50/100
+// TODO: continue animation of flipping card
 
-struct NewCardView: View, CardViewable {
+struct NewCardView: View, CardViewable, Animatable {
     
     var viewCard: SetGame.ViewCard
+    var rotation: Double
+    
+    init(viewCard: SetGame.ViewCard) {
+        self.viewCard = viewCard
+        self.rotation = viewCard.isDealt ? 0 : 180
+    }
+    
+    var animatableData: Double {
+        get { rotation }
+        set {
+            rotation = newValue
+        }
+    }
     
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     
     private let viewCornerRadius: CGFloat = 25.0
     private let stackSpacing: CGFloat = 0.0
     private let borderLineWidth: CGFloat = 4.0
+    
+    private var showFront: Bool {
+        rotation < 90
+    }
     
     var body: some View {
         ZStack {
