@@ -58,6 +58,8 @@ class SetGame: ObservableObject {
     var wasUsedViewCards: [ViewCard] { game.wasUsedCards.map { createViewCard(with: $0) } }
     // only cards which are currently on the screen and are selected by the user
     var isSelectedViewCards: [ViewCard] { game.isSelectedCards.map { createViewCard(with: $0) }}
+    var isFaceUpCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
+    
 
     init() {
         self.game = SetOfCards()
@@ -68,6 +70,10 @@ class SetGame: ObservableObject {
     
     func dealFirstTwelveCards() {
         game.dealCards(numberOfCards: 12)
+    }
+    
+    func turnCardFaceUp() {
+        game.turnCardFaceUp()
     }
     
     
@@ -83,7 +89,7 @@ class SetGame: ObservableObject {
     // MARK: - Private API Methods
     
     private func createViewCard(with setCard: SetCard) -> ViewCard {
-        ViewCard(color: convertToColor(with: setCard.featureOne), quantity: convertToQuantity(with: setCard.featureTwo), cardShape: convertToShape(with: setCard.featureThree), cardShading: convertToShading(with: setCard.featureFour), isDealt: setCard.isDealt, isFaceUp: false, isSelected: setCard.isSelected, isMatched: setCard.isMatched, wasUsed: setCard.wasUsed, id: setCard.id)
+        ViewCard(color: convertToColor(with: setCard.featureOne), quantity: convertToQuantity(with: setCard.featureTwo), cardShape: convertToShape(with: setCard.featureThree), cardShading: convertToShading(with: setCard.featureFour), isDealt: setCard.isDealt, isFaceUp: setCard.isFaceUp, isSelected: setCard.isSelected, isMatched: setCard.isMatched, wasUsed: setCard.wasUsed, id: setCard.id)
     }
     
     // Color conversion

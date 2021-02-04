@@ -22,7 +22,7 @@ struct NewCardView: View, CardViewable {
         ZStack {
             RoundedRectangle(cornerRadius: viewCornerRadius)
                 .fill(Color.white)
-                .opacity(viewCard.isFaceUp ? 1 : 0)
+//                .opacity(viewCard.isFaceUp ? 1 : 0)
             if viewCard.isDealt {
                 cardFrontView
             } else {
@@ -35,11 +35,11 @@ struct NewCardView: View, CardViewable {
         if verticalSizeClass == .regular {
             return getCardsWithContent()
                 .padding(.vertical)
-                .opacity(viewCard.isFaceUp ? 1 : 0)
+//                .opacity(viewCard.isFaceUp ? 1 : 0)
         } else {
             return getCardsWithContent()
                 .padding(.horizontal)
-                .opacity(viewCard.isFaceUp ? 1 : 0)
+//                .opacity(viewCard.isFaceUp ? 1 : 0)
         }
     }
     

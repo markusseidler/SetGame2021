@@ -26,12 +26,13 @@ struct SetOfCards: CardGameable {
     var wasUsedCards: [SetCard] { setOfCards.filter { $0.wasUsed } }
     // only cards which are currently on the screen and are selected by the user
     var isSelectedCards: [SetCard] { setOfCards.filter { $0.isSelected } }
+    var isFaceUpCards: [SetCard] { setOfCards.filter { $0.isFaceUp } }
     
     
     // MARK: - Public API Methods
     init() {
         resetGame()
-        print(setOfCards)
+//        print(setOfCards)
     }
     
     // creates a game of new cards with all available features. Tested
@@ -111,7 +112,14 @@ struct SetOfCards: CardGameable {
                 setOfCards[matchingIndex].wasUsed = true
              }
         }
-        
+    }
+    
+    mutating func turnCardFaceUp() {
+        for dealtCard in isDealtCards {
+            if let matchingIndex = setOfCards.getMatchedIndexByID(of: dealtCard) {
+                setOfCards[matchingIndex].isFaceUp = true
+            }
+        }
     }
     
     

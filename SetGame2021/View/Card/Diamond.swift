@@ -14,8 +14,6 @@ struct Diamond: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        
-        
         let yMaxScaled = (rect.maxY - rect.midY) * yAxisScalingFactor + rect.midY
         let yMinScaled = rect.midY - (rect.midY - rect.minY) * yAxisScalingFactor
         

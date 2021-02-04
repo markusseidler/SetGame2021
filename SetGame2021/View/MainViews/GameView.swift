@@ -26,27 +26,67 @@ struct GameView: View {
                         
                         NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
                             GeometryReader { geo in
-                                NewCardView(viewCard: card)
-                                    // makes sure that at start cardSize is overwriting initial value of zero
-                                    .onAppear {
-                                        cardSize = geo.size
+                                ZStack {
+                                    NewCardView(viewCard: card).opacity(0)
+                                        .onAppear { cardSize = geo.size }
+                                        .onChange(of: geo.size, perform: { (size) in
+                                            cardSize = size
+                                        })
+                                    GeometryReader { geoNewCard in
+                                        let xOffset = geoNewCard.frame(in: .global).minX
+                                        let yOffset = geoNewCard.frame(in: .global).minY
+                                        
+                                        if card.isFaceUp {
+                                            NewCardView(viewCard: card)
+                                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
+                                        }
                                     }
-                                    .onChange(of: geo.size, perform: { (size) in
-                                        cardSize = size
-                                    })
+                                }
+                             
+                                    // makes sure that at start cardSize is overwriting initial value of zero
                                 .padding(4)
                             }
                         }
                         .padding(10)
                         HStack {
                             ZStack {
-                                ForEach(0..<game.isInDeckViewCards.count) { index in
-                                    NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-                                        .frame(width: cardSize.width, height: cardSize.height)
-                                        .trackPosition()
+//                                ForEach(0..<game.isInDeckViewCards.count) { index in
+                                ForEach(0..<1) { _ in
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 25.0)
+                                            .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
+                                            .trackPosition()
+                                            .onPreferenceChange(PositionPreferenceKey.self) {
+                                                cardDeckPosition = $0
+                                                print(cardDeckPosition)
+                                            }
+                                    }
+//
+//                                    if index == 0 {
+//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+//                                            .frame(width: cardSize.width, height: cardSize.height)
+//                                    } else {
+//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
+//                                            .frame(width: cardSize.width, height: cardSize.height)
+//                                            .onAppear {
+//                                                print(cardDeckPosition.origin, cardDeckPosition.size)
+//                                            }
+//                                    }
+//
                                 }
                             }
                             VStack {
+                                Button {
+                                    withAnimation(Animation.easeInOut(duration: 2)) {
+                                        game.turnCardFaceUp()
+                                        print("\nisFaceUpCards\n\(game.isFaceUpCards)")
+                                        print("\nisDealtCards\n\(game.isDealtViewCards)")
+                                    }
+                                } label: {
+                                    Text("Deal")
+                                }
+                                
+
                                 // Cheat Button, Deal Button
                             }
                         }
@@ -58,6 +98,7 @@ struct GameView: View {
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 1)) {
                     game.dealFirstTwelveCards()
+                    print("\nisDealtCards\n\(game.isDealtViewCards)")
                 }
             }
     }
