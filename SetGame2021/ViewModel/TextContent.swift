@@ -8,7 +8,7 @@
 import Foundation
 
 struct TextContent {
-    static var totalScore = "Total: "
-    static var bonusScore = "Bonus: "
-    static var newGame = "New Game"
+    static let totalScore = "Total: "
+    static let bonusScore = "Bonus: "
+    static let newGame = "New Game"
 }

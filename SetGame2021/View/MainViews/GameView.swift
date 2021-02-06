@@ -39,6 +39,7 @@ struct GameView: View {
                     game.dealFirstTwelveCards()
                 }
             }
+            .navigationBarHidden(true)
     }
     
     private func createUpperScreen(size: CGSize) -> some View {
@@ -49,6 +50,7 @@ struct GameView: View {
             }, label: {
                 Text("\(TextContent.newGame)")
             })
+            .accessibility(identifier: AccessID.newGameButton)
             .convertToStandardLabel(size: size, opacity: 1.0, color: Color.green, widthPercentage: 33)
             Spacer()
             Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: size, opacity: 0.5, widthPercentage: 28)
@@ -79,6 +81,7 @@ struct GameView: View {
                                     print(game.threeCardsSelected)
                                 }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
+                                .accessibility(identifier: AccessID.singleCardView)
                         }
                     }
                 }
@@ -96,6 +99,7 @@ struct GameView: View {
                 } label: {
                     Text("Deal")
                 }
+                .accessibility(identifier: AccessID.firstDealButton)
                 Button {
                     dealMoreCards()
                 } label: {
