@@ -62,7 +62,8 @@ struct GameView: View {
         NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
             GeometryReader { geo in
                 ZStack {
-                    NewCardView(viewCard: card).opacity(0)
+//                    NewCardView(viewCard: card).opacity(0)
+                    CardContentView(viewCard: card).opacity(0)
                         .onAppear { cardSize = geo.size }
                         .onChange(of: geo.size, perform: { (size) in
                             cardSize = size
@@ -72,7 +73,9 @@ struct GameView: View {
                         let yOffset = geoNewCard.frame(in: .global).minY
                         
                         if card.isFaceUp {
-                            NewCardView(viewCard: card)
+//                            NewCardView(viewCard: card)
+                            CardContentView(viewCard: card)
+                                .cardify(viewCard: card)
                                 .onTapGesture {
                                     game.chooseCard(card)
                                 }

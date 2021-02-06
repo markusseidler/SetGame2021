@@ -48,16 +48,19 @@ struct NewCardView: View, CardViewable, Animatable {
                 cardBackView
             }
         }
+        .rotation3DEffect(Angle.degrees(rotation), axis: (x: 0.0, y: 1.0, z: 0.0))
     }
     
     private var cardFrontView: some View {
         if verticalSizeClass == .regular {
             return getCardsWithContent()
                 .padding(.vertical)
+                .padding(.horizontal, 0)
 //                .opacity(viewCard.isFaceUp ? 1 : 0)
         } else {
             return getCardsWithContent()
-                .padding(.horizontal)
+                .padding(.horizontal, 0)
+                .padding(.vertical, 0)
 //                .opacity(viewCard.isFaceUp ? 1 : 0)
         }
     }

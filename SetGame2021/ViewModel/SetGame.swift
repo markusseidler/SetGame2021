@@ -88,7 +88,6 @@ class SetGame: ObservableObject {
         if let indexUnwrapped = index {
             game.turnSingleCardFaceUp(at: indexUnwrapped)
         }
-        
     }
     
     func chooseCard(_ viewCard: ViewCard) {

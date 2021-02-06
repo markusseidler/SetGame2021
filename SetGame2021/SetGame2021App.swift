@@ -14,6 +14,7 @@ struct SetGame2021App: App {
             // LaunchView()
 //            CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
             GameView()
+//            CardContentView(viewCard: SetGame.ViewCard.exampleDiamondOne)
         }
     }
 }

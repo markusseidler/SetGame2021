@@ -21,6 +21,9 @@ struct TrialTest {
         
         // check Match - and expect false
         testSet.checkSelectedCardsIfMatchAndChange()
+
+//        print(testSet.setOfCards[indexCardOne!], testSet.setOfCards[indexCardTwo!], testSet.setOfCards[indexCardThree!])
+        
         let testResult = [testSet.setOfCards[indexCardOne!].isMatched, testSet.setOfCards[indexCardTwo!].isMatched, testSet.setOfCards[indexCardThree!].isMatched].allSatisfy { $0 }
         
         print(testResult)
