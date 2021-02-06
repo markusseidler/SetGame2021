@@ -62,7 +62,6 @@ struct GameView: View {
         NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
             GeometryReader { geo in
                 ZStack {
-//                    NewCardView(viewCard: card).opacity(0)
                     CardContentView(viewCard: card).opacity(0)
                         .onAppear { cardSize = geo.size }
                         .onChange(of: geo.size, perform: { (size) in
@@ -73,11 +72,11 @@ struct GameView: View {
                         let yOffset = geoNewCard.frame(in: .global).minY
                         
                         if card.isFaceUp {
-//                            NewCardView(viewCard: card)
                             CardContentView(viewCard: card)
                                 .cardify(viewCard: card)
                                 .onTapGesture {
                                     game.chooseCard(card)
+                                    print(game.threeCardsSelected)
                                 }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
                         }
@@ -99,14 +98,6 @@ struct GameView: View {
                 }
                 Button {
                     dealMoreCards()
-//                    withAnimation(Animation.easeInOut(duration: 1.0)) {
-//                        game.dealThreeMoreCards()
-//
-//                    }
-//
-//                    withAnimation(Animation.easeInOut(duration: 1).delay(0.5)) {
-//                        game.turnAllCardsFaceUp()
-//                    }
                 } label: {
                     Text("Deal 3 more")
                 }
@@ -142,42 +133,32 @@ struct GameView: View {
         }
     }
     
-    private func startDealing() {
-        let delayFactor: Double = 0.3
-        let animationDuration: Double = 1.0
-        let startOfTurnAround: Double = 0.3
-        
-        for cardNumber in 0..<game.isDealtViewCards.count {
-            let delayTime = delayFactor * Double(cardNumber)
-            withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
-                game.turnSingleCardFaceUp(game.isDealtViewCards[cardNumber])
-            }
-            withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
-                game.turnAroundCard(game.isDealtViewCards[cardNumber])
-            }
-            
-        }
-    }
+    private func startDealing() { turningCardsAnimation() }
     
     private func dealMoreCards() {
-        let delayFactor: Double = 0.3
-        let animationDuration: Double = 1.0
-        let startOfTurnAround: Double = 0.3
         
-        let tempCount = game.isDealtViewCards.count
+        let currentlyDisplayedCards = game.isDealtViewCards.count
         
         withAnimation(Animation.easeInOut(duration: 1.0)) {
             game.dealThreeMoreCards()
         }
-        let updatedCount = game.isDealtViewCards.count - tempCount
-  
-        for cardNumber in 0..<updatedCount {
+    
+        turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)
+    }
+    
+    private func turningCardsAnimation(isFirstDeal: Bool = true, alreadyDisplayedCards: Int = 0) {
+        let delayFactor: Double = 0.3
+        let animationDuration: Double = 1.0
+        let startOfTurnAround: Double = 0.3
+        var cardCount: Int { isFirstDeal ? game.isDealtViewCards.count : game.isDealtViewCards.count - alreadyDisplayedCards }
+    
+        for cardNumber in 0..<cardCount {
             let delayTime = delayFactor * Double(cardNumber)
             withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
-                game.turnSingleCardFaceUp(game.isDealtViewCards[tempCount + cardNumber])
+                game.turnSingleCardFaceUp(game.isDealtViewCards[alreadyDisplayedCards + cardNumber])
             }
             withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
-                game.turnAroundCard(game.isDealtViewCards[tempCount + cardNumber])
+                game.turnAroundCard(game.isDealtViewCards[alreadyDisplayedCards + cardNumber])
             }
         }
     }

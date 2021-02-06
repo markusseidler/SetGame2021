@@ -12,13 +12,8 @@ class SetGame: ObservableObject {
     // MARK: - Public API Properties
     
     // card features enum
-    enum CardShapes {
-        case oval, diamond, squiggle
-    }
-    
-    enum CardShading {
-        case none, striped, solid
-    }
+    enum CardShapes { case oval, diamond, squiggle }
+    enum CardShading { case none, striped, solid }
     
     struct ViewCard: ViewCardable, Cardable {
 
@@ -44,26 +39,19 @@ class SetGame: ObservableObject {
         static var exampleOvalOne = ViewCard(color: .red, quantity: 1, cardShape: .oval, cardShading: .none, isDealt: true, isFaceUp: true, turnAround: false, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
         static var exampleOvalTwo = ViewCard(color: .red, quantity: 2, cardShape: .oval, cardShading: .solid, isDealt: true, isFaceUp: true, turnAround: false, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
         static var exampleOvalThree = ViewCard(color: .red, quantity: 3, cardShape: .oval, cardShading: .striped, isDealt: true, isFaceUp: true, turnAround: false, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
-    
     }
-    // all cards for the view
+    
     var allViewCards: [ViewCard] { game.setOfCards.map { createViewCard(with: $0) } }
-    // only cards on the screen (dealt)
     var isDealtViewCards: [ViewCard] { game.isDealtCards.map { createViewCard(with: $0) } }
-    // only cards which are (still) in the card deck. Cards which are not dealt yet or which are not "wasUsed" yet
     var isInDeckViewCards: [ViewCard] { game.isInDeckCards.map { createViewCard(with: $0)} }
-    // only cards which are currently matched (and on the screen) or already matched (and removed from the screen)
     var isMatchedViewCards: [ViewCard] { game.isMatchedCards.map { createViewCard(with: $0) } }
-    // only cards which are already removed from the screen
     var wasUsedViewCards: [ViewCard] { game.wasUsedCards.map { createViewCard(with: $0) } }
-    // only cards which are currently on the screen and are selected by the user
     var isSelectedViewCards: [ViewCard] { game.isSelectedCards.map { createViewCard(with: $0) }}
     var isFaceUpCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
+    var threeCardsSelected: Bool { game.isSelectedCards.count == 3 }
     
 
-    init() {
-        self.game = SetOfCards()
-    }
+    init() { self.game = SetOfCards() }
     
     // MARK: - Public API Methods
     

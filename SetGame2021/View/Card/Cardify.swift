@@ -9,11 +9,7 @@ import SwiftUI
 
 struct Cardify: AnimatableModifier {
     
-    var rotation: Double {
-        didSet {
-            print(rotation)
-        }
-    }
+    var rotation: Double
     var viewCard: SetGame.ViewCard
     
     init(_ viewCard: SetGame.ViewCard) {
@@ -21,9 +17,7 @@ struct Cardify: AnimatableModifier {
         self.rotation = viewCard.turnAround ? 0 : 180
     }
     
-    var isShowingFaceUp: Bool {
-        rotation < 90
-    }
+    var isShowingFaceUp: Bool { rotation < 90 }
     
     var animatableData: Double {
         get { rotation }

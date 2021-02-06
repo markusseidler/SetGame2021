@@ -10,6 +10,7 @@ import SwiftUI
 //https://programmingwithswift.com/pass-swiftui-view-as-argument-to-another-view/
 
 struct SingleCardContentView<Content: Shape>: View {
+    
     let content: Content
     let viewCard: ViewCardable
     

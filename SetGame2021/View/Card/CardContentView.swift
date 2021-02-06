@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardContentView: View {
+    
     var viewCard: SetGame.ViewCard
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
@@ -24,7 +25,6 @@ struct CardContentView: View {
             .padding(.horizontal)
         }
     }
-    
     
     var GroupSingleCardContentView: some View {
         switch viewCard.cardShape {
@@ -60,7 +60,6 @@ struct CardContentView: View {
                 })
         }
     }
-    
 }
 
 struct GroupOfCardContentView_Previews: PreviewProvider {

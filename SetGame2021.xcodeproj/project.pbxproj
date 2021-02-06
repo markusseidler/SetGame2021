@@ -167,6 +167,7 @@
 		280A561225AFF6F4004B92A5 /* SetGame2021 */ = {
 			isa = PBXGroup;
 			children = (
+				28B7A56C25CEAA1000C05F8C /* Archive */,
 				280A561725AFF6F5004B92A5 /* Assets.xcassets */,
 				280A561525AFF6F4004B92A5 /* ContentView.swift */,
 				281AD08625B178F60054FDBD /* Extensions */,
@@ -257,7 +258,6 @@
 				28FF168D25B6AE45007E4F7F /* Diamond.swift */,
 				28FF169D25B6D637007E4F7F /* Oval.swift */,
 				28FF169525B6B3B3007E4F7F /* Squiggle.swift */,
-				2822DB8225C834CF004B54B3 /* NewCardView.swift */,
 				28F92C2C25C91D94003D1B71 /* SingleCardContentView.swift */,
 				2854B43B25CD0EBF00546AB3 /* Cardify.swift */,
 				2880CC8425CE7E86008A1016 /* CardContentView.swift */,
@@ -308,6 +308,14 @@
 				28FF16AF25B6E1C2007E4F7F /* GameView.swift */,
 			);
 			path = MainViews;
+			sourceTree = "<group>";
+		};
+		28B7A56C25CEAA1000C05F8C /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				2822DB8225C834CF004B54B3 /* NewCardView.swift */,
+			);
+			path = Archive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
