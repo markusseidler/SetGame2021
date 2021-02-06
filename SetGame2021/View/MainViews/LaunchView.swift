@@ -34,12 +34,12 @@ struct LaunchView: View {
                         .scaledToFit()
                         .frame(width: min(geometry.size.width / 2, geometry.size.height / 2))
                         .opacity(logoOpacity)
-//                    NavigationLink(
-//                        destination: StartGameView(game: game),
-//                        isActive: $pushToNewScreen,
-//                        label: {
-//                            EmptyView()
-//                        })
+                    NavigationLink(
+                        destination: GameView(),
+                        isActive: $pushToNewScreen,
+                        label: {
+                            EmptyView()
+                        })
                 }
                 .navigationBarHidden(true)
                 .statusBar(hidden: true)

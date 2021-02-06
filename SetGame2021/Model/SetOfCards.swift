@@ -170,7 +170,7 @@ struct SetOfCards: CardGameable {
     }
     
     // runs check on a single feature. Logic is if all elements of one feature are the same or if they are all different then it is a match. Implementation with two Array extensions.
-    private func singleFeatureCheck<T> (feature: [T]) -> Bool where T: Equatable {
+    private func singleFeatureCheck<T> (feature: [T]) -> Bool where T: Hashable {
             return feature.allEqual() || feature.allDifferent()
     }
     

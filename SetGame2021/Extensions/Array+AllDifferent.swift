@@ -7,8 +7,9 @@
 
 import Foundation
 
-extension Array where Element: Equatable {
+extension Array where Element: Hashable {
     func allDifferent() -> Bool {
-        self.dropFirst().allSatisfy { $0 != self.first}
+//        self.dropFirst().allSatisfy { $0 != self.first}
+        self.count == Set(self).count
     }
 }

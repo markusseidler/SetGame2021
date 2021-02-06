@@ -11,9 +11,9 @@ import SwiftUI
 struct SetGame2021App: App {
     var body: some Scene {
         WindowGroup {
-            // LaunchView()
+             LaunchView()
 //            CardView(baseWidth: 100, viewCard: SetGame.ViewCard.exampleSquiggleOne)
-            GameView()
+//            GameView()
 //            CardContentView(viewCard: SetGame.ViewCard.exampleDiamondOne)
         }
     }

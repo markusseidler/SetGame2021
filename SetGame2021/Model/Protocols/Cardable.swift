@@ -11,7 +11,7 @@ import Foundation
 protocol Cardable: Identifiable {
     // Basic metrics of each card
     
-    var isDealt: Bool { get set }
+    var isDealt: Bool { get }
     var isFaceUp: Bool { get }
     var turnAround: Bool { get }
     var isSelected: Bool { get }
