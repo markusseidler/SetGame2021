@@ -13,17 +13,15 @@ struct CardContentView: View {
     
     var body: some View {
         if verticalSizeClass == .regular {
-            return AnyView(VStack {
+            return AnyView(VStack(spacing: -6) {
                 GroupSingleCardContentView
-                    .padding()
             })
-            .padding(.horizontal)
+            .padding()
         } else {
             return AnyView(HStack {
                 GroupSingleCardContentView
-                    .padding()
             })
-            .padding(.vertical)
+            .padding(.horizontal)
         }
     }
     

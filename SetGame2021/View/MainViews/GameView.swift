@@ -145,18 +145,24 @@ struct GameView: View {
     private func startDealing() {
         let delayFactor: Double = 0.3
         let animationDuration: Double = 1.0
+        let startOfTurnAround: Double = 0.3
         
         for cardNumber in 0..<game.isDealtViewCards.count {
             let delayTime = delayFactor * Double(cardNumber)
             withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
                 game.turnSingleCardFaceUp(game.isDealtViewCards[cardNumber])
             }
+            withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
+                game.turnAroundCard(game.isDealtViewCards[cardNumber])
+            }
+            
         }
     }
     
     private func dealMoreCards() {
         let delayFactor: Double = 0.3
         let animationDuration: Double = 1.0
+        let startOfTurnAround: Double = 0.3
         
         let tempCount = game.isDealtViewCards.count
         
@@ -169,6 +175,9 @@ struct GameView: View {
             let delayTime = delayFactor * Double(cardNumber)
             withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
                 game.turnSingleCardFaceUp(game.isDealtViewCards[tempCount + cardNumber])
+            }
+            withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
+                game.turnAroundCard(game.isDealtViewCards[tempCount + cardNumber])
             }
         }
     }

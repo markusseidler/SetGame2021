@@ -13,6 +13,7 @@ protocol Cardable: Identifiable {
     
     var isDealt: Bool { get set }
     var isFaceUp: Bool { get }
+    var turnAround: Bool { get }
     var isSelected: Bool { get }
     var isMatched: Bool { get }
     var wasUsed: Bool { get }

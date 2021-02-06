@@ -138,6 +138,10 @@ struct SetOfCards: CardGameable {
         setOfCards[index].isFaceUp = true
     }
     
+    mutating func turnAroundCard(at index: Int) {
+        setOfCards[index].turnAround = true
+    }
+    
     
     
     

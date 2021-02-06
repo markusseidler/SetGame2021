@@ -18,7 +18,7 @@ struct Cardify: AnimatableModifier {
     
     init(_ viewCard: SetGame.ViewCard) {
         self.viewCard = viewCard
-        self.rotation = viewCard.isFaceUp ? 0 : 180
+        self.rotation = viewCard.turnAround ? 0 : 180
     }
     
     var isShowingFaceUp: Bool {
@@ -64,7 +64,7 @@ struct Cardify: AnimatableModifier {
     // MARK: - View Constants
     private let viewCornerRadius: CGFloat = 25.0
     private let frontCardColor: Color = Color.white
-    private let backCardColor: Color = Color.gray
+    private let backCardColor: Color = Color.black
     private let lineColor: Color = Color.black
     private let borderLineWidth: CGFloat = 4.0
     

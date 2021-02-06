@@ -17,6 +17,7 @@ struct SetCard: Cardable, SetCardable {
    
     var isDealt: Bool = false
     var isFaceUp: Bool = false
+    var turnAround: Bool = false
     var isSelected: Bool = false
     var isMatched: Bool = false
     var wasUsed: Bool = false
