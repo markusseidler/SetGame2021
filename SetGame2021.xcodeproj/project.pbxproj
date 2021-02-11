@@ -30,6 +30,7 @@
 		282A6E0F25D51E88007CDB0F /* Array+ContainsSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */; };
 		282A6E1725D523CE007CDB0F /* Array+ContainsFullSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */; };
 		282A6E1C25D53154007CDB0F /* ScratchPaper.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 282A6E1B25D53154007CDB0F /* ScratchPaper.rtf */; };
+		282A6E2725D539D0007CDB0F /* LogFile.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 282A6E2625D539D0007CDB0F /* LogFile.rtf */; };
 		2842B73C25B66DF200A2D88D /* CGImage+stripes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */; };
 		2854B43C25CD0EBF00546AB3 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854B43B25CD0EBF00546AB3 /* Cardify.swift */; };
 		285DCA5D25CECA47000199CD /* AccessID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285DCA5C25CECA47000199CD /* AccessID.swift */; };
@@ -102,6 +103,7 @@
 		282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContainsSetCard.swift"; sourceTree = "<group>"; };
 		282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContainsFullSet.swift"; sourceTree = "<group>"; };
 		282A6E1B25D53154007CDB0F /* ScratchPaper.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ScratchPaper.rtf; sourceTree = "<group>"; };
+		282A6E2625D539D0007CDB0F /* LogFile.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = LogFile.rtf; sourceTree = "<group>"; };
 		2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+stripes.swift"; sourceTree = "<group>"; };
 		2854B43B25CD0EBF00546AB3 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		285DCA5C25CECA47000199CD /* AccessID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessID.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				280A561325AFF6F4004B92A5 /* SetGame2021App.swift */,
 				28B4A9D325B2B95900E51CD3 /* View */,
 				28B4A9D425B2B95F00E51CD3 /* ViewModel */,
+				282A6E2625D539D0007CDB0F /* LogFile.rtf */,
 			);
 			path = SetGame2021;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				280A561B25AFF6F5004B92A5 /* Preview Assets.xcassets in Resources */,
 				282A6E1C25D53154007CDB0F /* ScratchPaper.rtf in Resources */,
 				280A561825AFF6F5004B92A5 /* Assets.xcassets in Resources */,
+				282A6E2725D539D0007CDB0F /* LogFile.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
