@@ -349,18 +349,18 @@ class ModelSetOfCardsTests: XCTestCase {
         
     }
     
-//    func testCheckWhereAreMatchedSets() {
-//        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
-//        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
-//        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
-//        let cardFour = SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one)
-//        let cardFive = SetCard(featureOne: .one, featureTwo: .three, featureThree: .two, featureFour: .one)
-//        let cardOneMatchA = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .two)
-//        let cardOneMatchB = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .three)
-//
-//        let cardArray = [cardOne, cardTwo, cardThree, cardFour, cardFive, cardOneMatchA, cardOneMatchB]
-//        let expected
-//
-//        testSet.checkWhereAreMatchedSets(in: cardArray)
-//    }
+    func testCheckWhereAreMatchedSets() {
+        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
+        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
+        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
+        let cardOneMatchA = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .two)
+        let cardOneMatchB = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .three)
+
+        let cardArray = [cardOne, cardTwo, cardThree, cardOneMatchA, cardOneMatchB]
+        let expectedResult = [[cardOne, cardOneMatchA, cardOneMatchB], [cardOne, cardTwo, cardThree]]
+        
+        let doesContain = testSet.checkWhereAreMatchedSets(in: cardArray)?.containsFullSet(expectedResult)?.allSatisfy { $0 }
+        
+        XCTAssertTrue(doesContain!)
+    }
 }

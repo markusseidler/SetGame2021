@@ -143,16 +143,20 @@ struct SetOfCards: CardGameable {
     }
     
     func checkWhereAreMatchedSets(in cardArray: [SetCard]) -> [[SetCard]]? {
-        var matchedSets: [[SetCard]]?
+        var matchedSets = [[SetCard]]()
         
         let setsToCheck = getUniqueSetCombinations(in: cardArray)
         for set in setsToCheck {
             if checkMatch(for: set) {
-                matchedSets?.append(set)
+                matchedSets.append(set)
             }
         }
+        if !matchedSets.isEmpty {
+            return matchedSets
+        } else {
+            return nil
+        }
         
-        return matchedSets
     }
     
     func getUniqueSetCombinations(in cardArray: [SetCard]) -> [[SetCard]] {

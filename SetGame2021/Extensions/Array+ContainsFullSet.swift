@@ -20,13 +20,15 @@ extension Array where Element == [SetCard] {
                  && setB.containsSetCard(setA[1])
                     && setB.containsSetCard(setA[2]) {
                     results.append(true)
-                } else {
-                    results.append(false)
                 }
             }
         }
         
-        return results
+        if !results.isEmpty {
+            return results
+        } else {
+            return nil
+        }
         
     }
     

@@ -12,3 +12,4 @@ extension Array where Element: Equatable {
         self.dropFirst().allSatisfy { $0 == self.first}
     }
 }
+
