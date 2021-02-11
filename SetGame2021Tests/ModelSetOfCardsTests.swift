@@ -341,30 +341,26 @@ class ModelSetOfCardsTests: XCTestCase {
 
         let actualResult = testSet.getUniqueSetCombinations(in: cardArray)
         
-        var foundExpectedSetsInActualResult = [Bool]()
-        var foundActualSetsInExpectedResult = [Bool]()
+        let foundExpectedSetsInActualResult = actualResult.containsFullSet(expectedResult)!.filter { $0 == true }
+        let foundActualSetsInExpectedResult = expectedResult.containsFullSet(actualResult)!.filter { $0 == true }
         
-        for expectedSet in expectedResult {
-            for actualSet in actualResult {
-                if actualSet.containsSetCard(expectedSet[0])
-                 && actualSet.containsSetCard(expectedSet[1])
-                    && actualSet.containsSetCard(expectedSet[2]) {
-                    foundExpectedSetsInActualResult.append(true)
-                }
-            }
-        }
-        
-        for actualSet in actualResult {
-            for expectedSet in expectedResult {
-                if expectedSet.containsSetCard(actualSet[0])
-                 && expectedSet.containsSetCard(actualSet[1])
-                    && expectedSet.containsSetCard(actualSet[2]) {
-                    foundActualSetsInExpectedResult.append(true)
-                }
-            }
-        }
-    
         XCTAssertEqual(expectedResult.count, foundExpectedSetsInActualResult.count)
         XCTAssertEqual(actualResult.count, foundActualSetsInExpectedResult.count)
+        
     }
+    
+//    func testCheckWhereAreMatchedSets() {
+//        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
+//        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
+//        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
+//        let cardFour = SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one)
+//        let cardFive = SetCard(featureOne: .one, featureTwo: .three, featureThree: .two, featureFour: .one)
+//        let cardOneMatchA = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .two)
+//        let cardOneMatchB = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .three)
+//
+//        let cardArray = [cardOne, cardTwo, cardThree, cardFour, cardFive, cardOneMatchA, cardOneMatchB]
+//        let expected
+//
+//        testSet.checkWhereAreMatchedSets(in: cardArray)
+//    }
 }

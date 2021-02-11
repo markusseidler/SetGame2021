@@ -142,10 +142,10 @@ struct SetOfCards: CardGameable {
         setOfCards[index].turnAround = true
     }
     
-    func checkWhereAreMatchedSets() -> [[SetCard]]? {
+    func checkWhereAreMatchedSets(in cardArray: [SetCard]) -> [[SetCard]]? {
         var matchedSets: [[SetCard]]?
         
-        let setsToCheck = getUniqueSetCombinations(in: isDealtCards)
+        let setsToCheck = getUniqueSetCombinations(in: cardArray)
         for set in setsToCheck {
             if checkMatch(for: set) {
                 matchedSets?.append(set)
