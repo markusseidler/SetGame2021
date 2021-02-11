@@ -68,10 +68,15 @@ class GameViewTests: XCTestCase {
 //
 //
 //        sleep(8)
-//
-////        XCTAssertTrue(app.staticTexts["singleCardView"].exists)
-//
-//
+//        
+//        app.identifier["singleCardView"]
+//        app.layoutItems
+        
+//        XCTAssertEqual(12, app.["singleCardView"].children(matching: .cell).count)
+
+//        XCTAssertTrue(app.staticTexts["singleCardView"].exists)
+
+
 //    }
     
     

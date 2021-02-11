@@ -98,6 +98,10 @@ class SetGame: ObservableObject {
         }
     }
     
+    func checkCardsAreASet() {
+        game.checkSelectedCardsIfMatchAndChange()
+    }
+    
     // MARK: - Private API Properties
     
     @Published private var game: SetOfCards

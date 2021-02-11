@@ -11,4 +11,5 @@ struct TextContent {
     static let totalScore = "Total: "
     static let bonusScore = "Bonus: "
     static let newGame = "New Game"
+    static let matched = "Matched!"
 }

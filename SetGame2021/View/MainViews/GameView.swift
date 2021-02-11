@@ -18,6 +18,7 @@ struct GameView: View {
     @StateObject var game = SetGame()
     @State private var cardSize: CGSize = CGSize.zero
     @State private var cardDeckPosition: CGRect = CGRect.zero
+    @State private var showMatchedText: Bool = false
     
     
     var body: some View {
@@ -26,7 +27,12 @@ struct GameView: View {
                     Color.green.opacity(0.3).edgesIgnoringSafeArea(.all)
                     VStack {
                         createUpperScreen(size: geometry.size).padding(.top)
-                        gridBody.padding(10)
+                        ZStack {
+                            gridBody.padding(10)
+                            if showMatchedText {
+                                matchedText
+                            }
+                        }
                         lowerScreen
                     }
                     
@@ -41,6 +47,8 @@ struct GameView: View {
             }
             .navigationBarHidden(true)
     }
+    
+    // MARK: - Private view methods
     
     private func createUpperScreen(size: CGSize) -> some View {
         HStack(alignment: .center) {
@@ -77,8 +85,7 @@ struct GameView: View {
                             CardContentView(viewCard: card)
                                 .cardify(viewCard: card)
                                 .onTapGesture {
-                                    game.chooseCard(card)
-                                    print(game.threeCardsSelected)
+                                   choosingCard(card)
                                 }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
                                 .accessibility(identifier: AccessID.singleCardView)
@@ -89,6 +96,8 @@ struct GameView: View {
             }
         }
     }
+
+    // MARK: - Private view properties
     
     private var lowerScreen: some View {
         HStack {
@@ -108,6 +117,17 @@ struct GameView: View {
                 // Cheat Button, Deal Button
             }
         }
+    }
+    
+    private var matchedText: some View {
+            ZStack {
+                Text(TextContent.matched)
+                    .background(Color.clear)
+                    .foregroundColor(Color.red)
+                    .font(Font.system(.largeTitle))
+                    .padding()
+            }
+            .transition(.scale)
     }
     
     private var cardDeck: some View {
@@ -137,6 +157,8 @@ struct GameView: View {
         }
     }
     
+    // MARK: - Private methods
+    
     private func startDealing() { turningCardsAnimation() }
     
     private func dealMoreCards() {
@@ -165,6 +187,26 @@ struct GameView: View {
                 game.turnAroundCard(game.isDealtViewCards[alreadyDisplayedCards + cardNumber])
             }
         }
+    }
+    
+    private func choosingCard(_ card: SetGame.ViewCard) {
+        game.chooseCard(card)
+        checkCard()
+    }
+    
+    private func checkCard() {
+        if game.threeCardsSelected {
+            game.checkCardsAreASet()
+            if checkIfMatchedCardsAreThree() {
+                withAnimation(Animation.interpolatingSpring(mass: 1, stiffness: 1, damping: 0.5, initialVelocity: 5)) {
+                    showMatchedText = true
+                }
+            }
+        }
+    }
+    
+    private func checkIfMatchedCardsAreThree() -> Bool {
+        game.isMatchedViewCards.count == 3
     }
     
 }
