@@ -106,7 +106,7 @@ struct SetOfCards: CardGameable {
     mutating func checkSelectedCardsIfMatchAndChange() {
         guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
         
-        if checkMatch() {
+        if checkMatch(for: isSelectedCards) {
             for selectedCard in isSelectedCards {
                 if let matchingIndex = setOfCards.getMatchedIndexByID(of: selectedCard) {
                     setOfCards[matchingIndex].isMatched = true
@@ -142,6 +142,43 @@ struct SetOfCards: CardGameable {
         setOfCards[index].turnAround = true
     }
     
+    func checkWhereAreMatchedSets() -> [[SetCard]]? {
+        var matchedSets: [[SetCard]]?
+        
+        let setsToCheck = getUniqueSetCombinations(in: isDealtCards)
+        for set in setsToCheck {
+            if checkMatch(for: set) {
+                matchedSets?.append(set)
+            }
+        }
+        
+        return matchedSets
+    }
+    
+    func getUniqueSetCombinations(in cardArray: [SetCard]) -> [[SetCard]] {
+        var resultSet = Set<Set<SetCard>>()
+        var resultArray = [[SetCard]]()
+        
+        for cardOne in cardArray {
+            for cardTwo in cardArray {
+                for cardThree in cardArray {
+                    let tempSet = Set(arrayLiteral: cardOne, cardTwo, cardThree)
+                    if tempSet.count == 3 {
+                        
+                        resultSet.insert(tempSet)
+                    }
+                }
+            }
+        }
+        
+        // convert from Set to Array for easier processing in subsequent methods
+        for set in resultSet {
+            resultArray.append(Array(set))
+        }
+        
+        return resultArray
+    }
+
     
     
     
@@ -152,16 +189,16 @@ struct SetOfCards: CardGameable {
     // MARK: - Private API Methods
     
     //
-    private func checkMatch() -> Bool {
+    private func checkMatch(for cardArray: [SetCard]) -> Bool {
         
         // checking if only 3 cards are selected
-        guard (isSelectedCards.count == 3) else { fatalError("Failed matching. \(isSelectedCards.count) are selected. It needs three cards to start matching process.") }
+        guard (cardArray.count == 3) else { fatalError("Failed matching. \(cardArray.count) are selected. It needs three cards to start matching process.") }
         
         // extracts each feature for each card
-        let featureOneSelected = isSelectedCards.map { $0.featureOne }
-        let featureTwoSelected = isSelectedCards.map { $0.featureTwo }
-        let featureThreeSelected = isSelectedCards.map { $0.featureThree }
-        let featureFourSelected = isSelectedCards.map { $0.featureFour }
+        let featureOneSelected = cardArray.map { $0.featureOne }
+        let featureTwoSelected = cardArray.map { $0.featureTwo }
+        let featureThreeSelected = cardArray.map { $0.featureThree }
+        let featureFourSelected = cardArray.map { $0.featureFour }
         
         // checks if all features are either all equal or all different. If yes, returns true
         let featureCheck: Bool = singleFeatureCheck(feature: featureOneSelected) && singleFeatureCheck(feature: featureTwoSelected) && singleFeatureCheck(feature: featureThreeSelected) && singleFeatureCheck(feature: featureFourSelected)
@@ -174,9 +211,6 @@ struct SetOfCards: CardGameable {
             return feature.allEqual() || feature.allDifferent()
     }
     
-    
-    
- 
 }
 
 

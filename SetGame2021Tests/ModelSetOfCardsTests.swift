@@ -9,9 +9,13 @@ import XCTest
 @testable import SetGame2021
 
 class ModelSetOfCardsTests: XCTestCase {
+    
+    var testSet: SetOfCards!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        
+        testSet = SetOfCards()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -33,7 +37,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testNumberOfCardsInSetOfCards() throws {
-        let testSet = SetOfCards()
         let expectedResult = 81
         let testResult = testSet.setOfCards.count
         
@@ -42,7 +45,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDiversityOfFeatureOne() throws {
-        let testSet = SetOfCards()
         let expectedResult = 27
         let testResultOne = testSet.setOfCards.filter { $0.featureOne == .one }.count
         let testResultTwo = testSet.setOfCards.filter { $0.featureOne == .two }.count
@@ -54,7 +56,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDiversityOfFeatureTwo() throws {
-        let testSet = SetOfCards()
         let expectedResult = 27
         let testResultOne = testSet.setOfCards.filter { $0.featureTwo == .one }.count
         let testResultTwo = testSet.setOfCards.filter { $0.featureTwo == .two }.count
@@ -66,7 +67,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDiversityOfFeatureThree() throws {
-        let testSet = SetOfCards()
         let expectedResult = 27
         let testResultOne = testSet.setOfCards.filter { $0.featureThree == .one }.count
         let testResultTwo = testSet.setOfCards.filter { $0.featureThree == .two }.count
@@ -78,7 +78,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDiversityOfFeatureFour() throws {
-        let testSet = SetOfCards()
         let expectedResult = 27
         let testResultOne = testSet.setOfCards.filter { $0.featureFour == .one }.count
         let testResultTwo = testSet.setOfCards.filter { $0.featureFour == .two }.count
@@ -90,7 +89,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDiversityAllFeatures() throws {
-        let testSet = SetOfCards()
         let expectedResult = 1
         let testResultOne = testSet.setOfCards.filter { $0.featureOne == .one && $0.featureTwo == .one && $0.featureThree == .one && $0.featureFour == .one }.count
         let testResultTwo = testSet.setOfCards.filter { $0.featureOne == .two && $0.featureTwo == .two && $0.featureThree == .two && $0.featureFour == .two }.count
@@ -108,7 +106,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testResetGameAllFalse() throws {
-        let testSet = SetOfCards()
         let testResultIsDealtTrue = testSet.setOfCards.contains {$0.isDealt == true }
         let testResultIsSelectedTrue = testSet.setOfCards.contains {$0.isSelected == true }
         let testResultIsMatchedTrue = testSet.setOfCards.contains {$0.isMatched == true }
@@ -119,7 +116,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDealCardTen() throws {
-        var testSet = SetOfCards()
         let expectedResult = 10
         testSet.dealCards(numberOfCards: 10)
         let testResult = testSet.isDealtCards.count
@@ -128,7 +124,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDealCardHundred() throws {
-        var testSet = SetOfCards()
         let expectedResult = 81
         testSet.dealCards(numberOfCards: 100)
         let testResult = testSet.isDealtCards.count
@@ -137,7 +132,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testSelectCard() throws {
-        var testSet = SetOfCards()
         testSet.selectCard(at: 5)
         let expectedCount = 1
         let testCount = testSet.isSelectedCards.count
@@ -147,7 +141,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testDeSelectCard() throws {
-        var testSet = SetOfCards()
         
         // first select card
         testSet.selectCard(at: 10)
@@ -166,7 +159,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckFeatureOneNoMatch() {
-        var testSet = SetOfCards()
         
         // select three cards false on featureOne
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one))
@@ -184,7 +176,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckFeatureTwoNoMatch() {
-        var testSet = SetOfCards()
         
         // select three cards false on featureTwo
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one))
@@ -202,7 +193,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckFeatureThreeNoMatch() {
-        var testSet = SetOfCards()
         
         // select three cards false on featureThree
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one))
@@ -220,7 +210,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckFeatureFourNoMatch() {
-        var testSet = SetOfCards()
         
         // select three cards false on featureFour
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one))
@@ -238,7 +227,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckMatchAllDifferent() {
-        var testSet = SetOfCards()
         
         // select three cards true with features all different
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one))
@@ -256,7 +244,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckMatchFeatureOneTwoThreeEqual() {
-        var testSet = SetOfCards()
 
         // select three cards true with features all equal except FeatureFour
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one))
@@ -274,7 +261,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testCheckMatchFeatureTwoThreeFourEqual() {
-        var testSet = SetOfCards()
 
         // select three cards true with features all equal except FeatureOne
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .three))
@@ -292,7 +278,6 @@ class ModelSetOfCardsTests: XCTestCase {
     }
     
     func testMoveToWasUsedCards() {
-        var testSet = SetOfCards()
         
         // select three cards true with features all equal except FeatureTwo
         let indexCardOne = testSet.setOfCards.getMatchedIndexBySetCardFeatures(of: SetCard(featureOne: .two, featureTwo: .one, featureThree: .three, featureFour: .three))
@@ -318,5 +303,68 @@ class ModelSetOfCardsTests: XCTestCase {
         XCTAssertEqual(countSelectedCards, expectedCount)
         XCTAssertEqual(countMatchedCards, expectedCount)
         XCTAssertEqual(countWasUsedCards, expectedCountWasUsed)
+    }
+    
+    func testPositiveContainsSetCard() {
+        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
+        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
+        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
+        
+        let cardArray = [cardOne, cardTwo, cardThree]
+        let doesContain = cardArray.containsSetCard(SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one))
+        
+        XCTAssertTrue(doesContain)
+    }
+    
+    func testNegativeContainsSetCard() {
+        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
+        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
+        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
+        
+        let cardArray = [cardOne, cardTwo, cardThree]
+        let doesContain = cardArray.containsSetCard(SetCard(featureOne: .one, featureTwo: .one, featureThree: .two, featureFour: .three))
+        
+        XCTAssertFalse(doesContain)
+    }
+    
+    
+    func testGetUniqueSetCombinations() {
+        let cardOne = SetCard(featureOne: .one, featureTwo: .one, featureThree: .one, featureFour: .one)
+        let cardTwo = SetCard(featureOne: .two, featureTwo: .two, featureThree: .two, featureFour: .two)
+        let cardThree = SetCard(featureOne: .three, featureTwo: .three, featureThree: .three, featureFour: .three)
+        let cardFour = SetCard(featureOne: .one, featureTwo: .two, featureThree: .three, featureFour: .one)
+        let cardFive = SetCard(featureOne: .one, featureTwo: .three, featureThree: .two, featureFour: .one)
+
+        let cardArray = [cardOne, cardTwo, cardThree, cardFour, cardFive]
+
+        let expectedResult = [[cardFour, cardFive, cardTwo], [cardOne, cardThree, cardFour], [cardTwo, cardOne, cardFour], [cardTwo, cardThree, cardFour], [cardThree, cardFour, cardFive], [cardOne, cardFive, cardTwo], [cardFive, cardOne, cardFour], [cardThree, cardFive, cardTwo], [cardFive, cardOne, cardThree], [cardThree, cardTwo, cardOne]]
+
+        let actualResult = testSet.getUniqueSetCombinations(in: cardArray)
+        
+        var foundExpectedSetsInActualResult = [Bool]()
+        var foundActualSetsInExpectedResult = [Bool]()
+        
+        for expectedSet in expectedResult {
+            for actualSet in actualResult {
+                if actualSet.containsSetCard(expectedSet[0])
+                 && actualSet.containsSetCard(expectedSet[1])
+                    && actualSet.containsSetCard(expectedSet[2]) {
+                    foundExpectedSetsInActualResult.append(true)
+                }
+            }
+        }
+        
+        for actualSet in actualResult {
+            for expectedSet in expectedResult {
+                if expectedSet.containsSetCard(actualSet[0])
+                 && expectedSet.containsSetCard(actualSet[1])
+                    && expectedSet.containsSetCard(actualSet[2]) {
+                    foundActualSetsInExpectedResult.append(true)
+                }
+            }
+        }
+    
+        XCTAssertEqual(expectedResult.count, foundExpectedSetsInActualResult.count)
+        XCTAssertEqual(actualResult.count, foundActualSetsInExpectedResult.count)
     }
 }

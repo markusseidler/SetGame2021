@@ -27,6 +27,7 @@
 		2826DEDC25B58F530066F6DC /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826DEDB25B58F530066F6DC /* SetGame.swift */; };
 		2826DEED25B590720066F6DC /* CardViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826DEEC25B590720066F6DC /* CardViewable.swift */; };
 		2827B4F125CBD46000C1FE66 /* TrialTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827B4F025CBD46000C1FE66 /* TrialTest.swift */; };
+		282A6E0F25D51E88007CDB0F /* Array+ContainsSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */; };
 		2842B73C25B66DF200A2D88D /* CGImage+stripes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */; };
 		2854B43C25CD0EBF00546AB3 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854B43B25CD0EBF00546AB3 /* Cardify.swift */; };
 		285DCA5D25CECA47000199CD /* AccessID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285DCA5C25CECA47000199CD /* AccessID.swift */; };
@@ -96,6 +97,7 @@
 		2826DEDB25B58F530066F6DC /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		2826DEEC25B590720066F6DC /* CardViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewable.swift; sourceTree = "<group>"; };
 		2827B4F025CBD46000C1FE66 /* TrialTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialTest.swift; sourceTree = "<group>"; };
+		282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContainsSetCard.swift"; sourceTree = "<group>"; };
 		2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+stripes.swift"; sourceTree = "<group>"; };
 		2854B43B25CD0EBF00546AB3 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		285DCA5C25CECA47000199CD /* AccessID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessID.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				28FF16B925B6F00D007E4F7F /* View+LabelVM.swift */,
 				2814ED2B25B947D300802262 /* View+Stacked.swift */,
 				2826059125BBF6FC002EA47E /* Color+OffWhite.swift */,
+				282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				2854B43C25CD0EBF00546AB3 /* Cardify.swift in Sources */,
 				2822DB8325C834CF004B54B3 /* NewCardView.swift in Sources */,
 				28B4422A25B03DCE0077217D /* CardGameable.swift in Sources */,
+				282A6E0F25D51E88007CDB0F /* Array+ContainsSetCard.swift in Sources */,
 				280A564B25AFFC19004B92A5 /* SetCardable.swift in Sources */,
 				285DCA5D25CECA47000199CD /* AccessID.swift in Sources */,
 				280A561425AFF6F4004B92A5 /* SetGame2021App.swift in Sources */,
