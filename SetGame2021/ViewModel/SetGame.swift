@@ -107,9 +107,9 @@ class SetGame: ObservableObject {
     @Published private var game: SetOfCards
     
     // Colors
-    private let colorOne: Color = Color.trendyGreen
-    private let colorTwo: Color = Color.trendyBlue
-    private let colorThree: Color = Color.trendyPink
+    private let colorOne: Color = Color.rainbowBlue
+    private let colorTwo: Color = Color.rainbowRed
+    private let colorThree: Color = Color.rainbowGreen
     
     // MARK: - Private API Methods
     

@@ -11,33 +11,16 @@ extension Color {
     static let offWhite = Color("OffWhite")
 }
 
+// flat rainbow Colors
 extension Color {
-    static let trendyBlue = Color("TrendyBlue")
+    static let rainbowWhite = Color("RainbowWhite")
+    static let rainbowPink = Color("RainbowPink")
+    static let rainbowViolet = Color("RainbowViolet")
+    static let rainbowBlue = Color("RainbowBlue")
+    static let rainbowTurquoise = Color("RainbowTurquoise")
+    static let rainbowGreen = Color("RainbowGreen")
+    static let rainbowYellow = Color("RainbowYellow")
+    static let rainbowOrange = Color("RainbowOrange")
+    static let rainbowRed = Color("RainbowRed")
+    static let rainbowWineRed = Color("RainbowWineRed")
 }
-
-extension Color {
-    static let trendyGray = Color("TrendyGray")
-}
-
-extension Color {
-    static let trendyPink = Color("TrendyPink")
-}
-
-extension Color {
-    static let trendyPurple = Color("TrendyPurple")
-}
-
-extension Color {
-    static let trendyYellow = Color("TrendyYellow")
-}
-
-extension Color {
-    static let trendyOrange = Color("TrendyOrange")
-}
-
-extension Color {
-    static let trendyGreen = Color("TrendyGreen")
-}
-
-
-

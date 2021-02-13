@@ -33,7 +33,7 @@ struct GameView: View {
                                 matchedText
                             }
                         }
-                        lowerScreen(size: geometry.size)
+                        createLowerScreen(size: geometry.size)
                     }
                     
                 }
@@ -59,7 +59,7 @@ struct GameView: View {
                 Text("\(TextContent.newGame)")
             })
             .accessibility(identifier: AccessID.newGameButton)
-            .convertToStandardLabel(size: size, opacity: 1.0, color: Color.green, widthPercentage: 33)
+            .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0, color: Color.rainbowTurquoise))
             Spacer()
             Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: size, opacity: 0.5, widthPercentage: 28)
             Spacer()
@@ -97,23 +97,28 @@ struct GameView: View {
         }
     }
     
-    private func lowerScreen(size: CGSize) -> some View {
+    private func createLowerScreen(size: CGSize) -> some View {
         return HStack {
             cardDeck
             VStack {
                 Button {
-                    startDealing()
+                    if game.isFaceUpCards.count > 0 {
+                        dealMoreCards()
+                    } else {
+                        startDealing()
+                    }
                 } label: {
                     Text("Deal")
                 }
-    .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0))
+                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0))
                 .accessibility(identifier: AccessID.firstDealButton)
                 Button {
-                    dealMoreCards()
+                    cheat()
                 } label: {
-                    Text("Deal 3 more")
+                    Text("Cheat")
                 }
-                // Cheat Button, Deal Button
+                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0, color: Color.rainbowOrange))
+                
             }
         }
     }
@@ -172,6 +177,8 @@ struct GameView: View {
     
         turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)
     }
+    
+    private func cheat() {}
     
     private func turningCardsAnimation(isFirstDeal: Bool = true, alreadyDisplayedCards: Int = 0) {
         let delayFactor: Double = 0.3

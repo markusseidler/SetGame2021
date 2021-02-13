@@ -13,14 +13,14 @@ struct PrimaryButtonStyle: ButtonStyle {
 
     var geometrySize: CGSize
     var opacityLevel: Double
-    var color: Color = Color.trendyPurple
+    var color: Color = Color.rainbowViolet
     var widthPercentage: CGFloat = 30
     
     
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: viewCornerRadius)
-                .fill(color)
+                .fill(configuration.isPressed ? color.opacity(0.3) : color)
                 .opacity(opacityLevel)
                 .shadow(color: .gray, radius: 2, x: 0, y: 2)
             configuration.label
