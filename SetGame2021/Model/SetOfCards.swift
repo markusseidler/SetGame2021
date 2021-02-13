@@ -27,6 +27,7 @@ struct SetOfCards: CardGameable {
     // only cards which are currently on the screen and are selected by the user
     var isSelectedCards: [SetCard] { setOfCards.filter { $0.isSelected } }
     var isFaceUpCards: [SetCard] { setOfCards.filter { $0.isFaceUp } }
+    var countOfAvailableSetsDisplayed: Int = 0
     
     
     // MARK: - Public API Methods
@@ -190,10 +191,9 @@ struct SetOfCards: CardGameable {
     }
 
     mutating func cheatMatchingCardsChangedToIsCheatedTrue() {
-        print("**** pre-count **** ", setOfCards.filter {$0.isCheated}.count)
-        
         if let unwrappedCheatMatchingSets = checkWhereAreMatchedSets(in: isFaceUpCards) {
             for set in unwrappedCheatMatchingSets {
+                countOfAvailableSetsDisplayed = unwrappedCheatMatchingSets.count
                 for card in isFaceUpCards {
                     if set.containsSetCard(card) {
                         setOfCards[setOfCards.getMatchedIndexBySetCardFeatures(of: card)!].isCheated = true
@@ -201,8 +201,6 @@ struct SetOfCards: CardGameable {
                 }
             }
         }
-        print("**** count **** ", isFaceUpCards.filter {$0.isCheated}.count)
-        print("**** count **** ", setOfCards.filter {$0.isCheated}.count)
     }
     
     mutating func changeAllCardsToIsCheatedFalse() {

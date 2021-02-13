@@ -51,8 +51,8 @@ class SetGame: ObservableObject {
     var isFaceUpViewCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var threeCardsSelected: Bool { game.isSelectedCards.count == 3 }
+    var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
-
     init() { self.game = SetOfCards() }
     
     // MARK: - Public API Methods
@@ -62,17 +62,11 @@ class SetGame: ObservableObject {
         dealFirstTwelveCards()
     }
     
-    func dealFirstTwelveCards() {
-        game.dealCards(numberOfCards: 12)
-    }
+    func dealFirstTwelveCards() { game.dealCards(numberOfCards: 12) }
     
-    func dealThreeMoreCards() {
-        game.dealCards(numberOfCards: 3)
-    }
+    func dealThreeMoreCards() { game.dealCards(numberOfCards: 3) }
     
-    func turnAllCardsFaceUp() {
-        game.turnAllCardsFaceUp()
-    }
+    func turnAllCardsFaceUp() { game.turnAllCardsFaceUp() }
     
     func turnSingleCardFaceUp(_ viewCard: ViewCard) {
         let index = allViewCards.getMatchedIndexByID(of: viewCard)
@@ -100,57 +94,12 @@ class SetGame: ObservableObject {
         }
     }
     
-    func checkCardsAreASet() {
-        game.checkSelectedCardsIfMatchAndChange()
-    }
+    func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
     
-    func cheat() {
-        game.cheatMatchingCardsChangedToIsCheatedTrue()
-    }
+    func cheatOn() { game.cheatMatchingCardsChangedToIsCheatedTrue() }
     
-    
-//    func cheatCardIsMatching(_ viewCard: ViewCard, in cardArray: [SetCard]) {
-//        
-//        let cheatMatchingSets = game.checkWhereAreMatchedSets(in: cardArray)?.map { set in
-//            set.map { createViewCard(with: $0)}
-//        }
-//        
-//        if let unwrappedMatchingSet = cheatMatchingSets {
-//            for set in unwrappedMatchingSet {
-//                if set.containsViewCard(viewCard) {
-//                    viewCard.isCheated = true
-//                }
-//            }
-//        }
-//    }
-//    
-//    func resetCheatCardStatusToFalse(in cardArray: [SetCard]) {
-//        for
-//    }
-    
-    func printCheatCardSets() {
-        print("matchedSets: \n")
-        
-        if let matchedSets = game.checkWhereAreMatchedSets(in: game.isFaceUpCards) {
-            for set in matchedSets {
-                
-                print("\n")
-                print("Matched Set:")
-                
-                let cardOne = createViewCard(with: set[0])
-                let cardTwo = createViewCard(with: set[1])
-                let cardThree = createViewCard(with: set[2])
-                
-                let cardArray = [cardOne, cardTwo, cardThree]
-                
-                for card in cardArray {
-                    print("card \(String(describing: cardArray.firstIndex { $0.id == card.id})) \(card.color) \(card.quantity) \(card.cardShape) \(card.cardShading)")
-                }
-                
-                print("\n")
-            }
-        }
-    }
+    func cheatOff() { game.changeAllCardsToIsCheatedFalse() }
+
     
     // MARK: - Private API Properties
     

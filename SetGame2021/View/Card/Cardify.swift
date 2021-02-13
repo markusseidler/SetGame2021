@@ -10,18 +10,25 @@ import SwiftUI
 struct Cardify: AnimatableModifier {
     
     var rotation: Double
+    var rotation2D: Double
+    var rotationAngle: Double
     var viewCard: SetGame.ViewCard
     
-    init(_ viewCard: SetGame.ViewCard) {
+    init(_ viewCard: SetGame.ViewCard, rotationAngle: Double) {
         self.viewCard = viewCard
         self.rotation = viewCard.turnAround ? 0 : 180
+        self.rotation2D = viewCard.isCheated ? rotationAngle : 0
+        self.rotationAngle = rotationAngle
     }
     
     var isShowingFaceUp: Bool { rotation < 90 }
     
-    var animatableData: Double {
-        get { rotation }
-        set { rotation = newValue }
+    var animatableData: AnimatablePair<Double, Double> {
+        get { AnimatablePair(rotation, rotation2D) }
+        set {
+            rotation = newValue.first
+            rotation2D = newValue.second
+        }
     }
     
     func body(content: Content) -> some View {
@@ -33,6 +40,7 @@ struct Cardify: AnimatableModifier {
                     .stroke(viewCard.isSelected ? lineColor : Color.clear, lineWidth: borderLineWidth)
                 content
             }
+            .rotationEffect(Angle.degrees(rotation2D))
         }
         
         var backFrontView: some View {
@@ -65,8 +73,8 @@ struct Cardify: AnimatableModifier {
 }
 
 extension View {
-    func cardify(viewCard: SetGame.ViewCard) -> some View {
-        self.modifier(Cardify(viewCard))
+    func cardify(viewCard: SetGame.ViewCard, angle: Double = 10) -> some View {
+        self.modifier(Cardify(viewCard, rotationAngle: angle))
     }
 }
 

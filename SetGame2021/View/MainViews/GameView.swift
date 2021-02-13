@@ -7,19 +7,14 @@
 
 import SwiftUI
 
-// TODO: - Flip Card
-// TODO: - select card.. check with match.. animate if match... if not match
-// TODO: deal new card...
-/// add cheat button
-
-
 struct GameView: View {
     
     @StateObject var game = SetGame()
     @State private var cardSize: CGSize = CGSize.zero
     @State private var cardDeckPosition: CGRect = CGRect.zero
     @State private var showMatchedText: Bool = false
-    
+    @State private var rotationAngle: Double = 0
+    @State private var availableSets: AvailableSets?
     
     var body: some View {
             GeometryReader { geometry in
@@ -35,13 +30,14 @@ struct GameView: View {
                         }
                         createLowerScreen(size: geometry.size)
                     }
-                    
                 }
                 
             }
+            .alert(item: $availableSets) { sets in
+                getAvailableSetsAlert(count: sets.count)
+            }
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 1)) {
-                    TrialTest().testCheckFeatureThreeNoMatch()
                     game.dealFirstTwelveCards()
                 }
             }
@@ -83,7 +79,7 @@ struct GameView: View {
                         
                         if card.isFaceUp {
                             CardContentView(viewCard: card)
-                                .cardify(viewCard: card)
+                                .cardify(viewCard: card, angle: rotationAngle)
                                 .onTapGesture {
                                    choosingCard(card)
                                 }
@@ -113,7 +109,10 @@ struct GameView: View {
                 .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0))
                 .accessibility(identifier: AccessID.firstDealButton)
                 Button {
-                    game.cheat()
+                    withAnimation(Animation.easeInOut(duration: 1.0)) {
+                        cheat()
+                    }
+                   
                 } label: {
                     Text("Cheat")
                 }
@@ -123,7 +122,12 @@ struct GameView: View {
         }
     }
     
+    func getAvailableSetsAlert(count: Int) -> Alert {
+        Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text("Ok")))
+    }
+    
     // MARK: - Private view properties
+    
     
     private var matchedText: some View {
             ZStack {
@@ -148,17 +152,6 @@ struct GameView: View {
                             cardDeckPosition = $0
                         }
                 }
-//                                    if index == 0 {
-//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-//                                            .frame(width: cardSize.width, height: cardSize.height)
-//                                    } else {
-//                                        NewCardView(viewCard: game.isInDeckViewCards[index]).stacked(at: index, in: game.isInDeckViewCards.count)
-//                                            .frame(width: cardSize.width, height: cardSize.height)
-//                                            .onAppear {
-//                                                print(cardDeckPosition.origin, cardDeckPosition.size)
-//                                            }
-//                                    }
-//
             }
         }
     }
@@ -178,17 +171,6 @@ struct GameView: View {
     
         turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)
     }
-    
-//    private func cheat() {
-//        
-//        let faceUpCards = game.isFaceUpViewCards
-//        
-//        for card in faceUpCards {
-//            print("index: \(String(describing: faceUpCards.getMatchedIndexByViewCardFeatures(of: card))) matching: \(game.cheatCardIsMatching(card, in: game.isFaceUpSetCards))")
-//        }
-//        
-//        game.printCheatCardSets()
-//    }
     
     private func turningCardsAnimation(isFirstDeal: Bool = true, alreadyDisplayedCards: Int = 0) {
         let delayFactor: Double = 0.3
@@ -227,6 +209,53 @@ struct GameView: View {
         game.isMatchedViewCards.count == 3
     }
     
+    private func cheat() {
+        
+        for id in blockID.allCases {
+            cheatAnimation(block: id)
+        }
+    }
+    
+    private enum blockID: String, CaseIterable { case one, two, three }
+    
+    private func cheatAnimation(block: blockID) {
+        
+        var internalCount: Double {
+            switch block {
+            case .one: return 1
+            case .two: return 5
+            case .three: return 9
+            }
+        }
+        
+        let animationDuration: Double = 0.2
+        let angle = 5.0
+       
+        Animations.delayedAction(by: internalCount, duration: animationDuration) {
+            rotationAngle = angle
+            game.cheatOn()
+        }
+        
+        Animations.delayedAction(by: internalCount + 1, duration: animationDuration) {
+            game.cheatOff()
+        }
+        
+        Animations.delayedAction(by: internalCount + 2, duration: animationDuration) {
+            rotationAngle = angle * -1
+            game.cheatOn()
+        }
+        
+        Animations.delayedAction(by: internalCount + 3, duration: animationDuration) {
+            game.cheatOff()
+            
+        }
+        
+        if block == .three {
+            Animations.delayedAction(by: internalCount + 8, duration: animationDuration) {
+                availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+            }
+        }
+    }
 }
 
 struct GameView_Previews: PreviewProvider {
