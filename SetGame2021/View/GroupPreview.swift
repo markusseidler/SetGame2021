@@ -16,13 +16,18 @@ struct GroupPreview<Content: View>: View {
     }
     
     private var baseView: Content
-    private var arrayOfDevices: [Devices] = [.twelveProMax, .twelvePro, .eight, .se, .iPadProTwelveNine]
+//    private var arrayOfDevices: [Devices] = [.twelvePro, .twelveProMax, .eight, .se, .iPadProTwelveNine]
+    private var arrayOfDevices: [Devices] = [.twelvePro, .eight, .iPadProTwelveNine]
     
     var body: some View {
         Group {
             
             ForEach(arrayOfDevices, id: \.self) { device in
                 getPotraitView(of: device)
+                if device == .twelvePro {
+                    getPotraitView(of: device)
+                        .preferredColorScheme(.dark)
+                }
                 getLandscapeView(of: device)
             }
         }

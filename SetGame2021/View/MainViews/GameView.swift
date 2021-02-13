@@ -24,7 +24,7 @@ struct GameView: View {
     var body: some View {
             GeometryReader { geometry in
                 ZStack {
-                    Color.green.opacity(0.3).edgesIgnoringSafeArea(.all)
+                    Color.gray.opacity(0.3).edgesIgnoringSafeArea(.all)
                     VStack {
                         createUpperScreen(size: geometry.size).padding(.top)
                         ZStack {
@@ -33,7 +33,7 @@ struct GameView: View {
                                 matchedText
                             }
                         }
-                        lowerScreen
+                        lowerScreen(size: geometry.size)
                     }
                     
                 }
@@ -96,11 +96,9 @@ struct GameView: View {
             }
         }
     }
-
-    // MARK: - Private view properties
     
-    private var lowerScreen: some View {
-        HStack {
+    private func lowerScreen(size: CGSize) -> some View {
+        return HStack {
             cardDeck
             VStack {
                 Button {
@@ -108,6 +106,7 @@ struct GameView: View {
                 } label: {
                     Text("Deal")
                 }
+    .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0))
                 .accessibility(identifier: AccessID.firstDealButton)
                 Button {
                     dealMoreCards()
@@ -118,6 +117,8 @@ struct GameView: View {
             }
         }
     }
+    
+    // MARK: - Private view properties
     
     private var matchedText: some View {
             ZStack {
