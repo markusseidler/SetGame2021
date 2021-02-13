@@ -102,13 +102,25 @@ class SetGame: ObservableObject {
         game.checkSelectedCardsIfMatchAndChange()
     }
     
+    func cheatCardIsMatching(_ viewCard: ViewCard, in cardArray: [SetCard]) -> Bool {
+        let cheatMatchingSets = game.checkWhereAreMatchedSets(in: cardArray)?.map { set in
+            set.map { createViewCard(with: $0)}
+        }
+        if let unwrappedMatchingSet = cheatMatchingSets {
+            for set in unwrappedMatchingSet {
+                return set.containsViewCard(viewCard)
+            }
+        }
+    return false
+    }
+    
     // MARK: - Private API Properties
     
     @Published private var game: SetOfCards
     
     // Colors
-    private let colorOne: Color = Color.rainbowBlue
     private let colorTwo: Color = Color.rainbowRed
+    private let colorOne: Color = Color.rainbowBlue
     private let colorThree: Color = Color.rainbowGreen
     
     // MARK: - Private API Methods
@@ -181,5 +193,7 @@ class SetGame: ObservableObject {
             game.deSelectCard(at: indexUnwrapped)
         }
     }
+    
+    
     
 }

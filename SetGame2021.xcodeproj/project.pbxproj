@@ -19,6 +19,8 @@
 		280A565825AFFD61004B92A5 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280A565725AFFD61004B92A5 /* SetCard.swift */; };
 		28114D0725C7CAFF0047D8E8 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28114D0625C7CAFF0047D8E8 /* NewGridView.swift */; };
 		2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2814ED2B25B947D300802262 /* View+Stacked.swift */; };
+		281A820D25D7A2F20010097B /* Array+ContainsViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A820C25D7A2F20010097B /* Array+ContainsViewCard.swift */; };
+		281A821225D7A5E00010097B /* ViewModelSetGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A821125D7A5E00010097B /* ViewModelSetGameTests.swift */; };
 		281AD08825B179090054FDBD /* Array+AllEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08725B179090054FDBD /* Array+AllEqual.swift */; };
 		281AD09025B179140054FDBD /* Array+AllDifferent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD08F25B179140054FDBD /* Array+AllDifferent.swift */; };
 		281AD09D25B184840054FDBD /* Array+GetMatchedIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */; };
@@ -93,6 +95,8 @@
 		280A565725AFFD61004B92A5 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		28114D0625C7CAFF0047D8E8 /* NewGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGridView.swift; sourceTree = "<group>"; };
 		2814ED2B25B947D300802262 /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
+		281A820C25D7A2F20010097B /* Array+ContainsViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContainsViewCard.swift"; sourceTree = "<group>"; };
+		281A821125D7A5E00010097B /* ViewModelSetGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSetGameTests.swift; sourceTree = "<group>"; };
 		281AD08725B179090054FDBD /* Array+AllEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllEqual.swift"; sourceTree = "<group>"; };
 		281AD08F25B179140054FDBD /* Array+AllDifferent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AllDifferent.swift"; sourceTree = "<group>"; };
 		281AD09C25B184840054FDBD /* Array+GetMatchedIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GetMatchedIndex.swift"; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				280A562725AFF6F5004B92A5 /* Info.plist */,
 				280A562525AFF6F5004B92A5 /* ModelSetOfCardsTests.swift */,
 				28D3BCDA25C58B79004040B7 /* ViewModelGridLayoutTests.swift */,
+				281A821125D7A5E00010097B /* ViewModelSetGameTests.swift */,
 			);
 			path = SetGame2021Tests;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				2814ED2B25B947D300802262 /* View+Stacked.swift */,
 				2826059125BBF6FC002EA47E /* Color+ColorSets.swift */,
 				282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */,
+				281A820C25D7A2F20010097B /* Array+ContainsViewCard.swift */,
 				282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */,
 			);
 			path = Extensions;
@@ -476,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2814ED2C25B947D300802262 /* View+Stacked.swift in Sources */,
+				281A820D25D7A2F20010097B /* Array+ContainsViewCard.swift in Sources */,
 				2880CC8525CE7E86008A1016 /* CardContentView.swift in Sources */,
 				28FF169625B6B3B3007E4F7F /* Squiggle.swift in Sources */,
 				28B4A9D625B2B9B400E51CD3 /* GroupPreview.swift in Sources */,
@@ -524,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28D3BCDB25C58B79004040B7 /* ViewModelGridLayoutTests.swift in Sources */,
+				281A821225D7A5E00010097B /* ViewModelSetGameTests.swift in Sources */,
 				280A562625AFF6F5004B92A5 /* ModelSetOfCardsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
