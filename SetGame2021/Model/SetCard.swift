@@ -20,6 +20,7 @@ struct SetCard: Cardable, SetCardable, Hashable {
     var turnAround: Bool = false
     var isSelected: Bool = false
     var isMatched: Bool = false
+    var isCheated: Bool = false
     var wasUsed: Bool = false
     var id = UUID()
     

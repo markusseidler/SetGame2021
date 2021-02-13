@@ -32,7 +32,7 @@ struct TrialTest {
 //                print(testSet.setOfCards[indexCardOne!], testSet.setOfCards[indexCardTwo!], testSet.setOfCards[indexCardThree!])
 //            }
             
-            print(testResult)
+//            print(testResult)
         }
         
         

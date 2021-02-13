@@ -102,7 +102,7 @@ struct GameView: View {
             cardDeck
             VStack {
                 Button {
-                    if game.isFaceUpCards.count > 0 {
+                    if game.isFaceUpViewCards.count > 0 {
                         dealMoreCards()
                     } else {
                         startDealing()
@@ -113,7 +113,7 @@ struct GameView: View {
                 .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: 1.0))
                 .accessibility(identifier: AccessID.firstDealButton)
                 Button {
-                    cheat()
+                    game.cheat()
                 } label: {
                     Text("Cheat")
                 }
@@ -162,6 +162,7 @@ struct GameView: View {
             }
         }
     }
+
     
     // MARK: - Private methods
     
@@ -178,7 +179,16 @@ struct GameView: View {
         turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)
     }
     
-    private func cheat() {}
+//    private func cheat() {
+//        
+//        let faceUpCards = game.isFaceUpViewCards
+//        
+//        for card in faceUpCards {
+//            print("index: \(String(describing: faceUpCards.getMatchedIndexByViewCardFeatures(of: card))) matching: \(game.cheatCardIsMatching(card, in: game.isFaceUpSetCards))")
+//        }
+//        
+//        game.printCheatCardSets()
+//    }
     
     private func turningCardsAnimation(isFirstDeal: Bool = true, alreadyDisplayedCards: Int = 0) {
         let delayFactor: Double = 0.3

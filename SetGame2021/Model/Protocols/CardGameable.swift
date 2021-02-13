@@ -13,7 +13,7 @@ protocol CardGameable {
     associatedtype Content where Content: Cardable
     var setOfCards: [Content] { get }
     
-    mutating func resetGame()
+    mutating func resetGame(_ shuffleCards: Bool)
     mutating func selectCard(at cardIndex: Int)
     mutating func deSelectCard(at cardIndex: Int)
     mutating func dealCards(numberOfCards: Int)

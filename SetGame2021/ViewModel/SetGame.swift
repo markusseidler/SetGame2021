@@ -27,6 +27,7 @@ class SetGame: ObservableObject {
         var turnAround: Bool
         var isSelected: Bool
         var isMatched: Bool
+        var isCheated: Bool = false
         var wasUsed: Bool
         var id: UUID
         
@@ -47,7 +48,8 @@ class SetGame: ObservableObject {
     var isMatchedViewCards: [ViewCard] { game.isMatchedCards.map { createViewCard(with: $0) } }
     var wasUsedViewCards: [ViewCard] { game.wasUsedCards.map { createViewCard(with: $0) } }
     var isSelectedViewCards: [ViewCard] { game.isSelectedCards.map { createViewCard(with: $0) }}
-    var isFaceUpCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
+    var isFaceUpViewCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
+    var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var threeCardsSelected: Bool { game.isSelectedCards.count == 3 }
     
 
@@ -102,16 +104,52 @@ class SetGame: ObservableObject {
         game.checkSelectedCardsIfMatchAndChange()
     }
     
-    func cheatCardIsMatching(_ viewCard: ViewCard, in cardArray: [SetCard]) -> Bool {
-        let cheatMatchingSets = game.checkWhereAreMatchedSets(in: cardArray)?.map { set in
-            set.map { createViewCard(with: $0)}
-        }
-        if let unwrappedMatchingSet = cheatMatchingSets {
-            for set in unwrappedMatchingSet {
-                return set.containsViewCard(viewCard)
+    func cheat() {
+        game.cheatMatchingCardsChangedToIsCheatedTrue()
+    }
+    
+    
+//    func cheatCardIsMatching(_ viewCard: ViewCard, in cardArray: [SetCard]) {
+//        
+//        let cheatMatchingSets = game.checkWhereAreMatchedSets(in: cardArray)?.map { set in
+//            set.map { createViewCard(with: $0)}
+//        }
+//        
+//        if let unwrappedMatchingSet = cheatMatchingSets {
+//            for set in unwrappedMatchingSet {
+//                if set.containsViewCard(viewCard) {
+//                    viewCard.isCheated = true
+//                }
+//            }
+//        }
+//    }
+//    
+//    func resetCheatCardStatusToFalse(in cardArray: [SetCard]) {
+//        for
+//    }
+    
+    func printCheatCardSets() {
+        print("matchedSets: \n")
+        
+        if let matchedSets = game.checkWhereAreMatchedSets(in: game.isFaceUpCards) {
+            for set in matchedSets {
+                
+                print("\n")
+                print("Matched Set:")
+                
+                let cardOne = createViewCard(with: set[0])
+                let cardTwo = createViewCard(with: set[1])
+                let cardThree = createViewCard(with: set[2])
+                
+                let cardArray = [cardOne, cardTwo, cardThree]
+                
+                for card in cardArray {
+                    print("card \(String(describing: cardArray.firstIndex { $0.id == card.id})) \(card.color) \(card.quantity) \(card.cardShape) \(card.cardShading)")
+                }
+                
+                print("\n")
             }
         }
-    return false
     }
     
     // MARK: - Private API Properties
@@ -119,14 +157,14 @@ class SetGame: ObservableObject {
     @Published private var game: SetOfCards
     
     // Colors
-    private let colorTwo: Color = Color.rainbowRed
     private let colorOne: Color = Color.rainbowBlue
+    private let colorTwo: Color = Color.rainbowRed
     private let colorThree: Color = Color.rainbowGreen
     
     // MARK: - Private API Methods
     
     private func createViewCard(with setCard: SetCard) -> ViewCard {
-        ViewCard(color: convertToColor(with: setCard.featureOne), quantity: convertToQuantity(with: setCard.featureTwo), cardShape: convertToShape(with: setCard.featureThree), cardShading: convertToShading(with: setCard.featureFour), isDealt: setCard.isDealt, isFaceUp: setCard.isFaceUp, turnAround: setCard.turnAround, isSelected: setCard.isSelected, isMatched: setCard.isMatched, wasUsed: setCard.wasUsed, id: setCard.id)
+        ViewCard(color: convertToColor(with: setCard.featureOne), quantity: convertToQuantity(with: setCard.featureTwo), cardShape: convertToShape(with: setCard.featureThree), cardShading: convertToShading(with: setCard.featureFour), isDealt: setCard.isDealt, isFaceUp: setCard.isFaceUp, turnAround: setCard.turnAround, isSelected: setCard.isSelected, isMatched: setCard.isMatched, isCheated: setCard.isCheated, wasUsed: setCard.wasUsed, id: setCard.id)
     }
     
     // Color conversion

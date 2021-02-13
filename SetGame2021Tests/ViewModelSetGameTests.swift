@@ -50,13 +50,17 @@ class ViewModelSetGameTests: XCTestCase {
         
         let viewCardThree = SetGame.ViewCard(color: Color.rainbowRed, quantity: 3, cardShape: .oval, cardShading: .solid, isDealt: true, isFaceUp: true, turnAround: false, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
         
-        let isCardIncludedInCheatMatchingSet = testSetGame.cheatCardIsMatching(viewCard, in: cardArray)
-        let isCardIncludedInCheatMatchingSetTwo = testSetGame.cheatCardIsMatching(viewCardTwo, in: cardArray)
-        let isNotCardIncludedInCheatMatchingSetThree = !testSetGame.cheatCardIsMatching(viewCardThree, in: cardArray)
+//        testSetGame.cheatCardIsMatching(viewCard, in: cardArray)
+//        testSetGame.cheatCardIsMatching(viewCardTwo, in: cardArray)
+//        testSetGame.cheatCardIsMatching(viewCardThree, in: cardArray)
+//        
+//        XCTAssertTrue(viewCard.isCheated)
+//        XCTAssertTrue(viewCardTwo.isCheated)
+//        XCTAssertFalse(viewCard.isCheated)
         
-        XCTAssertTrue(isCardIncludedInCheatMatchingSet)
-        XCTAssertTrue(isCardIncludedInCheatMatchingSetTwo)
-        XCTAssertTrue(isNotCardIncludedInCheatMatchingSetThree)
+    }
+    
+    func checkResetAllHaveIsCheatedFalse() {
         
     }
 

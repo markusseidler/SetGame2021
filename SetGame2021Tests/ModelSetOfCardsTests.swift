@@ -11,11 +11,13 @@ import XCTest
 class ModelSetOfCardsTests: XCTestCase {
     
     var testSet: SetOfCards!
+    var testSetNotShuffled: SetOfCards!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         testSet = SetOfCards()
+        testSetNotShuffled = SetOfCards(shuffleCards: false)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -362,5 +364,20 @@ class ModelSetOfCardsTests: XCTestCase {
         let doesContain = testSet.checkWhereAreMatchedSets(in: cardArray)?.containsFullSet(expectedResult)?.allSatisfy { $0 }
         
         XCTAssertTrue(doesContain!)
+    }
+    
+    func testChangingCheatMatchedCardsToTrueAndThenToFalse() {
+
+        testSetNotShuffled.dealCards(numberOfCards: 12)
+        testSetNotShuffled.turnAllCardsFaceUp()
+        testSetNotShuffled.cheatMatchingCardsChangedToIsCheatedTrue()
+
+        var isCheatedCardCount = testSetNotShuffled.isFaceUpCards.filter { $0.isCheated }.count
+        XCTAssertEqual(isCheatedCardCount, 12)
+        
+        testSetNotShuffled.changeAllCardsToIsCheatedFalse()
+        isCheatedCardCount = testSetNotShuffled.isFaceUpCards.filter { $0.isCheated }.count
+        XCTAssertEqual(isCheatedCardCount, 0)
+
     }
 }

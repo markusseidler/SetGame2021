@@ -31,5 +31,17 @@ extension Array where Element: SetCardable {
     }
 }
 
+// checks if the four viewCard features of the ViewCard are matching any ViewCard in the original array
+extension Array where Element: ViewCardable {
+    func getMatchedIndexByViewCardFeatures(of matchingSetCard: ViewCardable) -> Int? {
+        for index in 0..<self.count {
+            if self[index].color == matchingSetCard.color && self[index].quantity == matchingSetCard.quantity && self[index].cardShape == matchingSetCard.cardShape && self[index].cardShading == matchingSetCard.cardShading {
+                return index
+            }
+        }
+        return nil
+    }
+}
+
 
 

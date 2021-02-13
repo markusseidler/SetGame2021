@@ -60,7 +60,7 @@ struct Cardify: AnimatableModifier {
     private let frontCardColor: Color = Color.white
     private let backCardColor: Color = Color.black
     private let lineColor: Color = Color.black
-    private let borderLineWidth: CGFloat = 6.0
+    private let borderLineWidth: CGFloat = 4.0
     
 }
 

@@ -35,8 +35,12 @@ struct SetOfCards: CardGameable {
 //        print(setOfCards)
     }
     
+    init(shuffleCards: Bool) {
+        resetGame(shuffleCards)
+    }
+    
     // creates a game of new cards with all available features. Tested
-    mutating func resetGame() {
+    mutating func resetGame(_ shuffleCards: Bool = true) {
         setOfCards = []
         
         for featOne in FeatureOne.allCases {
@@ -49,7 +53,9 @@ struct SetOfCards: CardGameable {
             }
         }
         
-        setOfCards.shuffle()
+        if shuffleCards {
+            setOfCards.shuffle()
+        }
     }
     
     // function to select Card which will be visually shown in the View. Tested.
@@ -183,6 +189,25 @@ struct SetOfCards: CardGameable {
         return resultArray
     }
 
+    mutating func cheatMatchingCardsChangedToIsCheatedTrue() {
+        print("**** pre-count **** ", setOfCards.filter {$0.isCheated}.count)
+        
+        if let unwrappedCheatMatchingSets = checkWhereAreMatchedSets(in: isFaceUpCards) {
+            for set in unwrappedCheatMatchingSets {
+                for card in isFaceUpCards {
+                    if set.containsSetCard(card) {
+                        setOfCards[setOfCards.getMatchedIndexBySetCardFeatures(of: card)!].isCheated = true
+                    }
+                }
+            }
+        }
+        print("**** count **** ", isFaceUpCards.filter {$0.isCheated}.count)
+        print("**** count **** ", setOfCards.filter {$0.isCheated}.count)
+    }
+    
+    mutating func changeAllCardsToIsCheatedFalse() {
+        for index in 0..<setOfCards.count { setOfCards[index].isCheated = false }
+    }
     
     
     
