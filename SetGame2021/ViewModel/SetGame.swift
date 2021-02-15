@@ -50,8 +50,13 @@ class SetGame: ObservableObject {
     var isSelectedViewCards: [ViewCard] { game.isSelectedCards.map { createViewCard(with: $0) }}
     var isFaceUpViewCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
-    var threeCardsSelected: Bool { game.isSelectedCards.count == 3 }
+    
+    private var threeSetCardsSelected: [SetCard] { game.isSelectedCards.filter { $0.isSelected }}
+    private var threeSetCardsMatched: [SetCard] { game.isMatchedCards.filter { $0.isMatched }}
+    private var areThreeCardsSelected: Bool { game.isSelectedCards.count == 3 }
+    private var areThreeCardsAreMatched: Bool { game.isMatchedCards.count == 3}
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
+
     
     init() { self.game = SetOfCards() }
     
@@ -94,12 +99,38 @@ class SetGame: ObservableObject {
         }
     }
     
-    func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
-    
     func cheatOn() { game.cheatMatchingCardsChangedToIsCheatedTrue() }
     
     func cheatOff() { game.changeAllCardsToIsCheatedFalse() }
 
+    func checkAndMatchOrNot(positiveAction: () -> Void, negativeAction: (() -> Void)?) {
+        if areThreeCardsSelected {
+            checkCardsAreASet()
+            if areThreeCardsAreMatched {
+                positiveAction()
+            } else {
+                if let hapticActionUnwrapped = negativeAction {
+                    hapticActionUnwrapped()
+                }
+            }
+            
+            for selectedCard in threeSetCardsSelected {
+                if let selectedIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: selectedCard) {
+                    game.setOfCards[selectedIndex].isSelected = false
+                    if areThreeCardsAreMatched {
+                        for matchedCard in threeSetCardsMatched {
+                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
+                                game.setOfCards[matchingIndex].isDealt = false
+                                game.setOfCards[matchingIndex].isMatched = false
+                                game.setOfCards[matchingIndex].wasUsed = true
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
     
     // MARK: - Private API Properties
     
@@ -181,6 +212,6 @@ class SetGame: ObservableObject {
         }
     }
     
-    
+    private func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
     
 }

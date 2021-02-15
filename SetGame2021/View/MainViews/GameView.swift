@@ -15,6 +15,7 @@ struct GameView: View {
     @State private var showMatchedText: Bool = false
     @State private var rotationAngle: Double = 0
     @State private var availableSets: AvailableSets?
+    @State private var haptics: Haptics?
     
     var body: some View {
             GeometryReader { geometry in
@@ -40,6 +41,7 @@ struct GameView: View {
                 withAnimation(Animation.easeInOut(duration: 1)) {
                     game.dealFirstTwelveCards()
                 }
+                haptics = Haptics()
             }
             .navigationBarHidden(true)
     }
@@ -81,7 +83,13 @@ struct GameView: View {
                             CardContentView(viewCard: card)
                                 .cardify(viewCard: card, angle: rotationAngle)
                                 .onTapGesture {
-                                   choosingCard(card)
+                                    choosingCard(card)
+                                    game.checkAndMatchOrNot {
+                                        matchedAnimation()
+                                    } negativeAction: {
+                                        haptics?.wrongSelection()
+                                    }
+
                                 }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
                                 .accessibility(identifier: AccessID.singleCardView)
@@ -122,12 +130,12 @@ struct GameView: View {
         }
     }
     
-    func getAvailableSetsAlert(count: Int) -> Alert {
+    private func getAvailableSetsAlert(count: Int) -> Alert {
         Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text("Ok")))
     }
     
-    // MARK: - Private view properties
     
+    // MARK: - Private view properties
     
     private var matchedText: some View {
             ZStack {
@@ -142,10 +150,10 @@ struct GameView: View {
     
     private var cardDeck: some View {
         ZStack {
-//                                ForEach(0..<game.isInDeckViewCards.count) { index in
             ForEach(0..<1) { _ in
                 ZStack {
                     RoundedRectangle(cornerRadius: 25.0)
+                        .fill(Color.primary)
                         .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
                         .trackPosition()
                         .onPreferenceChange(PositionPreferenceKey.self) {
@@ -191,23 +199,29 @@ struct GameView: View {
     
     private func choosingCard(_ card: SetGame.ViewCard) {
         game.chooseCard(card)
-        checkCard()
+//        checkCard()
     }
     
-    private func checkCard() {
-        if game.threeCardsSelected {
-            game.checkCardsAreASet()
-            if checkIfMatchedCardsAreThree() {
-                withAnimation(Animation.interpolatingSpring(mass: 1, stiffness: 1, damping: 0.5, initialVelocity: 5)) {
-                    showMatchedText = true
-                }
-            }
+    private func matchedAnimation() {
+        withAnimation(.interpolatingSpring(mass: 1, stiffness: 1, damping: 0.5, initialVelocity: 3)) {
+            showMatchedText = true
         }
     }
     
-    private func checkIfMatchedCardsAreThree() -> Bool {
-        game.isMatchedViewCards.count == 3
-    }
+//    private func checkCard() {
+//        if game.threeCardsSelected {
+////            game.checkCardsAreASet()
+//            if checkIfMatchedCardsAreThree() {
+//                withAnimation(Animation.interpolatingSpring(mass: 1, stiffness: 1, damping: 0.5, initialVelocity: 5)) {
+//                    showMatchedText = true
+//                }
+//            }
+//        }
+//    }
+    
+//    private func checkIfMatchedCardsAreThree() -> Bool {
+//        game.isMatchedViewCards.count == 3
+//    }
     
     private func cheat() {
         
