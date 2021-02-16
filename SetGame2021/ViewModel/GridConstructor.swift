@@ -12,10 +12,11 @@ import SwiftUI
 
 struct GridConstructor {
     
-    init(itemCount: Int, geoSize: CGSize) {
+    init(itemCount: Int, geoSize: CGSize, globalAspectRatio: CGFloat) {
     
         self.itemCount = itemCount
         self.geoSize = geoSize
+        self.globalAspectRatio = globalAspectRatio
         
         getRowAndColumnCount()
         
@@ -25,7 +26,24 @@ struct GridConstructor {
         if rowCount == 0 || columnCount == 0 {
             return CGSize.zero
         } else {
-            return CGSize(width: geoSize.width / CGFloat(columnCount), height: geoSize.height / CGFloat(rowCount))
+            let proposedWidth = geoSize.width / CGFloat(columnCount)
+            let proposedHeight = geoSize.height / CGFloat(rowCount)
+            
+//            let geoAspectRatio = geoSize.width / geoSize.height
+            
+            var desiredWidth: CGFloat
+            var desiredHeight: CGFloat
+            
+            if proposedWidth <= proposedHeight * globalAspectRatio {
+                desiredWidth = proposedWidth
+                desiredHeight = proposedWidth / globalAspectRatio
+            } else {
+                desiredWidth = proposedHeight * globalAspectRatio
+                desiredHeight = proposedHeight
+            }
+            
+//            return CGSize(width: geoSize.width / CGFloat(columnCount), height: geoSize.height / CGFloat(rowCount))
+            return CGSize(width: desiredWidth, height: desiredHeight)
         }
     }
     
@@ -45,6 +63,7 @@ struct GridConstructor {
     
     private var itemCount: Int
     private var geoSize: CGSize
+    private var globalAspectRatio: CGFloat
     
     private(set) var rowCount: Int = 0
     private(set) var columnCount: Int = 0

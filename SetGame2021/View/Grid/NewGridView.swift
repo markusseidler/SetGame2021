@@ -10,6 +10,8 @@ import SwiftUI
 struct NewGridView<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     @Binding var cardDeckPosition: CGRect
     
+    @EnvironmentObject var globalAspect: GlobalAspect
+    
     private var itemArray: [Item]
     private var viewForSingleItem: (Item) -> ItemView
     
@@ -22,7 +24,7 @@ struct NewGridView<Item, ItemView>: View where Item: Identifiable, ItemView: Vie
     var body: some View {
         GeometryReader { geo in
             ForEach(itemArray) { item in
-                buildFrameAndPositionForSingleItemView(for: item, in: GridConstructor(itemCount: itemArray.count, geoSize: geo.size))
+                buildFrameAndPositionForSingleItemView(for: item, in: GridConstructor(itemCount: itemArray.count, geoSize: geo.size, globalAspectRatio: globalAspect.ratio))
             }
         }
     }

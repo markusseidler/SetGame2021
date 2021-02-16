@@ -10,6 +10,9 @@ import SwiftUI
 struct GameView: View {
     
     @StateObject var game = SetGame()
+    
+    @EnvironmentObject var globalAspect: GlobalAspect
+    
     @State private var cardSize: CGSize = CGSize.zero
     @State private var cardDeckPosition: CGRect = CGRect.zero
     @State private var showMatchedText: Bool = false
@@ -31,6 +34,9 @@ struct GameView: View {
                         }
                         createLowerScreen(size: geometry.size)
                     }
+                }
+                .onAppear {
+                    globalAspect.ratio = geometry.size.width / geometry.size.height
                 }
                 
             }
@@ -275,11 +281,13 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         
-        GroupPreview {
-            GameView()
-        }
+//        GroupPreview {
+//            GameView()
+//        .environmentObject(GlobalAspect())
+//        }
         
-//        GameView()
+        GameView()
+            .environmentObject(GlobalAspect())
        
     }
 }

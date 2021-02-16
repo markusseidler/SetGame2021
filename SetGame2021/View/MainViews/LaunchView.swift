@@ -48,10 +48,10 @@ struct LaunchView: View {
                     Animations.delayedAction(by: 3, duration: logoDuration) { logoOpacity = 0.0 }
                     Animations.delayedAction(by: 5, duration: logoDuration) { pushToNewScreen = true }
                 }
-                
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(GlobalAspect())
     }
 }
 
