@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//https://stackoverflow.com/questions/58737344/swiftui-ipados-app-change-text-based-on-orientation
+
 struct GameView: View {
     
     @StateObject var game = SetGame()
@@ -19,9 +21,11 @@ struct GameView: View {
     @State private var rotationAngle: Double = 0
     @State private var availableSets: AvailableSets?
     @State private var haptics: Haptics?
+//    @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
     
     var body: some View {
             GeometryReader { geometry in
+                
                 ZStack {
                     Color.gray.opacity(0.3).edgesIgnoringSafeArea(.all)
                     VStack {
@@ -35,6 +39,9 @@ struct GameView: View {
                         createLowerScreen(size: geometry.size)
                     }
                 }
+                .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification), perform: { _ in
+                    globalAspect.ratio = geometry.size.width / geometry.size.height
+                })
                 .onAppear {
                     globalAspect.ratio = geometry.size.width / geometry.size.height
                 }
