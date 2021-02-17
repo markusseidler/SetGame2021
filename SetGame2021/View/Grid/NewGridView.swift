@@ -51,5 +51,6 @@ struct NewGridView_Previews: PreviewProvider {
         NewGridView([myNumber(integer: 1), myNumber(integer: 2), myNumber(integer: 3), myNumber(integer: 4), myNumber(integer: 5)], cardDeckPosition: .constant(CGRect(origin: CGPoint.zero, size: CGSize(width: 100,height: 100)))) { (number) in
             Text("\(number.integer)")
         }
+        .environmentObject(GlobalAspect())
     }
 }

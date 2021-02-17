@@ -56,7 +56,7 @@ struct GridConstructor {
             return CGPoint.zero
         } else {
             return CGPoint(
-                x: (CGFloat(index % columnCount) + 0.5) * itemSize.width,
+                x: (CGFloat(index % columnCount) + 0.5) * itemSize.width + widthOffset,
                 y: (CGFloat(index / columnCount) + 0.5) * itemSize.height)
         }
     }
@@ -64,6 +64,9 @@ struct GridConstructor {
     private var itemCount: Int
     private var geoSize: CGSize
     private var globalAspectRatio: CGFloat
+    private var widthOffset: CGFloat {
+        (geoSize.width - (CGFloat(columnCount) + 0.5 ) * itemSize.width) / 2
+    }
     
     private(set) var rowCount: Int = 0
     private(set) var columnCount: Int = 0

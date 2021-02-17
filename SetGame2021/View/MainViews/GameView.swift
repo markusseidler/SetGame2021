@@ -31,7 +31,7 @@ struct GameView: View {
                     VStack {
                         createUpperScreen(size: geometry.size).padding(.top)
                         ZStack {
-                            gridBody.padding(10)
+                            gridBody.padding(3)
                             if showMatchedText {
                                 matchedText
                             }
