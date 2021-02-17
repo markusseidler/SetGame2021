@@ -21,7 +21,6 @@ struct GameView: View {
     @State private var rotationAngle: Double = 0
     @State private var availableSets: AvailableSets?
     @State private var haptics: Haptics?
-//    @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
     
     var body: some View {
             GeometryReader { geometry in
@@ -31,12 +30,15 @@ struct GameView: View {
                     VStack {
                         createUpperScreen(size: geometry.size).padding(.top)
                         ZStack {
-                            gridBody.padding(3)
+                            gridBody
                             if showMatchedText {
                                 matchedText
                             }
                         }
+                        .padding(.leading, 10)
                         createLowerScreen(size: geometry.size)
+                            .padding(.top, 15)
+                            .padding(.bottom, 5)
                     }
                 }
                 .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification), perform: { _ in
@@ -112,6 +114,7 @@ struct GameView: View {
                 .padding(4)
             }
         }
+        
     }
     
     private func createLowerScreen(size: CGSize) -> some View {
