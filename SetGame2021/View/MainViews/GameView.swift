@@ -21,6 +21,7 @@ struct GameView: View {
     @State private var rotationAngle: Double = 0
     @State private var availableSets: AvailableSets?
     @State private var haptics: Haptics?
+    @State private var blackBackgroundOpacity: Double = 1
     
     var body: some View {
             GeometryReader { geometry in
@@ -40,6 +41,8 @@ struct GameView: View {
                             .padding(.top, 15)
                             .padding(.bottom, 5)
                     }
+                    Color.black
+                        .opacity(blackBackgroundOpacity).edgesIgnoringSafeArea(.all)
                 }
                 .onReceive(NotificationCenter.Publisher(center: .default, name: UIDevice.orientationDidChangeNotification), perform: { _ in
                     globalAspect.ratio = geometry.size.width / geometry.size.height
@@ -53,8 +56,11 @@ struct GameView: View {
                 getAvailableSetsAlert(count: sets.count)
             }
             .onAppear {
-                withAnimation(Animation.easeInOut(duration: 1)) {
+                withAnimation(Animation.easeInOut(duration: 0.1)) {
                     game.dealFirstTwelveCards()
+                }
+                withAnimation(Animation.easeInOut(duration: 1.0).delay(0.2)) {
+                    blackBackgroundOpacity = 0.0
                 }
                 haptics = Haptics()
             }
