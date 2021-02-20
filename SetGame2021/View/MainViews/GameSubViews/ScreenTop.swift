@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ScreenTop: View {
+    
+    // MARK: - Public View API
+    
     let game: SetGame
     let size: CGSize
+    
+    // MARK: - Private View API
     
     var body: some View {
         HStack(alignment: .center) {
@@ -36,6 +41,7 @@ struct ScreenTop: View {
     }
     
     // MARK: - Private View Constants
+    
     private let opacityPrimary: Double = 1.0
     private let opacitySecondary: Double = 0.5
     private let widthPercentagePrimary: CGFloat = 28

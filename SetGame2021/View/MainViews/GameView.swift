@@ -177,6 +177,7 @@ struct GameView: View {
                         .trackPosition()
                         .onPreferenceChange(PositionPreferenceKey.self) {
                             cardDeckPosition = $0
+                            print("cardDeckPosition: ", cardDeckPosition)
                         }
                 }
             }

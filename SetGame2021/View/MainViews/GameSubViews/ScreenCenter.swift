@@ -10,15 +10,16 @@ import SwiftUI
 struct ScreenCenter: View {
     
     // MARK: - Public View API
+    
     let game: SetGame
     @Binding var cardDeckPosition: CGRect
+    @Binding var cardSize: CGSize
+
     @Binding var rotationAngle: Double
-    let choosingCardAction: () -> Void
+    let choosingCardAction: (SetGame.ViewCard) -> Void
     let matchingCardAction: () -> Void
     
     // MARK: - Private View API
-    
-    @State var cardSize: CGSize = CGSize.zero
 
     var body: some View {
         NewGridView(game.isDealtViewCards, cardDeckPosition: $cardDeckPosition) { card in
@@ -37,7 +38,7 @@ struct ScreenCenter: View {
                             CardContentView(viewCard: card)
                                 .cardify(viewCard: card, angle: rotationAngle)
                                 .onTapGesture {
-                                    choosingCardAction()
+                                    choosingCardAction(card)
                                     matchingCardAction()
                                 }
                                 .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
@@ -56,7 +57,7 @@ struct ScreenCenter: View {
 
 struct ScreenCenter_Previews: PreviewProvider {
     static var previews: some View {
-        ScreenCenter(game: SetGame(), cardDeckPosition: .constant(CGRect.zero), rotationAngle: .constant(5.0)) {
+        ScreenCenter(game: SetGame(), cardDeckPosition: .constant(CGRect.zero), cardSize: .constant(CGSize(width: 20, height: 60)), rotationAngle: .constant(5.0)) {_ in 
             print("choosing Card")
         } matchingCardAction: {
             print("matching Card")

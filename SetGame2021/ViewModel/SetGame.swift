@@ -88,7 +88,7 @@ class SetGame: ObservableObject {
         }
     }
     
-    func chooseCard(_ viewCard: ViewCard) {
+    func chooseCard(_ viewCard: SetGame.ViewCard) {
         let index = allViewCards.getMatchedIndexByID(of: viewCard)
         
         if let indexUnwrapped = index {

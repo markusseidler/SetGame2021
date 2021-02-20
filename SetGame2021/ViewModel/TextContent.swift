@@ -13,6 +13,8 @@ struct TextContent {
     static let newGame = "New Game"
     static let matched = "Matched!"
     static let matchedSets = "Matched Sets"
+    static let deal = "Deal"
+    static let cheat = "Cheat"
     
     static func getAvailableSetMessage(count: Int) -> String {
         if count == 0 {

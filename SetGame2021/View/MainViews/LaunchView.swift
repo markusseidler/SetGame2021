@@ -35,7 +35,7 @@ struct LaunchView: View {
                         .frame(width: min(geometry.size.width / 2, geometry.size.height / 2))
                         .opacity(logoOpacity)
                     NavigationLink(
-                        destination: GameView(),
+                        destination: GameViewNew(),
                         isActive: $pushToNewScreen,
                         label: {
                             EmptyView()
