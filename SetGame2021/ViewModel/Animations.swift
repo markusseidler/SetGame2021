@@ -27,12 +27,23 @@ struct Animations {
     }
     
     static func standardDelayed(action: @escaping () -> Void ) {
-        easeInOutDelayed(duration: 1.0, delay: 0.3, action: action)
+        easeInOutDelayed(duration: 1.0, delay: 2.3, action: action)
     }
     
-    static func fastStaggered(actionOne: @escaping () -> Void, actionTwo: @escaping () -> Void) {
+    static func fastStaggered(actionOne: @escaping () -> Void, actionTwo: @escaping () -> Void, actionThree: @escaping () -> Void) {
+        
         easeInOut(duration: 0.5, action: actionOne)
-        easeInOutDelayed(duration: 0.5, delay: 1.0, action: actionTwo)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            easeInOut(duration: 0.5) {
+                actionTwo()
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            easeInOut(duration: 0.5) {
+                actionThree()
+            }
+        }
     }
     
     static private func easeInOut(duration: Double, action: @escaping () -> Void ) {

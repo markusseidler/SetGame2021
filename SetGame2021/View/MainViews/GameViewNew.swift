@@ -17,7 +17,7 @@ struct GameViewNew: View {
     @State private var cardDeckPosition: CGRect = CGRect.zero
     
     @State private var matchedTextScale: CGFloat = 0.0
-    @State private var matchedTextOpacity: Double = 0.0
+    @State private var matchedTextOpacity: Double = 1.0
     @State private var haptics: Haptics?
     
     @State private var rotationAngle: Double = 0
@@ -46,22 +46,18 @@ struct GameViewNew: View {
                                 card in choosingCard(card)},
                             matchingCardAction: { matchingCard()})
                             .padding(.leading, paddingBase)
-                        
-                        
+                    
+                        matchedText
                     }
                     
-                    
-                    
-//                    ScreenBottom(
-//                        cardDeckPosition: $cardDeckPosition,
-//                        cardSize: $cardSize,
-//                        size: globalGeo.size, dealAction: {
-//                        game.dealAndDisplayCards()
-//                    }, cheatAction: {
-//                        cheat()
-//                    })
-//                    .padding(.top, paddingLarge)
-//                    .padding(.bottom, paddingSmall)
+                    ScreenBottom(
+                        cardDeckPosition: $cardDeckPosition,
+                        cardSize: $cardSize,
+                        size: globalGeo.size,
+                        dealAction: game.dealAndDisplayCards,
+                        cheatAction: cheat)
+                        .padding(.top, paddingLarge)
+                        .padding(.bottom, paddingSmall)
                 }
                 
                 Color.black
@@ -85,11 +81,6 @@ struct GameViewNew: View {
             Animations.standardDelayed { blackBackgroundOpacity = opacityNone }
             haptics = Haptics()
         }
-        .onChange(of: matchedTextScale, perform: { scale in
-            print("changed: \(scale)")
-            getScaleRelatedOpacity(scale: scale)
-        })
-        
     }
     
     // MARK: - Private View Properties
@@ -97,6 +88,7 @@ struct GameViewNew: View {
     private var matchedText: some View {
         Text(TextContent.matched)
             .font(Font.system(.largeTitle, design: .rounded))
+            .foregroundColor(Color.rainbowRed)
             .scaleEffect(matchedTextScale)
             .opacity(matchedTextOpacity)
     }
@@ -108,14 +100,25 @@ struct GameViewNew: View {
     }
     
     private func matchingCard() {
+        resetAllMatchedTextStates()
+        game.checkIfMatch(
+            positiveActionOne: {
+                matchedTextScale = scaleMedium
+            },
+            positiveActionTwo: {
+                matchedTextScale = scaleLarge
+            },
+            positiveActionThree: {
+                matchedTextOpacity = opacityNone
+            },
+            negativeAction: {
+                haptics?.wrongSelection()
+            })
+    }
+    
+    private func resetAllMatchedTextStates() {
         matchedTextScale = scaleNone
-        game.checkIfMatch {
-            matchedTextScale = scaleMedium
-        } positiveActionTwo: {
-            matchedTextScale = scaleLarge
-        } negativeAction: {
-            haptics?.wrongSelection()
-        }
+        matchedTextOpacity = opacityFull
     }
     
     private func cheat() {
@@ -169,14 +172,6 @@ struct GameViewNew: View {
         Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)))
     }
     
-    private func getScaleRelatedOpacity(scale: CGFloat) {
-        if scale == scaleNone || scale == scaleLarge {
-            matchedTextOpacity = opacityNone
-        } else {
-            matchedTextOpacity = opacityMedium
-        }
-    }
-    
     // MARK: - Private view constants
     
     private let opacityFull: Double = 1.0
@@ -188,8 +183,9 @@ struct GameViewNew: View {
     private let paddingSmall: CGFloat = 5
     
     private let scaleNone: CGFloat = 0.0
-    private let scaleMedium: CGFloat = 1.0
-    private let scaleLarge: CGFloat = 3.0
+    private let scaleBase: CGFloat = 0.0
+    private let scaleMedium: CGFloat = 2.0
+    private let scaleLarge: CGFloat = 1000.0
     
 }
 

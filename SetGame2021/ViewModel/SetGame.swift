@@ -104,12 +104,15 @@ class SetGame: ObservableObject {
     
     func cheatOff() { game.changeAllCardsToIsCheatedFalse() }
 
-    func checkIfMatch(positiveActionOne: @escaping () -> Void, positiveActionTwo: @escaping () -> Void, negativeAction: @escaping () -> Void ){
-        checkAndMatchOrNot {
-            Animations.fastStaggered(actionOne: positiveActionOne, actionTwo: positiveActionTwo)
-        } negativeAction: {
-            negativeAction()
-        }
+    func checkIfMatch(positiveActionOne: @escaping () -> Void, positiveActionTwo: @escaping () -> Void, positiveActionThree: @escaping () -> Void, negativeAction: @escaping () -> Void ) {
+        checkAndMatchOrNot(
+            positiveAction: {
+                Animations.fastStaggered(
+                    actionOne: { positiveActionOne() },
+                    actionTwo: { positiveActionTwo() },
+                    actionThree: { positiveActionThree() })
+            },
+            negativeAction: { negativeAction() })
     }
     
     // MARK: - Private API Properties
