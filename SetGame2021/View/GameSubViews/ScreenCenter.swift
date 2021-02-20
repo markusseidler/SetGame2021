@@ -19,6 +19,22 @@ struct ScreenCenter: View {
     let choosingCardAction: (SetGame.ViewCard) -> Void
     let matchingCardAction: () -> Void
     
+    var xOffsetRemoval: CGFloat {
+        if Bool.random() {
+            return CGFloat(offsetConstant)
+        } else {
+            return CGFloat(offsetConstant * -1)
+        }
+    }
+    
+    var yOffsetRemoval: CGFloat {
+        if Bool.random() {
+            return CGFloat(offsetConstant)
+        } else {
+            return CGFloat(offsetConstant * -1)
+        }
+    }
+    
     // MARK: - Private View API
 
     var body: some View {
@@ -41,7 +57,8 @@ struct ScreenCenter: View {
                                     choosingCardAction(card)
                                     matchingCardAction()
                                 }
-                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
+//                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
+                                .transition(.asymmetric(insertion: .offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset), removal: .offset(x: cardDeckPosition.minX + xOffsetRemoval, y: cardDeckPosition.minY + yOffsetRemoval)))
                         }
                     }
                     .padding(standardPadding)
@@ -52,7 +69,10 @@ struct ScreenCenter: View {
     }
     
     // MARK: - Private View Constants
+    
     let standardPadding: CGFloat = 5
+    let offsetConstant: CGFloat = 1000
+    
 }
 
 struct ScreenCenter_Previews: PreviewProvider {

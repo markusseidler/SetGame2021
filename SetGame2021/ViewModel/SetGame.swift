@@ -251,13 +251,17 @@ class SetGame: ObservableObject {
                 if let selectedIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: selectedCard) {
                     game.setOfCards[selectedIndex].isSelected = false
                     if areThreeCardsAreMatched {
-                        for matchedCard in threeSetCardsMatched {
-                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
-                                game.setOfCards[matchingIndex].isDealt = false
-                                game.setOfCards[matchingIndex].isMatched = false
-                                game.setOfCards[matchingIndex].wasUsed = true
-                            }
+                        Animations.standard {
+                            self.game.moveToWasUsedCards()
                         }
+//                        game.moveToWasUsedCards()
+//                        for matchedCard in threeSetCardsMatched {
+//                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
+//                                game.setOfCards[matchingIndex].isDealt = false
+//                                game.setOfCards[matchingIndex].isMatched = false
+//                                game.setOfCards[matchingIndex].wasUsed = true
+//                            }
+//                        }
                     }
                 }
             }

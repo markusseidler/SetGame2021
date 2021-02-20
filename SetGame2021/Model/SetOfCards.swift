@@ -85,27 +85,6 @@ struct SetOfCards: CardGameable {
                 setOfCards[indexUnwrapped].isDealt = true
             }
         }
-        
-        // putting it into a temporary set to ensure no double counting of random indices.
-//        var tempIndexSet = Set<Int>()
-//        while tempIndexSet.count < numberToChange {
-//            tempIndexSet.insert(Int.random(in: 0..<notDealtCards.count))
-//        }
-        
-        // based on the random indices, get the cards which are not dealt yet
-//        var tempCardSetToBeChanged = [SetCard]()
-//        for index in tempIndexSet {
-//            tempCardSetToBeChanged.append(notDealtCards[index])
-//        }
-        
-        // find those cards in the original setOfCards and set their isDealt to true
-//        for tempCard in tempCardSetToBeChanged {
-////            let realIndex = setOfCards.firstIndex { $0.id == tempCard.id }
-//            let realIndex = setOfCards.getMatchedIndexByID(of: tempCard)
-//            if let realIndexUnwrapped = realIndex {
-//                setOfCards[realIndexUnwrapped].isDealt = true
-//            }
-//        }
 
     }
     
@@ -126,8 +105,10 @@ struct SetOfCards: CardGameable {
     mutating func moveToWasUsedCards() {
         for matchedCard in isMatchedCards {
             if let matchingIndex = setOfCards.getMatchedIndexByID(of: matchedCard) {
-                setOfCards[matchingIndex].isMatched = false
+                setOfCards[matchingIndex].isMatched = true
                 setOfCards[matchingIndex].isSelected = false
+                setOfCards[matchingIndex].isFaceUp = false
+                setOfCards[matchingIndex].isDealt = false
                 setOfCards[matchingIndex].wasUsed = true
              }
         }
