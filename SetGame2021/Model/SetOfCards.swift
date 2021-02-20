@@ -73,13 +73,13 @@ struct SetOfCards: CardGameable {
     mutating func dealCards(numberOfCards: Int) {
         
         // how many cards are with isDealt false in the total set?
-        let notDealtCards = setOfCards.filter { $0.isDealt == false}
+        let notDealtAndNotUsedCards = setOfCards.filter { $0.isDealt == false && $0.wasUsed == false}
         
         // making sure that numberOfCards looking to be dealt does not exceed total count of available not-yet-dealt cards in the set
-        let numberToChange = min(numberOfCards, notDealtCards.count)
+        let numberToChange = min(numberOfCards, notDealtAndNotUsedCards.count)
         
         for number in 0..<numberToChange {
-            let cardToChange = notDealtCards[number]
+            let cardToChange = notDealtAndNotUsedCards[number]
             let indexToChange = setOfCards.getMatchedIndexByID(of: cardToChange)
             if let indexUnwrapped = indexToChange {
                 setOfCards[indexUnwrapped].isDealt = true
