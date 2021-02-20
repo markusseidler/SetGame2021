@@ -129,11 +129,7 @@ struct GameView: View {
             cardDeck
             VStack {
                 Button {
-                    if game.isFaceUpViewCards.count > 0 {
-                        dealMoreCards()
-                    } else {
-                        startDealing()
-                    }
+                    game.dealAndDisplayCards()
                 } label: {
                     Text("Deal")
                 }
@@ -189,37 +185,6 @@ struct GameView: View {
 
     
     // MARK: - Private methods
-    
-    private func startDealing() { turningCardsAnimation() }
-    
-    private func dealMoreCards() {
-        
-        let currentlyDisplayedCards = game.isDealtViewCards.count
-        
-        withAnimation(Animation.easeInOut(duration: 1.0)) {
-//            game.dealThreeMoreCards()
-            game.dealCards()
-        }
-    
-        turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)
-    }
-    
-    private func turningCardsAnimation(isFirstDeal: Bool = true, alreadyDisplayedCards: Int = 0) {
-        let delayFactor: Double = 0.3
-        let animationDuration: Double = 1.0
-        let startOfTurnAround: Double = 0.3
-        var cardCount: Int { isFirstDeal ? game.isDealtViewCards.count : game.isDealtViewCards.count - alreadyDisplayedCards }
-    
-        for cardNumber in 0..<cardCount {
-            let delayTime = delayFactor * Double(cardNumber)
-            withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
-                game.turnSingleCardFaceUp(game.isDealtViewCards[alreadyDisplayedCards + cardNumber])
-            }
-            withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
-                game.turnAroundCard(game.isDealtViewCards[alreadyDisplayedCards + cardNumber])
-            }
-        }
-    }
     
     private func choosingCard(_ card: SetGame.ViewCard) {
         game.chooseCard(card)

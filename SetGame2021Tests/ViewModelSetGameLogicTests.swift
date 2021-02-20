@@ -35,7 +35,7 @@ class ViewModelLogicTests: XCTestCase {
         }
     }
     
-    func testDealCardsWithNoCardsDisplayed() {
+    func testDealCardsWithNoDealtViewCards() {
         
         let newLocalGame = SetGame()
         let countOfFaceUpCards = newLocalGame.isDealtViewCards.count
@@ -47,7 +47,7 @@ class ViewModelLogicTests: XCTestCase {
         
     }
     
-    func testDealCardsWithCardsDisplayed() {
+    func testDealCardsWithDealtViewCards() {
         
         let newLocalGame = SetGame()
         let countOfFaceUpCards = newLocalGame.isDealtViewCards.count
@@ -57,6 +57,31 @@ class ViewModelLogicTests: XCTestCase {
         
         XCTAssertEqual(countOfFaceUpCards, 0)
         XCTAssertEqual(countOfNewFaceUpCards, 15)
+    }
+    
+    func testDealCardsWithNoCardsDisplayed() {
+        
+        game.newGame()
+        let countOfFaceUpCards = game.isFaceUpViewCards.count
+        game.dealAndDisplayCards()
+        let countOfNewFaceUpCards = game.isFaceUpViewCards.count
+        
+        XCTAssertEqual(countOfFaceUpCards, 0)
+        XCTAssertEqual(countOfNewFaceUpCards, 12)
+        
+    }
+    
+    func testDealCardsWithAlreadyCardsDisplayed() {
+       
+        game.newGame()
+        let countOfFaceUpCards = game.isFaceUpViewCards.count
+        game.dealAndDisplayCards()
+        game.dealAndDisplayCards()
+        let countOfNewFaceUpCards = game.isFaceUpViewCards.count
+        
+        XCTAssertEqual(countOfFaceUpCards, 0)
+        XCTAssertEqual(countOfNewFaceUpCards, 15)
+        
     }
 
 }

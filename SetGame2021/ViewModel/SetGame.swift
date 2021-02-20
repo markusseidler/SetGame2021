@@ -75,19 +75,16 @@ class SetGame: ObservableObject {
         }
     }
     
-    func turnAllCardsFaceUp() { game.turnAllCardsFaceUp() }
-    
-    func turnSingleCardFaceUp(_ viewCard: ViewCard) {
-        let index = allViewCards.getMatchedIndexByID(of: viewCard)
-        if let indexUnwrapped = index {
-            game.turnSingleCardFaceUp(at: indexUnwrapped)
-        }
-    }
-    
-    func turnAroundCard(_ viewCard: ViewCard) {
-        let index = allViewCards.getMatchedIndexByID(of: viewCard)
-        if let indexUnwrapped = index {
-            game.turnAroundCard(at: indexUnwrapped)
+    func dealAndDisplayCards() {
+        if isFaceUpViewCards.count == 0 {
+            turningCardsWithAnimation()
+        } else {
+            let displayedCards = isFaceUpViewCards.count
+            Animations.standard {
+                self.dealCards()
+            }
+         
+            turningCardsWithAnimation(previouslyDisplayedCards: displayedCards)
         }
     }
     
@@ -222,4 +219,38 @@ class SetGame: ObservableObject {
     
     private func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
     
+    private func turnAllCardsFaceUp() { game.turnAllCardsFaceUp() }
+    
+    private func changeViewCardToFaceUpTrue(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        if let indexUnwrapped = index {
+            game.changeSetCardToFaceUpTrue(at: indexUnwrapped)
+        }
+    }
+    
+    private func changeViewCardToTurnAroundTrue(_ viewCard: ViewCard) {
+        let index = allViewCards.getMatchedIndexByID(of: viewCard)
+        if let indexUnwrapped = index {
+            game.changeSetCardToTurnAroundCardTrue(at: indexUnwrapped)
+        }
+    }
+    
+    private func turningCardsWithAnimation(previouslyDisplayedCards: Int = 0) {
+        let delayFactor: Double = 0.3
+        let animationDuration: Double = 1.0
+        let startOfTurnAround: Double = 0.3
+        
+        let cardCount: Int = isDealtViewCards.count - previouslyDisplayedCards
+        
+        for cardNumber in 0..<cardCount {
+            let delayTime = delayFactor * Double(cardNumber)
+            let cardIndex = cardNumber + previouslyDisplayedCards
+            withAnimation(Animation.easeInOut(duration: animationDuration).delay(delayTime)) {
+                changeViewCardToFaceUpTrue(isDealtViewCards[cardIndex])
+            }
+            withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
+                changeViewCardToTurnAroundTrue(isDealtViewCards[cardIndex])
+            }
+        }
+    }
 }

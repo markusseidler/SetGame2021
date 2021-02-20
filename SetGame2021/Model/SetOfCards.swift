@@ -141,11 +141,11 @@ struct SetOfCards: CardGameable {
         }
     }
     
-    mutating func turnSingleCardFaceUp(at index: Int) {
+    mutating func changeSetCardToFaceUpTrue(at index: Int) {
         setOfCards[index].isFaceUp = true
     }
     
-    mutating func turnAroundCard(at index: Int) {
+    mutating func changeSetCardToTurnAroundCardTrue(at index: Int) {
         setOfCards[index].turnAround = true
     }
     

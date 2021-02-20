@@ -17,4 +17,10 @@ struct Animations {
             }
         }
     }
+    
+    static func standard(action: @escaping() -> Void) {
+        withAnimation(Animation.easeInOut(duration: 1.0)) {
+            action()
+        }
+    }
 }
