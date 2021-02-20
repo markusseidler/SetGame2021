@@ -61,7 +61,7 @@ struct GameViewNew: View {
             getAvailableSetsAlert(count: sets.count)
         })
         .onAppear {
-            Animations.fast { game.dealCards() }
+            Animations.veryFast { game.dealCards() }
             Animations.standardDelayed { blackBackgroundOpacity = 0.0 }
             haptics = Haptics()
         }

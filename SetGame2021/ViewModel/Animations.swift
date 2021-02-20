@@ -22,14 +22,17 @@ struct Animations {
         easeInOut(duration: 1.0, action: action)
     }
     
-    static func fast(action: @escaping () -> Void) {
+    static func veryFast(action: @escaping () -> Void) {
         easeInOut(duration: 0.1, action: action)
     }
     
     static func standardDelayed(action: @escaping () -> Void ) {
-        withAnimation(Animation.easeInOut(duration: 1.0).delay(0.3)) {
-            action()
-        }
+        easeInOutDelayed(duration: 1.0, delay: 0.3, action: action)
+    }
+    
+    static func fastStaggered(actionOne: @escaping () -> Void, actionTwo: @escaping () -> Void) {
+        easeInOut(duration: 0.5, action: actionOne)
+        easeInOutDelayed(duration: 0.5, delay: 1.0, action: actionTwo)
     }
     
     static private func easeInOut(duration: Double, action: @escaping () -> Void ) {
@@ -37,4 +40,11 @@ struct Animations {
             action()
         }
     }
+    
+    static private func easeInOutDelayed(duration: Double, delay: Double, action: @escaping () -> Void ) {
+        withAnimation(Animation.easeInOut(duration: duration).delay(delay)) {
+            action()
+        }
+    }
+
 }
