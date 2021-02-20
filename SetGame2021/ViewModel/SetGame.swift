@@ -104,32 +104,11 @@ class SetGame: ObservableObject {
     
     func cheatOff() { game.changeAllCardsToIsCheatedFalse() }
 
-    func checkAndMatchOrNot(positiveAction: () -> Void, negativeAction: (() -> Void)?) {
-        if areThreeCardsSelected {
-            checkCardsAreASet()
-            if areThreeCardsAreMatched {
-                positiveAction()
-            } else {
-                if let hapticActionUnwrapped = negativeAction {
-                    hapticActionUnwrapped()
-                }
-            }
-            
-            for selectedCard in threeSetCardsSelected {
-                if let selectedIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: selectedCard) {
-                    game.setOfCards[selectedIndex].isSelected = false
-                    if areThreeCardsAreMatched {
-                        for matchedCard in threeSetCardsMatched {
-                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
-                                game.setOfCards[matchingIndex].isDealt = false
-                                game.setOfCards[matchingIndex].isMatched = false
-                                game.setOfCards[matchingIndex].wasUsed = true
-                            }
-                        }
-                    }
-                }
-            }
-            
+    func checkIfMatch(positiveActionOne: @escaping () -> Void, positiveActionTwo: @escaping () -> Void, negativeAction: @escaping () -> Void ){
+        checkAndMatchOrNot {
+            Animations.fastStaggered(actionOne: positiveActionOne, actionTwo: positiveActionTwo)
+        } negativeAction: {
+            negativeAction()
         }
     }
     
@@ -251,6 +230,35 @@ class SetGame: ObservableObject {
             withAnimation(Animation.easeInOut(duration: animationDuration / 2).delay(delayTime + startOfTurnAround)) {
                 changeViewCardToTurnAroundTrue(isDealtViewCards[cardIndex])
             }
+        }
+    }
+    
+    private func checkAndMatchOrNot(positiveAction: () -> Void, negativeAction: (() -> Void)?) {
+        if areThreeCardsSelected {
+            checkCardsAreASet()
+            if areThreeCardsAreMatched {
+                positiveAction()
+            } else {
+                if let hapticActionUnwrapped = negativeAction {
+                    hapticActionUnwrapped()
+                }
+            }
+            
+            for selectedCard in threeSetCardsSelected {
+                if let selectedIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: selectedCard) {
+                    game.setOfCards[selectedIndex].isSelected = false
+                    if areThreeCardsAreMatched {
+                        for matchedCard in threeSetCardsMatched {
+                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
+                                game.setOfCards[matchingIndex].isDealt = false
+                                game.setOfCards[matchingIndex].isMatched = false
+                                game.setOfCards[matchingIndex].wasUsed = true
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

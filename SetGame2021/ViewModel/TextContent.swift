@@ -15,6 +15,7 @@ struct TextContent {
     static let matchedSets = "Matched Sets"
     static let deal = "Deal"
     static let cheat = "Cheat"
+    static let defaultText = "Ok"
     
     static func getAvailableSetMessage(count: Int) -> String {
         if count == 0 {

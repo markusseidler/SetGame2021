@@ -11,14 +11,17 @@ struct GameViewNew: View {
     
     @StateObject var game = SetGame()
     @EnvironmentObject var globalAspect: GlobalAspect
-    @State private var cardSize: CGSize = CGSize.zero
-    @State private var cardDeckPosition: CGRect = CGRect.zero
-//    @State private var showMatchedText: Bool = false
-    @State private var rotationAngle: Double = 0
-    @State private var availableSets: AvailableSets?
-    @State private var haptics: Haptics?
     @State private var blackBackgroundOpacity: Double = 1
     
+    @State private var cardSize: CGSize = CGSize.zero
+    @State private var cardDeckPosition: CGRect = CGRect.zero
+    
+    @State private var matchedTextScale: CGFloat = 0.0
+    @State private var matchedTextOpacity: Double = 0.0
+    @State private var haptics: Haptics?
+    
+    @State private var rotationAngle: Double = 0
+    @State private var availableSets: AvailableSets?
     
     var body: some View {
         GeometryReader { globalGeo in
@@ -27,21 +30,38 @@ struct GameViewNew: View {
                 
                 VStack {
                     
-                    ScreenTop(game: game, size: globalGeo.size)
+                    ScreenTop(
+                        game: game,
+                        size: globalGeo.size)
                         .padding(.top, paddingBase)
                     
-                    ScreenCenter(game: game, cardDeckPosition: $cardDeckPosition, cardSize: $cardSize, rotationAngle: $rotationAngle, choosingCardAction: {
-                        card in choosingCard(card)
-                    }, matchingCardAction: matchingCard)
-                    .padding(.leading, paddingBase)
-                    
-                    ScreenBottom(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize, size: globalGeo.size) {
-                        game.dealAndDisplayCards()
-                    } cheatAction: {
-                        cheat()
+                    ZStack {
+                        
+                        ScreenCenter(
+                            game: game,
+                            cardDeckPosition: $cardDeckPosition,
+                            cardSize: $cardSize,
+                            rotationAngle: $rotationAngle,
+                            choosingCardAction: {
+                                card in choosingCard(card)},
+                            matchingCardAction: { matchingCard()})
+                            .padding(.leading, paddingBase)
+                        
+                        
                     }
-                    .padding(.top, paddingLarge)
-                    .padding(.bottom, paddingSmall)
+                    
+                    
+                    
+//                    ScreenBottom(
+//                        cardDeckPosition: $cardDeckPosition,
+//                        cardSize: $cardSize,
+//                        size: globalGeo.size, dealAction: {
+//                        game.dealAndDisplayCards()
+//                    }, cheatAction: {
+//                        cheat()
+//                    })
+//                    .padding(.top, paddingLarge)
+//                    .padding(.bottom, paddingSmall)
                 }
                 
                 Color.black
@@ -62,10 +82,23 @@ struct GameViewNew: View {
         })
         .onAppear {
             Animations.veryFast { game.dealCards() }
-            Animations.standardDelayed { blackBackgroundOpacity = 0.0 }
+            Animations.standardDelayed { blackBackgroundOpacity = opacityNone }
             haptics = Haptics()
         }
+        .onChange(of: matchedTextScale, perform: { scale in
+            print("changed: \(scale)")
+            getScaleRelatedOpacity(scale: scale)
+        })
         
+    }
+    
+    // MARK: - Private View Properties
+    
+    private var matchedText: some View {
+        Text(TextContent.matched)
+            .font(Font.system(.largeTitle, design: .rounded))
+            .scaleEffect(matchedTextScale)
+            .opacity(matchedTextOpacity)
     }
     
     // MARK: - Private Methods
@@ -75,7 +108,14 @@ struct GameViewNew: View {
     }
     
     private func matchingCard() {
-        
+        matchedTextScale = scaleNone
+        game.checkIfMatch {
+            matchedTextScale = scaleMedium
+        } positiveActionTwo: {
+            matchedTextScale = scaleLarge
+        } negativeAction: {
+            haptics?.wrongSelection()
+        }
     }
     
     private func cheat() {
@@ -126,10 +166,19 @@ struct GameViewNew: View {
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
-        Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text("Ok")))
+        Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)))
+    }
+    
+    private func getScaleRelatedOpacity(scale: CGFloat) {
+        if scale == scaleNone || scale == scaleLarge {
+            matchedTextOpacity = opacityNone
+        } else {
+            matchedTextOpacity = opacityMedium
+        }
     }
     
     // MARK: - Private view constants
+    
     private let opacityFull: Double = 1.0
     private let opacityMedium: Double = 0.3
     private let opacityNone: Double = 0.0
@@ -137,6 +186,10 @@ struct GameViewNew: View {
     private let paddingBase: CGFloat = 10
     private let paddingLarge: CGFloat = 15
     private let paddingSmall: CGFloat = 5
+    
+    private let scaleNone: CGFloat = 0.0
+    private let scaleMedium: CGFloat = 1.0
+    private let scaleLarge: CGFloat = 3.0
     
 }
 
