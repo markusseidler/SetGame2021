@@ -42,9 +42,11 @@ struct ScreenCenter: View {
             GeometryReader { localGeoOne in
                 ZStack {
                     CardContentView(viewCard: card).opacity(0)
-                        .onAppear { cardSize = localGeoOne.size }
+                        .onAppear {
+                                cardSize = localGeoOne.size
+                        }
                         .onChange(of: localGeoOne.size) { size in
-                            cardSize = size
+                                cardSize = size
                         }
                     GeometryReader { localGeoTwo in
                         let xOffset = localGeoTwo.frame(in: .global).minX

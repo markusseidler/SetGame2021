@@ -50,12 +50,13 @@ class SetGame: ObservableObject {
     var isSelectedViewCards: [ViewCard] { game.isSelectedCards.map { createViewCard(with: $0) }}
     var isFaceUpViewCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
+    var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
     private var threeSetCardsSelected: [SetCard] { game.isSelectedCards.filter { $0.isSelected }}
     private var threeSetCardsMatched: [SetCard] { game.isMatchedCards.filter { $0.isMatched }}
     private var areThreeCardsSelected: Bool { game.isSelectedCards.count == 3 }
     private var areThreeCardsAreMatched: Bool { game.isMatchedCards.count == 3}
-    var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
+  
 
     
     init() { self.game = SetOfCards() }

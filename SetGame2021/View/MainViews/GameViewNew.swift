@@ -164,6 +164,7 @@ struct GameViewNew: View {
         if block == .three {
             Animations.delayedAction(by: internalCount + 8, duration: animationDuration) {
                 availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                print("game.countOfAvailableSetDisplayed: ", game.countOfAvailableSetsDisplayed)
             }
         }
     }

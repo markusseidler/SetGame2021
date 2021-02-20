@@ -146,8 +146,10 @@ struct SetOfCards: CardGameable {
             }
         }
         if !matchedSets.isEmpty {
+            print("These are matched Sets: \n", matchedSets)
             return matchedSets
         } else {
+            print("matched Set not found")
             return nil
         }
         
@@ -187,6 +189,9 @@ struct SetOfCards: CardGameable {
                     }
                 }
             }
+        }
+        else {
+            countOfAvailableSetsDisplayed = 0
         }
     }
     

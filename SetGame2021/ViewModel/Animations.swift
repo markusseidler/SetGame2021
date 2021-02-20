@@ -27,7 +27,7 @@ struct Animations {
     }
     
     static func standardDelayed(action: @escaping () -> Void ) {
-        easeInOutDelayed(duration: 1.0, delay: 0.5, action: action)
+        easeInOutDelayed(duration: 1.0, delay: 1.0, action: action)
     }
     
     static func fastStaggered(actionOne: @escaping () -> Void, actionTwo: @escaping () -> Void, actionThree: @escaping () -> Void) {
@@ -39,7 +39,7 @@ struct Animations {
                 actionTwo()
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             easeInOut(duration: 0.5) {
                 actionThree()
             }
