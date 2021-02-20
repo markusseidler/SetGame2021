@@ -26,6 +26,10 @@ struct Animations {
         easeInOut(duration: 0.1, action: action)
     }
     
+    static func fast(action: @escaping () -> Void) {
+        easeInOut(duration: 0.5, action: action)
+    }
+    
     static func standardDelayed(action: @escaping () -> Void ) {
         easeInOutDelayed(duration: 1.0, delay: 1.0, action: action)
     }

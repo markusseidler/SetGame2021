@@ -52,6 +52,10 @@ class SetGame: ObservableObject {
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
+    var score: Int = 0
+    let cheatingCost: Int = 5
+    let maxMatchingBenefits: Int = 10
+    
     private var threeSetCardsSelected: [SetCard] { game.isSelectedCards.filter { $0.isSelected }}
     private var threeSetCardsMatched: [SetCard] { game.isMatchedCards.filter { $0.isMatched }}
     private var areThreeCardsSelected: Bool { game.isSelectedCards.count == 3 }
@@ -65,6 +69,7 @@ class SetGame: ObservableObject {
     
     func newGame() {
         game.resetGame()
+        score = 0
         dealFirstTwelveCards()
     }
     
@@ -114,6 +119,19 @@ class SetGame: ObservableObject {
                     actionThree: { positiveActionThree() })
             },
             negativeAction: { negativeAction() })
+    }
+    
+    func addToScore(_ points: Int) {
+        score += points
+    }
+    
+    func deductFromScore(_ points: Int) {
+        score -= points
+        
+        // score is on purpose capped at minimum 0
+        if score < 0 {
+            score = 0
+        }
     }
     
     // MARK: - Private API Properties

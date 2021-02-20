@@ -112,6 +112,7 @@ struct GameViewNew: View {
             },
             positiveActionThree: {
                 matchedTextOpacity = opacityNone
+                game.addToScore(game.maxMatchingBenefits)
             },
             negativeAction: {
                 haptics?.wrongSelection()
@@ -178,7 +179,9 @@ struct GameViewNew: View {
             })
         } else {
             print(isFirstTimeCheat)
-            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)))
+            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
+                game.deductFromScore(game.cheatingCost)
+            })
         }
     }
     
@@ -196,7 +199,6 @@ struct GameViewNew: View {
     private let scaleBase: CGFloat = 0.0
     private let scaleMedium: CGFloat = 2.0
     private let scaleLarge: CGFloat = 1000.0
-    
 }
 
 struct GameViewNew_Previews: PreviewProvider {

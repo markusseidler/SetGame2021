@@ -11,7 +11,7 @@ struct ScreenTop: View {
     
     // MARK: - Public View API
     
-    let game: SetGame
+    @StateObject var game: SetGame
     let size: CGSize
     
     // MARK: - Private View API
@@ -34,7 +34,7 @@ struct ScreenTop: View {
             
             Spacer()
             
-            Text("\(TextContent.totalScore)10").convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
+            Text("\(TextContent.totalScore)\(game.score)").convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
             
             Spacer()
         }

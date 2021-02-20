@@ -83,5 +83,40 @@ class ViewModelLogicTests: XCTestCase {
         XCTAssertEqual(countOfNewFaceUpCards, 15)
         
     }
+    
+    func testAddingFivePointsToScore() {
+        game.newGame()
+        game.addToScore(5)
+        XCTAssertEqual(game.score, 5)
+    }
+    
+    func testAddingFivePointsToScoreTwice() {
+        game.newGame()
+        game.addToScore(5)
+        game.addToScore(5)
+        XCTAssertEqual(game.score, 10)
+    }
+    
+    func testDeductingFivePointsToScore() {
+        game.newGame()
+        game.deductFromScore(5)
+        XCTAssertEqual(game.score, 0)
+    }
+    
+    func testAddingFivePointsAndDeductTwiceFivePoints() {
+        game.newGame()
+        game.addToScore(5)
+        game.deductFromScore(5)
+        game.deductFromScore(5)
+        XCTAssertEqual(game.score, 0)
+    }
+    
+    func testAddingFivePointsTwiceAndDeductFivePoints() {
+        game.newGame()
+        game.addToScore(5)
+        game.addToScore(5)
+        game.deductFromScore(5)
+        XCTAssertEqual(game.score, 5)
+    }
 
 }
