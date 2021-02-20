@@ -57,7 +57,8 @@ struct GameView: View {
             }
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 0.1)) {
-                    game.dealFirstTwelveCards()
+//                    game.dealFirstTwelveCards()
+                    game.dealCards()
                 }
                 withAnimation(Animation.easeInOut(duration: 1.0).delay(0.2)) {
                     blackBackgroundOpacity = 0.0
@@ -196,7 +197,8 @@ struct GameView: View {
         let currentlyDisplayedCards = game.isDealtViewCards.count
         
         withAnimation(Animation.easeInOut(duration: 1.0)) {
-            game.dealThreeMoreCards()
+//            game.dealThreeMoreCards()
+            game.dealCards()
         }
     
         turningCardsAnimation(isFirstDeal: false, alreadyDisplayedCards: currentlyDisplayedCards)

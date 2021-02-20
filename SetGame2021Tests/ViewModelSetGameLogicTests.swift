@@ -10,11 +10,11 @@ import XCTest
 
 class ViewModelLogicTests: XCTestCase {
     
-    var setGame: SetGame!
+    var game: SetGame!
 
     override func setUpWithError() throws {
         
-        setGame = SetGame()
+        game = SetGame()
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -33,6 +33,30 @@ class ViewModelLogicTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testDealCardsWithNoCardsDisplayed() {
+        
+        let newLocalGame = SetGame()
+        let countOfFaceUpCards = newLocalGame.isDealtViewCards.count
+        newLocalGame.dealCards()
+        let countOfNewFaceUpCards = newLocalGame.isDealtViewCards.count
+        
+        XCTAssertEqual(countOfFaceUpCards, 0)
+        XCTAssertEqual(countOfNewFaceUpCards, 12)
+        
+    }
+    
+    func testDealCardsWithCardsDisplayed() {
+        
+        let newLocalGame = SetGame()
+        let countOfFaceUpCards = newLocalGame.isDealtViewCards.count
+        newLocalGame.dealCards()
+        newLocalGame.dealCards()
+        let countOfNewFaceUpCards = newLocalGame.isDealtViewCards.count
+        
+        XCTAssertEqual(countOfFaceUpCards, 0)
+        XCTAssertEqual(countOfNewFaceUpCards, 15)
     }
 
 }

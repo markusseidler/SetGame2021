@@ -67,9 +67,13 @@ class SetGame: ObservableObject {
         dealFirstTwelveCards()
     }
     
-//    func dealCards() {
-//        game.is
-//    }
+    func dealCards() {
+        if isDealtViewCards.count == 0 {
+            dealFirstTwelveCards()
+        } else {
+            dealThreeMoreCards()
+        }
+    }
     
     func turnAllCardsFaceUp() { game.turnAllCardsFaceUp() }
     
@@ -212,9 +216,9 @@ class SetGame: ObservableObject {
         }
     }
     
-    func dealFirstTwelveCards() { game.dealCards(numberOfCards: 12) }
+    private func dealFirstTwelveCards() { game.dealCards(numberOfCards: 12) }
     
-    func dealThreeMoreCards() { game.dealCards(numberOfCards: 3) }
+    private func dealThreeMoreCards() { game.dealCards(numberOfCards: 3) }
     
     private func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
     
