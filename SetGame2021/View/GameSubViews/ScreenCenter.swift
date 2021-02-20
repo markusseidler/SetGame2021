@@ -57,7 +57,6 @@ struct ScreenCenter: View {
                                     choosingCardAction(card)
                                     matchingCardAction()
                                 }
-//                                .transition(.offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset))
                                 .transition(.asymmetric(insertion: .offset(x: cardDeckPosition.minX - xOffset, y: cardDeckPosition.minY - yOffset), removal: .offset(x: cardDeckPosition.minX + xOffsetRemoval, y: cardDeckPosition.minY + yOffsetRemoval)))
                         }
                     }

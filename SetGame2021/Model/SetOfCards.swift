@@ -33,7 +33,6 @@ struct SetOfCards: CardGameable {
     // MARK: - Public API Methods
     init() {
         resetGame()
-//        print(setOfCards)
     }
     
     init(shuffleCards: Bool) {
@@ -101,15 +100,22 @@ struct SetOfCards: CardGameable {
         }
     }
     
-    // changes cards to wasUsed and deselect while deMatch. Tested.
-    mutating func moveToWasUsedCards() {
+    // Need to split it into two parts, otherwise animations are overlapping and transitions do not work.isDealt change has to happen in second parts, otherwise in conflict with cards flying away.
+    mutating func moveToWasUsedCardsPartA() {
         for matchedCard in isMatchedCards {
             if let matchingIndex = setOfCards.getMatchedIndexByID(of: matchedCard) {
-                setOfCards[matchingIndex].isMatched = true
                 setOfCards[matchingIndex].isSelected = false
                 setOfCards[matchingIndex].isFaceUp = false
-                setOfCards[matchingIndex].isDealt = false
                 setOfCards[matchingIndex].wasUsed = true
+             }
+        }
+    }
+    
+    mutating func moveToWasUsedCardsPartB() {
+        for matchedCard in isMatchedCards {
+            if let matchingIndex = setOfCards.getMatchedIndexByID(of: matchedCard) {
+                setOfCards[matchingIndex].isMatched = false
+                setOfCards[matchingIndex].isDealt = false
              }
         }
     }

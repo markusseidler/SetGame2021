@@ -27,7 +27,7 @@ struct Animations {
     }
     
     static func standardDelayed(action: @escaping () -> Void ) {
-        easeInOutDelayed(duration: 1.0, delay: 2.3, action: action)
+        easeInOutDelayed(duration: 1.0, delay: 0.5, action: action)
     }
     
     static func fastStaggered(actionOne: @escaping () -> Void, actionTwo: @escaping () -> Void, actionThree: @escaping () -> Void) {

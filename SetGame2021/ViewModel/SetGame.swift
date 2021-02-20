@@ -251,17 +251,17 @@ class SetGame: ObservableObject {
                 if let selectedIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: selectedCard) {
                     game.setOfCards[selectedIndex].isSelected = false
                     if areThreeCardsAreMatched {
+                        
+                        // Need to split it into two parts, otherwise animations are overlapping and transitions do not work.isDealt change has to happen in second parts, otherwise in conflict with cards flying away.
+                        
                         Animations.standard {
-                            self.game.moveToWasUsedCards()
+                            self.game.moveToWasUsedCardsPartA()
                         }
-//                        game.moveToWasUsedCards()
-//                        for matchedCard in threeSetCardsMatched {
-//                            if let matchingIndex = game.setOfCards.getMatchedIndexBySetCardFeatures(of: matchedCard) {
-//                                game.setOfCards[matchingIndex].isDealt = false
-//                                game.setOfCards[matchingIndex].isMatched = false
-//                                game.setOfCards[matchingIndex].wasUsed = true
-//                            }
-//                        }
+                        
+                        Animations.standardDelayed {
+                            self.game.moveToWasUsedCardsPartB()
+                        }
+
                     }
                 }
             }

@@ -295,7 +295,8 @@ class ModelSetOfCardsTests: XCTestCase {
         XCTAssertTrue(testResult)
         
         // change to wasUsed
-        testSet.moveToWasUsedCards()
+        testSet.moveToWasUsedCardsPartA()
+        testSet.moveToWasUsedCardsPartB()
         let expectedCount = 0
         let expectedCountWasUsed = 3
         let countSelectedCards = testSet.isSelectedCards.count

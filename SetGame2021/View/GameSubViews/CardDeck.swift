@@ -19,9 +19,6 @@ struct CardDeck: View {
                 .trackPosition()
                 .onPreferenceChange(PositionPreferenceKey.self) {
                     cardDeckPosition = $0
-                    print("cardDeckPosition: ", cardDeckPosition)
-                    
-                    // cardDeckPosition:  (89.31701235886308, 636.0327201528847, 86.36597528227384, 168.96727984711526)
             }
         }
     }
