@@ -23,6 +23,8 @@ struct GameViewNew: View {
     @State private var rotationAngle: Double = 0
     @State private var availableSets: AvailableSets?
     
+    @State private var isFirstTimeCheat: Bool = true
+    
     var body: some View {
         GeometryReader { globalGeo in
             ZStack {
@@ -164,13 +166,20 @@ struct GameViewNew: View {
         if block == .three {
             Animations.delayedAction(by: internalCount + 8, duration: animationDuration) {
                 availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
-                print("game.countOfAvailableSetDisplayed: ", game.countOfAvailableSetsDisplayed)
             }
         }
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
-        Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)))
+        if isFirstTimeCheat {
+            print(isFirstTimeCheat)
+            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
+                isFirstTimeCheat = false
+            })
+        } else {
+            print(isFirstTimeCheat)
+            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)))
+        }
     }
     
     // MARK: - Private view constants
