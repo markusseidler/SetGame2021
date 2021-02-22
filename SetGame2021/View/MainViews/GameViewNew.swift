@@ -16,7 +16,7 @@ struct GameViewNew: View {
     @State private var cardSize: CGSize = CGSize.zero
     @State private var cardDeckPosition: CGRect = CGRect.zero
     
-    @State private var matchedTextScale: CGFloat = 0.0
+    @State private var matchedTextScale: CGFloat = 0.01
     @State private var matchedTextOpacity: Double = 1.0
     @State private var haptics: Haptics?
     
@@ -24,6 +24,7 @@ struct GameViewNew: View {
     @State private var availableSets: AvailableSets?
     
     @State private var isFirstTimeCheat: Bool = true
+    @State private var isDealButtonPressed: Bool = true
     
     var body: some View {
         GeometryReader { globalGeo in
@@ -56,7 +57,7 @@ struct GameViewNew: View {
                         cardDeckPosition: $cardDeckPosition,
                         cardSize: $cardSize,
                         size: globalGeo.size,
-                        dealAction: game.dealAndDisplayCards,
+                        dealAction: dealButtonPressed,
                         cheatAction: cheat)
                         .padding(.top, paddingLarge)
                         .padding(.bottom, paddingSmall)
@@ -181,16 +182,37 @@ struct GameViewNew: View {
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
-        if isFirstTimeCheat {
-            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
+        if isFirstTimeCheat && !isDealButtonPressed {
+            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 isFirstTimeCheat = false
-            })
-        } else {
+            }) } else if !isFirstTimeCheat && !isDealButtonPressed {
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
                 game.deductFromScore(game.cheatingCost)
             })
-        }
+            } else {
+                return Alert(title: Text(TextContent.dealButtonPressed), message: Text(TextContent.getDealCostPointsMessage(cost: game.dealingCost)), primaryButton: .cancel({
+                    isDealButtonPressed = false
+                }), secondaryButton: .default(Text(TextContent.deal), action: {
+                    isDealButtonPressed = false
+                    game.dealAndDisplayCards()
+                    game.deductFromScore(game.dealingCost)
+                }))
+            }
     }
+    
+    private func dealButtonPressed() {
+        isDealButtonPressed = true
+        game.checkHowManyMatchingSetsAreAvailable()
+        if game.countOfAvailableSetsDisplayed > 3 {
+            availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+        } else {
+            game.dealAndDisplayCards()
+            isDealButtonPressed = false
+        }
+        
+    }
+    
+
     
     // MARK: - Private view constants
     
@@ -202,8 +224,7 @@ struct GameViewNew: View {
     private let paddingLarge: CGFloat = 15
     private let paddingSmall: CGFloat = 5
     
-    private let scaleNone: CGFloat = 0.0
-    private let scaleBase: CGFloat = 0.0
+    private let scaleNone: CGFloat = 0.01
     private let scaleMedium: CGFloat = 2.0
     private let scaleLarge: CGFloat = 1000.0
 }

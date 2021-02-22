@@ -55,6 +55,7 @@ class SetGame: ObservableObject {
     var score: Int = 0
     let cheatingCost: Int = 5
     let maxMatchingBenefits: Int = 10
+    let dealingCost: Int = 5
     
     private var threeSetCardsSelected: [SetCard] { game.isSelectedCards.filter { $0.isSelected }}
     private var threeSetCardsMatched: [SetCard] { game.isMatchedCards.filter { $0.isMatched }}

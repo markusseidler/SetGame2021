@@ -13,12 +13,13 @@ struct TextContent {
     static let newGame = "New Game"
     static let matched = "Matched!"
     static let matchedSets = "Matched Sets"
+    static let dealButtonPressed = "Are you sure?"
     static let deal = "Deal"
     static let cheat = "Cheat"
     static let defaultText = "Ok"
     
-    static func getFirstAvailableSetMessage(count: Int) -> String {
-        let firstTime = "This is your first time cheating. This time it is for free. Next time it cost you 5 points.\n"
+    static func getFirstAvailableSetMessage(count: Int, cost: Int) -> String {
+        let firstTime = "This is your first time cheating. This time it is for free. \nNext time it cost you \(cost) points.\n"
         
         if count == 0 {
             return "\(firstTime)\nThere are no sets displayed."
@@ -38,4 +39,10 @@ struct TextContent {
             return "There are \(count) sets displayed. \nCheating cost you 5 points."
         }
     }
+    
+    static func getDealCostPointsMessage(cost: Int) -> String {
+        return "There are more than 3 matching sets on the screen. Dealing three more cards will cost you \(cost) points."
+    }
+    
+    
 }

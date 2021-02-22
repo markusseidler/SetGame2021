@@ -19,11 +19,14 @@ struct SingleCardContentView<Content: Shape>: View {
     var body: some View {
         ZStack {
             content
-                .stroke(viewCard.color)
+                .stroke(viewCard.color, style: lineStyle)
             content
                 .fillWithShading(viewCard: viewCard)
         }
     }
+    
+    // MARK: - Private View Constants
+    let lineStyle = StrokeStyle(lineWidth: 3, lineCap: .round)
 }
 
 struct SingleCardContentView_Previews: PreviewProvider {

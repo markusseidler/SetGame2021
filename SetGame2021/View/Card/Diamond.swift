@@ -42,7 +42,7 @@ struct Diamond_Previews: PreviewProvider {
                 .fill(Color.blue.opacity(0.4))
             Diamond()
 //                .fill(Color.white)
-                .stroke(Color.black)
+                .stroke(Color.black, style: StrokeStyle(lineWidth: 10, lineCap: .square))
         }
         
     }
