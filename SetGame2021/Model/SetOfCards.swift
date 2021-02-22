@@ -155,6 +155,14 @@ struct SetOfCards: CardGameable {
         
     }
     
+    mutating func checkHowManyMatchedSetsAreDisplayed() {
+        if let count = checkWhereAreMatchedSets(in: isFaceUpCards)?.count {
+            countOfAvailableSetsDisplayed = count
+        } else {
+            countOfAvailableSetsDisplayed = 0
+        }
+    }
+    
     func getUniqueSetCombinations(in cardArray: [SetCard]) -> [[SetCard]] {
         var resultSet = Set<Set<SetCard>>()
         var resultArray = [[SetCard]]()

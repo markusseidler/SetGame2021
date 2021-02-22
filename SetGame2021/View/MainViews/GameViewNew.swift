@@ -144,6 +144,10 @@ struct GameViewNew: View {
         
         let animationDuration: Double = 0.2
         let angle = 5.0
+        
+        game.checkHowManyMatchingSetsAreAvailable()
+        
+        if game.countOfAvailableSetsDisplayed > 0 {
        
         Animations.delayedAction(by: internalCount, duration: animationDuration) {
             rotationAngle = angle
@@ -169,16 +173,19 @@ struct GameViewNew: View {
                 availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
             }
         }
+            
+        } else {
+            availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+        }
+        
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
         if isFirstTimeCheat {
-            print(isFirstTimeCheat)
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
                 isFirstTimeCheat = false
             })
         } else {
-            print(isFirstTimeCheat)
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
                 game.deductFromScore(game.cheatingCost)
             })

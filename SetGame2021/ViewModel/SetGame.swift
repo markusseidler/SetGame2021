@@ -134,6 +134,10 @@ class SetGame: ObservableObject {
         }
     }
     
+    func checkHowManyMatchingSetsAreAvailable() {
+        game.checkHowManyMatchedSetsAreDisplayed()
+    }
+    
     // MARK: - Private API Properties
     
     @Published private var game: SetOfCards
