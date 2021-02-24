@@ -26,7 +26,7 @@ struct SingleCardContentView<Content: Shape>: View {
     }
     
     // MARK: - Private View Constants
-    let lineStyle = StrokeStyle(lineWidth: 3, lineCap: .round)
+    let lineStyle = StrokeStyle(lineWidth: 2, lineCap: .round)
 }
 
 struct SingleCardContentView_Previews: PreviewProvider {

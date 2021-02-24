@@ -52,7 +52,8 @@ class SetGame: ObservableObject {
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
-    var score: Int = 0
+    var totalScore: Int = 0
+    var currentRoundScore: Int = 10
     let cheatingCost: Int = 5
     let maxMatchingBenefits: Int = 10
     let dealingCost: Int = 5
@@ -64,13 +65,17 @@ class SetGame: ObservableObject {
   
 
     
-    init() { self.game = SetOfCards() }
+    init() {
+        self.game = SetOfCards()
+        self.currentRoundScore = roundStartingScore
+        startScoreDecay()
+    }
     
     // MARK: - Public API Methods
     
     func newGame() {
         game.resetGame()
-        score = 0
+        totalScore = 0
         dealFirstTwelveCards()
     }
     
@@ -123,15 +128,15 @@ class SetGame: ObservableObject {
     }
     
     func addToScore(_ points: Int) {
-        score += points
+        totalScore += points
     }
     
     func deductFromScore(_ points: Int) {
-        score -= points
+        totalScore -= points
         
         // score is on purpose capped at minimum 0
-        if score < 0 {
-            score = 0
+        if totalScore < 0 {
+            totalScore = 0
         }
     }
     
@@ -139,9 +144,24 @@ class SetGame: ObservableObject {
         game.checkHowManyMatchedSetsAreDisplayed()
     }
     
+    func startScoreDecay(duration: Int = 10) {
+        Timer.scheduledTimer(withTimeInterval: Double(duration / roundStartingScore), repeats: true) { timer in
+            self.currentRoundScore -= 1
+            print(self.currentRoundScore)
+            
+            if self.currentRoundScore == 0 {
+                timer.invalidate()
+                print("done")
+                print(self.currentRoundScore)
+            }
+        }
+    }
+    
     // MARK: - Private API Properties
     
     @Published private var game: SetOfCards
+    
+    private let roundStartingScore: Int = 10
     
     // Colors
     private let colorOne: Color = Color.rainbowBlue

@@ -87,20 +87,20 @@ class ViewModelLogicTests: XCTestCase {
     func testAddingFivePointsToScore() {
         game.newGame()
         game.addToScore(5)
-        XCTAssertEqual(game.score, 5)
+        XCTAssertEqual(game.totalScore, 5)
     }
     
     func testAddingFivePointsToScoreTwice() {
         game.newGame()
         game.addToScore(5)
         game.addToScore(5)
-        XCTAssertEqual(game.score, 10)
+        XCTAssertEqual(game.totalScore, 10)
     }
     
     func testDeductingFivePointsToScore() {
         game.newGame()
         game.deductFromScore(5)
-        XCTAssertEqual(game.score, 0)
+        XCTAssertEqual(game.totalScore, 0)
     }
     
     func testAddingFivePointsAndDeductTwiceFivePoints() {
@@ -108,7 +108,7 @@ class ViewModelLogicTests: XCTestCase {
         game.addToScore(5)
         game.deductFromScore(5)
         game.deductFromScore(5)
-        XCTAssertEqual(game.score, 0)
+        XCTAssertEqual(game.totalScore, 0)
     }
     
     func testAddingFivePointsTwiceAndDeductFivePoints() {
@@ -116,7 +116,14 @@ class ViewModelLogicTests: XCTestCase {
         game.addToScore(5)
         game.addToScore(5)
         game.deductFromScore(5)
-        XCTAssertEqual(game.score, 5)
+        XCTAssertEqual(game.totalScore, 5)
+    }
+    
+    func testScoreDecayOfCurrentRound() {
+        XCTAssertEqual(game.currentRoundScore, 10)
+        game.startScoreDecay()
+        sleep(10)
+        XCTAssertEqual(game.currentRoundScore, 0)
     }
 
 }

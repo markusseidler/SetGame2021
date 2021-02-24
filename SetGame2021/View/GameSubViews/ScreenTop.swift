@@ -30,11 +30,11 @@ struct ScreenTop: View {
             
             Spacer()
             
-            Text("\(TextContent.bonusScore)10").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentagePrimary)
+            Text("\(TextContent.bonusScore)\(game.currentRoundScore)").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentagePrimary)
             
             Spacer()
             
-            Text("\(TextContent.totalScore)\(game.score)").convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
+            Text("\(TextContent.totalScore)\(game.totalScore)").convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
             
             Spacer()
         }
