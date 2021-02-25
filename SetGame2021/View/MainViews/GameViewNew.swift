@@ -113,7 +113,13 @@ struct GameViewNew: View {
             },
             positiveActionThree: {
                 matchedTextOpacity = opacityNone
-                game.addToScore(game.maxMatchingBenefits)
+                DispatchQueue.main.async {
+                    game.addToTotalScore( game.currentRoundScore)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    game.startScoreDecay()
+                }
+                
             },
             negativeAction: {
                 haptics?.wrongSelection()
@@ -187,7 +193,7 @@ struct GameViewNew: View {
                 isFirstTimeCheat = false
             }) } else if !isFirstTimeCheat && !isDealButtonPressed {
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
-                game.deductFromScore(game.cheatingCost)
+                game.deductFromTotalScore(game.cheatingCost)
             })
             } else {
                 return Alert(title: Text(TextContent.dealButtonPressed), message: Text(TextContent.getDealCostPointsMessage(cost: game.dealingCost)), primaryButton: .cancel({
@@ -195,7 +201,7 @@ struct GameViewNew: View {
                 }), secondaryButton: .default(Text(TextContent.deal), action: {
                     isDealButtonPressed = false
                     game.dealAndDisplayCards()
-                    game.deductFromScore(game.dealingCost)
+                    game.deductFromTotalScore(game.dealingCost)
                 }))
             }
     }

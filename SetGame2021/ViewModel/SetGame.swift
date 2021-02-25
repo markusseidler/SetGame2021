@@ -69,13 +69,13 @@ class SetGame: ObservableObject {
     
     init() {
         self.game = SetOfCards()
-        self.currentRoundScore = roundStartingScore
+        self.currentRoundScore = startRoundScore
     }
     
     // MARK: - Public API Methods
     
     func newGame() {
-        currentRoundScore = roundStartingScore
+        currentRoundScore = startRoundScore
         game.resetGame()
         totalScore = 0
         dealFirstTwelveCards()
@@ -84,6 +84,7 @@ class SetGame: ObservableObject {
     func dealCards() {
         if isDealtViewCards.count == 0 {
             dealFirstTwelveCards()
+            startScoreDecay()
         } else {
             dealThreeMoreCards()
         }
@@ -129,11 +130,11 @@ class SetGame: ObservableObject {
             negativeAction: { negativeAction() })
     }
     
-    func addToScore(_ points: Int) {
+    func addToTotalScore(_ points: Int) {
         totalScore += points
     }
     
-    func deductFromScore(_ points: Int) {
+    func deductFromTotalScore(_ points: Int) {
         totalScore -= points
         
         // score is on purpose capped at minimum 0
@@ -146,9 +147,15 @@ class SetGame: ObservableObject {
         game.checkHowManyMatchedSetsAreDisplayed()
     }
     
-    func startScoreDecay(duration: Int = 10) {
-        Timer.scheduledTimer(withTimeInterval: Double(duration / roundStartingScore), repeats: true) { timer in
-
+    func startScoreDecay(duration: Int = 100) {
+        
+        // find a way to switch-off timer... create timer object rather than closure
+        
+//        https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+        
+        currentRoundScore = startRoundScore
+        
+        Timer.scheduledTimer(withTimeInterval: Double(duration / startRoundScore), repeats: true) { timer in
             DispatchQueue.main.async {
                 self.currentRoundScore -= 1
 
@@ -162,7 +169,7 @@ class SetGame: ObservableObject {
     
     // MARK: - Private API Properties
     
-    private let roundStartingScore: Int = 10
+    private let startRoundScore: Int = 100
     
     // Colors
     private let colorOne: Color = Color.rainbowBlue

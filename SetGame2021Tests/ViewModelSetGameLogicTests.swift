@@ -87,53 +87,53 @@ class ViewModelLogicTests: XCTestCase {
     
     func testAddingFivePointsToScore() {
         game.newGame()
-        game.addToScore(5)
+        game.addToTotalScore(5)
         XCTAssertEqual(game.totalScore, 5)
     }
     
     func testAddingFivePointsToScoreTwice() {
         game.newGame()
-        game.addToScore(5)
-        game.addToScore(5)
+        game.addToTotalScore(5)
+        game.addToTotalScore(5)
         XCTAssertEqual(game.totalScore, 10)
     }
     
     func testDeductingFivePointsToScore() {
         game.newGame()
-        game.deductFromScore(5)
+        game.deductFromTotalScore(5)
         XCTAssertEqual(game.totalScore, 0)
     }
     
     func testAddingFivePointsAndDeductTwiceFivePoints() {
         game.newGame()
-        game.addToScore(5)
-        game.deductFromScore(5)
-        game.deductFromScore(5)
+        game.addToTotalScore(5)
+        game.deductFromTotalScore(5)
+        game.deductFromTotalScore(5)
         XCTAssertEqual(game.totalScore, 0)
     }
     
     func testAddingFivePointsTwiceAndDeductFivePoints() {
         game.newGame()
-        game.addToScore(5)
-        game.addToScore(5)
-        game.deductFromScore(5)
+        game.addToTotalScore(5)
+        game.addToTotalScore(5)
+        game.deductFromTotalScore(5)
         XCTAssertEqual(game.totalScore, 5)
     }
     
     func testScoreDecayOfCurrentRound() {
 //        https://stackoverflow.com/questions/59321364/swift-unit-testing-a-method-that-includes-timer
         
-        XCTAssertEqual(game.currentRoundScore, 10)
+        XCTAssertEqual(game.currentRoundScore, 100)
         game.startScoreDecay()
        
         let expectation = self.expectation(description: "score is 0")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 12)
+        waitForExpectations(timeout: 11)
         
-        XCTAssertEqual(game.currentRoundScore, 0)
+        XCTAssertEqual(game.currentRoundScore, 90)
     }
 
 }
