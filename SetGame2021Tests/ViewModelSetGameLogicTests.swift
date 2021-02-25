@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import SetGame2021
 
 class ViewModelLogicTests: XCTestCase {
@@ -120,9 +121,18 @@ class ViewModelLogicTests: XCTestCase {
     }
     
     func testScoreDecayOfCurrentRound() {
+//        https://stackoverflow.com/questions/59321364/swift-unit-testing-a-method-that-includes-timer
+        
         XCTAssertEqual(game.currentRoundScore, 10)
         game.startScoreDecay()
-        sleep(10)
+       
+        let expectation = self.expectation(description: "score is 0")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 12)
+        
         XCTAssertEqual(game.currentRoundScore, 0)
     }
 

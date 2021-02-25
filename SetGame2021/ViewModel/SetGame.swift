@@ -42,6 +42,9 @@ class SetGame: ObservableObject {
         static var exampleOvalThree = ViewCard(color: .red, quantity: 3, cardShape: .oval, cardShading: .striped, isDealt: true, isFaceUp: true, turnAround: false, isSelected: false, isMatched: false, wasUsed: false, id: UUID())
     }
     
+    @Published private var game: SetOfCards
+    @Published var currentRoundScore: Int
+    
     var allViewCards: [ViewCard] { game.setOfCards.map { createViewCard(with: $0) } }
     var isDealtViewCards: [ViewCard] { game.isDealtCards.map { createViewCard(with: $0) } }
     var isInDeckViewCards: [ViewCard] { game.isInDeckCards.map { createViewCard(with: $0)} }
@@ -53,7 +56,6 @@ class SetGame: ObservableObject {
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
     var totalScore: Int = 0
-    var currentRoundScore: Int = 10
     let cheatingCost: Int = 5
     let maxMatchingBenefits: Int = 10
     let dealingCost: Int = 5
@@ -68,12 +70,12 @@ class SetGame: ObservableObject {
     init() {
         self.game = SetOfCards()
         self.currentRoundScore = roundStartingScore
-        startScoreDecay()
     }
     
     // MARK: - Public API Methods
     
     func newGame() {
+        currentRoundScore = roundStartingScore
         game.resetGame()
         totalScore = 0
         dealFirstTwelveCards()
@@ -146,20 +148,19 @@ class SetGame: ObservableObject {
     
     func startScoreDecay(duration: Int = 10) {
         Timer.scheduledTimer(withTimeInterval: Double(duration / roundStartingScore), repeats: true) { timer in
-            self.currentRoundScore -= 1
-            print(self.currentRoundScore)
-            
-            if self.currentRoundScore == 0 {
-                timer.invalidate()
-                print("done")
-                print(self.currentRoundScore)
+
+            DispatchQueue.main.async {
+                self.currentRoundScore -= 1
+
+                if self.currentRoundScore <= 0 {
+                    timer.invalidate()
+                    self.currentRoundScore = 0
+                }
             }
         }
     }
     
     // MARK: - Private API Properties
-    
-    @Published private var game: SetOfCards
     
     private let roundStartingScore: Int = 10
     
