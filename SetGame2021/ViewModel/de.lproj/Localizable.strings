@@ -7,8 +7,21 @@
 */
 
 "newGame" = "Neues Spiel";
-"deal" = "Austeilen";
+"deal" = "Spiel aus";
 "cheat" = "Schummeln";
 "areYouSure" = "Bist Du Dir sicher?";
 "noPoints" = "Keine Punkte";
-"firstTimeCheating %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n";
+"matchedSets" = "Passende Sets";
+"ok" = "Ok";
+
+"total %lld" = "Total: %lld";
+
+"cheatingNoSetsDisplayed %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt kein Set in den ausgespielten Karten.";
+"cheatingOneSetDisplayed %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt ein Set in den ausgespielten Karten.";
+"cheatingMultipleSetsDisplayed %lld %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt %lld Sets in den ausgespielten Karten.";
+
+"noSetsDisplayed %lld" = "Es gibt kein Set in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
+"oneSetDisplayed %lld" = "Es gibt ein Set in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
+"multipleSetsDisplayed %lld %lld" = "Es gibt %lld Sets in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
+
+"dealCostMessage %lld" = "Es gibt mehr als drei Sets in den gespielten Karten. Das Ausspielen von drei weiteren Karten kostet Dich %lld Punkte.";

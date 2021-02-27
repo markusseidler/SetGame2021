@@ -34,7 +34,7 @@ struct ScreenTop: View {
             
             Spacer()
             
-            Text("\(TextContent.totalScore)\(game.totalScore)").convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
+            Text(TextContent.getTotalScore(game.totalScore)).convertToStandardLabel(size: size, opacity: opacityPrimary, widthPercentage: widthPercentagePrimary)
             
             Spacer()
         }

@@ -7,10 +7,24 @@
 */
 
 //https://stackoverflow.com/questions/59026093/text-concatenation-for-localization-purposes
+//https://github.com/SwiftGen/SwiftGen/issues/685
 
 "newGame" = "New Game";
 "deal" = "Deal";
 "cheat" = "Cheat";
 "areYouSure" = "Are you sure?";
 "noPoints" = "No Points";
-"firstTimeCheating %lld" = "This is your first time cheating. This time it is for free. Next time it cost you %lld points.\n";
+"matchedSets" = "Matched Sets";
+"ok" = "Ok";
+
+"total %lld" = "Total: %lld";
+
+"cheatingNoSetsDisplayed %lld " = "This is your first time cheating. This time it is for free. Next time it cost you %lld points.\n\nThere are no sets displayed.";
+"cheatingOneSetDisplayed %lld" = "This is your first time cheating. This time it is for free. Next time it cost you %lld points.\n\nThere is one set displayed.";
+"cheatingMultipleSetsDisplayed % lld %lld" = "This is your first time cheating. This time it is for free. Next time it cost you %lld points.\n\nThere are %lld sets displayed.";
+
+"noSetsDisplayed %lld" = "There are no sets displayed. \nCheating cost you %lld points.";
+"oneSetDisplayed %lld" = "There is one sets displayed. \nCheating cost you %lld points.";
+"multipleSetsDisplayed %lld %lld" = "There are %lld sets displayed. \nCheating cost you %lld points.";
+"dealCostMessage %lld" = "There are more than 3 matching sets on the screen. Dealing three more cards will cost you %lld points.";
+

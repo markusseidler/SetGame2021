@@ -90,13 +90,13 @@ struct GameViewNew: View {
         if game.currentRoundScore > 0 {
             return Text("+\(game.currentRoundScore)")
                 .font(Font.system(.largeTitle, design: .rounded))
-                .foregroundColor(Color.rainbowRed)
+                .foregroundColor(Color.appPrimary)
                 .scaleEffect(matchedTextScale)
                 .opacity(matchedTextOpacity)
         } else {
             return Text(TextContent.noPoints)
                 .font(Font.system(.largeTitle, design: .rounded))
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.appPrimary)
                 .scaleEffect(matchedTextScale)
                 .opacity(matchedTextOpacity)
         }
@@ -201,7 +201,7 @@ struct GameViewNew: View {
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 isFirstTimeCheat = false
             }) } else if !isFirstTimeCheat && !isDealButtonPressed {
-            return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count)), dismissButton: .default(Text(TextContent.defaultText)) {
+                return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 game.deductFromTotalScore(game.cheatingCost)
             })
             } else {
