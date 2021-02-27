@@ -48,7 +48,7 @@ struct ScreenBottom: View {
                 Button(action: cheatAction) {
                     Text(TextContent.cheat)
                 }
-                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: opacityEnabled, color: cheatButtonColor))
+                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: areCardsFaceUp ? opacityEnabled : opacityDisabled, color: cheatButtonColor))
             }
 
             Spacer()
@@ -57,14 +57,19 @@ struct ScreenBottom: View {
     
     // MARK: - Private View Constants and Computed Properties
     
-    var areCardsInDeck: Bool {
+    private var areCardsInDeck: Bool {
         game.isInDeckViewCards.count > 0
     }
     
-    let opacityEnabled: Double = 1.0
-    let opacityDisabled: Double = 0.3
-    let dealButtonColor: Color = Color.rainbowViolet
-    let cheatButtonColor: Color = Color.rainbowOrange
+    private var areCardsFaceUp: Bool {
+        game.isFaceUpViewCards.count > 0
+    }
+    
+    
+    private let opacityEnabled: Double = 1.0
+    private let opacityDisabled: Double = 0.3
+    private let dealButtonColor: Color = Color.rainbowViolet
+    private let cheatButtonColor: Color = Color.rainbowOrange
 }
 
 struct ScreenBottom_Previews: PreviewProvider {
