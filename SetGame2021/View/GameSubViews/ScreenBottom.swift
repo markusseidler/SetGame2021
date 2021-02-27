@@ -48,6 +48,7 @@ struct ScreenBottom: View {
                 Button(action: cheatAction) {
                     Text(TextContent.cheat)
                 }
+                .disabled(!areCardsFaceUp)
                 .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: areCardsFaceUp ? opacityEnabled : opacityDisabled, color: cheatButtonColor))
             }
 

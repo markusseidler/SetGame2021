@@ -11,4 +11,6 @@ extension LinearGradient {
     static let active = LinearGradient(gradient: Gradient(colors: [Color.rainbowRed, Color.rainbowOrange, Color.rainbowYellow, Color.rainbowGreen, Color.rainbowTurquoise, Color.rainbowBlue, Color.rainbowPink, Color.rainbowViolet]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     static let passive = LinearGradient(gradient: Gradient(colors: [Color.clear]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    
+    static let white = LinearGradient(gradient: Gradient(colors: [Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
 }

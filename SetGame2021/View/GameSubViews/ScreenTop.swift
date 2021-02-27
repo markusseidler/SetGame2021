@@ -30,7 +30,7 @@ struct ScreenTop: View {
             
             Spacer()
             
-            Text("+\(game.currentRoundScore)").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentagePrimary)
+            Text("+\(game.currentRoundScore)").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentageSecondary)
             
             Spacer()
             
@@ -44,7 +44,8 @@ struct ScreenTop: View {
     
     private let opacityPrimary: Double = 1.0
     private let opacitySecondary: Double = 0.5
-    private let widthPercentagePrimary: CGFloat = 28
+    private let widthPercentagePrimary: CGFloat = 36
+    private let widthPercentageSecondary: CGFloat = 22
     
 }
 
@@ -52,9 +53,11 @@ struct ScreenTop_Previews: PreviewProvider {
     static var previews: some View {
         ScreenTop(size: CGSize(width: 300, height: 600))
             .previewLayout(.sizeThatFits)
+            .environmentObject(SetGame())
         
         ScreenTop(size: CGSize(width: 300, height: 600))
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
+            .environmentObject(SetGame())
     }
 }

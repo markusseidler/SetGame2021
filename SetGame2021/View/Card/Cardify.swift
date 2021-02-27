@@ -35,14 +35,23 @@ struct Cardify: AnimatableModifier {
     
     func body(content: Content) -> some View {
         var cardFrontView: some View {
-            Group {
-                RoundedRectangle(cornerRadius: viewCornerRadius)
-                    .fill(frontCardColor)
-                RoundedRectangle(cornerRadius: viewCornerRadius)
-                    .stroke(viewCard.isSelected ? lineColor : Color.clear, lineWidth: borderLineWidth)
-                content
+            GeometryReader { geo in
+                let minLength = min(geo.size.width, geo.size.height) * scaleFactorRectangle
+                
+                Group {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: viewCornerRadius)
+                            .fill(viewCard.isSelected ? LinearGradient.active : LinearGradient.white)
+                    RoundedRectangle(cornerRadius: viewCornerRadius)
+                        .fill(frontCardColor)
+                        .frame(width: geo.size.width - minLength , height: geo.size.height - minLength, alignment: .center)
+                    content
+                        .frame(width: geo.size.width * scaleFactorContent , height: geo.size.height * scaleFactorContent, alignment: .center)
+                        
+                    }
+                }
+                .rotationEffect(Angle.degrees(rotation2D))
             }
-            .rotationEffect(Angle.degrees(rotation2D))
         }
         
         var backFrontView: some View {
@@ -66,8 +75,9 @@ struct Cardify: AnimatableModifier {
     // MARK: - View Constants
     private var viewCornerRadius: CGFloat
     private let frontCardColor: Color = Color.white
-    private let lineColor: Color = Color.black
-    private let borderLineWidth: CGFloat = 4.0
+    
+    private let scaleFactorRectangle: CGFloat = 0.10
+    private let scaleFactorContent: CGFloat = 1.0
     
 }
 
