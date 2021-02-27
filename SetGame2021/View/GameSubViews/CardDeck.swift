@@ -10,7 +10,8 @@ import SwiftUI
 struct CardDeck: View {
     @Binding var cardDeckPosition: CGRect
     @Binding var cardSize: CGSize
-    var deckColor: Color
+//    var deckColor: Color
+    var deckColor: LinearGradient
     
     var body: some View {
         ZStack {
@@ -29,6 +30,6 @@ struct CardDeck: View {
 
 struct CardDeck_Previews: PreviewProvider {
     static var previews: some View {
-        CardDeck(cardDeckPosition: .constant(CGRect(x: 100, y: 100, width: 200, height: 500)), cardSize: .constant(CGSize(width: 20, height: 50)), deckColor: Color.appPrimary)
+        CardDeck(cardDeckPosition: .constant(CGRect(x: 100, y: 100, width: 200, height: 500)), cardSize: .constant(CGSize(width: 20, height: 50)), deckColor: LinearGradient.active)
     }
 }

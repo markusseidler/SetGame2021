@@ -33,6 +33,7 @@
 		282A6E1725D523CE007CDB0F /* Array+ContainsFullSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */; };
 		282A6E1C25D53154007CDB0F /* ScratchPaper.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 282A6E1B25D53154007CDB0F /* ScratchPaper.rtf */; };
 		282A6E2725D539D0007CDB0F /* 0_LogFile.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 282A6E2625D539D0007CDB0F /* 0_LogFile.rtf */; };
+		282B32C925EA688E009963C2 /* LinearGradient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282B32C825EA688E009963C2 /* LinearGradient+Extensions.swift */; };
 		282D326225D77A8300F803F3 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282D326125D77A8300F803F3 /* PrimaryButtonStyle.swift */; };
 		283476C225DAA271009308E5 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283476C125DAA271009308E5 /* Haptics.swift */; };
 		2842B73C25B66DF200A2D88D /* CGImage+stripes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */; };
@@ -115,6 +116,7 @@
 		282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContainsFullSet.swift"; sourceTree = "<group>"; };
 		282A6E1B25D53154007CDB0F /* ScratchPaper.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ScratchPaper.rtf; sourceTree = "<group>"; };
 		282A6E2625D539D0007CDB0F /* 0_LogFile.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = 0_LogFile.rtf; sourceTree = "<group>"; };
+		282B32C825EA688E009963C2 /* LinearGradient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient+Extensions.swift"; sourceTree = "<group>"; };
 		282D326125D77A8300F803F3 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		283476C125DAA271009308E5 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		2842B73B25B66DF200A2D88D /* CGImage+stripes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+stripes.swift"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				282A6E0E25D51E88007CDB0F /* Array+ContainsSetCard.swift */,
 				281A820C25D7A2F20010097B /* Array+ContainsViewCard.swift */,
 				282A6E1625D523CE007CDB0F /* Array+ContainsFullSet.swift */,
+				282B32C825EA688E009963C2 /* LinearGradient+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				28293C4225DF861B00B8D327 /* ScreenBottom.swift in Sources */,
 				28FF16C725B6F0EA007E4F7F /* TextContent.swift in Sources */,
 				28FF168E25B6AE45007E4F7F /* Diamond.swift in Sources */,
+				282B32C925EA688E009963C2 /* LinearGradient+Extensions.swift in Sources */,
 				28B4A9E425B2BAAE00E51CD3 /* LaunchView.swift in Sources */,
 				280A565325AFFC9A004B92A5 /* SetCardableEnums.swift in Sources */,
 				283476C225DAA271009308E5 /* Haptics.swift in Sources */,

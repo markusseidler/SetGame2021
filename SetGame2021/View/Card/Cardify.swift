@@ -48,9 +48,7 @@ struct Cardify: AnimatableModifier {
         var backFrontView: some View {
             Group {
                 RoundedRectangle(cornerRadius: viewCornerRadius)
-                    .fill(backCardColor)
-                RoundedRectangle(cornerRadius: viewCornerRadius)
-                    .stroke(lineColor)
+                    .fill(LinearGradient.active)
             }
            
         }
@@ -68,7 +66,6 @@ struct Cardify: AnimatableModifier {
     // MARK: - View Constants
     private var viewCornerRadius: CGFloat
     private let frontCardColor: Color = Color.white
-    private let backCardColor: Color = Color.appPrimary
     private let lineColor: Color = Color.black
     private let borderLineWidth: CGFloat = 4.0
     
