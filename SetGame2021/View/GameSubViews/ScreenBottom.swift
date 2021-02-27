@@ -36,7 +36,7 @@ struct ScreenBottom: View {
 
             Spacer()
 
-            VStack {
+            VStack(spacing: 20) {
 
                 Button(action: dealAction) {
                     Text(TextContent.deal)

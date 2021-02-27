@@ -23,7 +23,7 @@ struct LabelVM: ViewModifier {
     }
     
     private var viewHeight: CGFloat {
-        baseLength * 0.09
+        baseLength * 0.10
     }
     
     private var viewFontSize: CGFloat {
