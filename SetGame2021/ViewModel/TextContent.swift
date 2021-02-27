@@ -5,18 +5,18 @@
 //  Created by Markus Seidler on 19/1/21.
 //
 
-import Foundation
+import SwiftUI
 
 struct TextContent {
     static let totalScore = "Total: "
-    static let bonusScore = "Now: "
-    static let newGame = "New Game"
+//    static let bonusScore = "Now: "
+    static let newGame = LocalizedStringKey("newGame")
 //    static let matched = "Matched"
     static let noPoints = "No Points"
     static let matchedSets = "Matched Sets"
     static let dealButtonPressed = "Are you sure?"
-    static let deal = "Deal"
-    static let cheat = "Cheat"
+    static let deal = LocalizedStringKey("deal")
+    static let cheat = LocalizedStringKey("cheat")
     static let defaultText = "Ok"
     
     static func getFirstAvailableSetMessage(count: Int, cost: Int) -> String {

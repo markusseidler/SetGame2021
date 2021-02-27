@@ -43,6 +43,7 @@
 		28707AF825DE335300B82EF6 /* ScreenTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28707AF725DE335300B82EF6 /* ScreenTop.swift */; };
 		28707AFD25DE368E00B82EF6 /* ScreenCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28707AFC25DE368E00B82EF6 /* ScreenCenter.swift */; };
 		2880CC8525CE7E86008A1016 /* CardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2880CC8425CE7E86008A1016 /* CardContentView.swift */; };
+		28AAF08425EA243C0033452D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28AAF08625EA243C0033452D /* Localizable.strings */; };
 		28B4422425B03C950077217D /* SetOfCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4422325B03C950077217D /* SetOfCards.swift */; };
 		28B4422A25B03DCE0077217D /* CardGameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4422925B03DCE0077217D /* CardGameable.swift */; };
 		28B4A9D625B2B9B400E51CD3 /* GroupPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4A9D525B2B9B400E51CD3 /* GroupPreview.swift */; };
@@ -124,6 +125,8 @@
 		28707AF725DE335300B82EF6 /* ScreenTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTop.swift; sourceTree = "<group>"; };
 		28707AFC25DE368E00B82EF6 /* ScreenCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCenter.swift; sourceTree = "<group>"; };
 		2880CC8425CE7E86008A1016 /* CardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentView.swift; sourceTree = "<group>"; };
+		28AAF08525EA243C0033452D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		28AAF08A25EA243E0033452D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		28B4422325B03C950077217D /* SetOfCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetOfCards.swift; sourceTree = "<group>"; };
 		28B4422925B03DCE0077217D /* CardGameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameable.swift; sourceTree = "<group>"; };
 		28B4A9D525B2B9B400E51CD3 /* GroupPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPreview.swift; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 				28C314C825D7EF0E00EC8A9E /* AvailableSets.swift */,
 				283476C125DAA271009308E5 /* Haptics.swift */,
 				2814A70D25DB8DA500D5A102 /* GlobalAspect.swift */,
+				28AAF08625EA243C0033452D /* Localizable.strings */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -458,6 +462,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 280A560725AFF6F4004B92A5;
 			productRefGroup = 280A561125AFF6F4004B92A5 /* Products */;
@@ -476,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AAF08425EA243C0033452D /* Localizable.strings in Resources */,
 				280A561B25AFF6F5004B92A5 /* Preview Assets.xcassets in Resources */,
 				282A6E1C25D53154007CDB0F /* ScratchPaper.rtf in Resources */,
 				280A561825AFF6F5004B92A5 /* Assets.xcassets in Resources */,
@@ -586,6 +592,18 @@
 			targetProxy = 280A562D25AFF6F5004B92A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28AAF08625EA243C0033452D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28AAF08525EA243C0033452D /* en */,
+				28AAF08A25EA243E0033452D /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		280A563325AFF6F5004B92A5 /* Debug */ = {

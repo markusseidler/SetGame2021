@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  SetGame2021
+
+  Created by Markus Seidler on 27/2/21.
+  
+*/
+
+"newGame" = "Neues Spiel";
+"deal" = "Austeilen";
+"cheat" = "Schummeln";

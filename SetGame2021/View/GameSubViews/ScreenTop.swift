@@ -24,13 +24,13 @@ struct ScreenTop: View {
             Button(action: {
                 game.newGame()
             }, label: {
-                Text("\(TextContent.newGame)")
+                Text(LocalizedStringKey("newGame"))
             })
             .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: opacityPrimary, color: Color.rainbowTurquoise))
             
             Spacer()
             
-            Text("\(TextContent.bonusScore)\(game.currentRoundScore)").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentagePrimary)
+            Text("+\(game.currentRoundScore)").convertToStandardLabel(size: size, opacity: opacitySecondary, widthPercentage: widthPercentagePrimary)
             
             Spacer()
             
