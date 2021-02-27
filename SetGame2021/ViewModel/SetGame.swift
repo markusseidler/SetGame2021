@@ -60,7 +60,7 @@ class SetGame: ObservableObject {
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
-    let cheatingCost: Int = 5
+    let cheatingCost: Int = 100
     let maxMatchingBenefits: Int = 10
     let dealingCost: Int = 5
     

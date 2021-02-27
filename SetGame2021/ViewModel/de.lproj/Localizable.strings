@@ -20,8 +20,8 @@
 "cheatingOneSetDisplayed %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt ein Set in den ausgespielten Karten.";
 "cheatingMultipleSetsDisplayed %lld %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt %lld Sets in den ausgespielten Karten.";
 
-"noSetsDisplayed %lld" = "Es gibt kein Set in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
-"oneSetDisplayed %lld" = "Es gibt ein Set in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
-"multipleSetsDisplayed %lld %lld" = "Es gibt %lld Sets in den ausgespielten Karten. \nSchummeln kostet Dich %lld Punkte.";
+"noSetsDisplayed %lld" = "Es gibt kein Set in den ausgespielten Karten. \n\nSchummeln kostet Dich %lld Punkte.";
+"oneSetDisplayed %lld" = "Es gibt ein Set in den ausgespielten Karten. \n\nSchummeln kostet Dich %lld Punkte.";
+"multipleSetsDisplayed %lld %lld" = "Es gibt %lld Sets in den ausgespielten Karten. \n\nSchummeln kostet Dich %lld Punkte.";
 
 "dealCostMessage %lld" = "Es gibt mehr als drei Sets in den gespielten Karten. Das Ausspielen von drei weiteren Karten kostet Dich %lld Punkte.";
