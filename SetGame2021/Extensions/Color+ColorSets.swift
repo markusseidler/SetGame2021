@@ -11,8 +11,12 @@ extension Color {
     static let offWhite = Color("OffWhite")
 }
 
-// flat rainbow Colors
+// flat rainbow Colors and appStandardColors
 extension Color {
+    
+    static let appPrimary = Color("AppPrimary")
+    static let appSecondary = Color("AppSecondary")
+    
     static let rainbowWhite = Color("RainbowWhite")
     static let rainbowPink = Color("RainbowPink")
     static let rainbowViolet = Color("RainbowViolet")

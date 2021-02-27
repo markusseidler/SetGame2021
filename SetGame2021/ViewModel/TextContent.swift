@@ -12,15 +12,15 @@ struct TextContent {
 //    static let bonusScore = "Now: "
     static let newGame = LocalizedStringKey("newGame")
 //    static let matched = "Matched"
-    static let noPoints = "No Points"
+    static let noPoints = LocalizedStringKey("noPoints")
     static let matchedSets = "Matched Sets"
-    static let dealButtonPressed = "Are you sure?"
+    static let dealButtonPressed = LocalizedStringKey("areYouSure")
     static let deal = LocalizedStringKey("deal")
     static let cheat = LocalizedStringKey("cheat")
     static let defaultText = "Ok"
     
     static func getFirstAvailableSetMessage(count: Int, cost: Int) -> String {
-        let firstTime = "This is your first time cheating. This time it is for free. \nNext time it cost you \(cost) points.\n"
+        let firstTime = LocalizedStringKey("\(count)")
         
         if count == 0 {
             return "\(firstTime)\nThere are no sets displayed."

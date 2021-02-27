@@ -28,10 +28,10 @@ struct ScreenBottom: View {
             Spacer()
 
             ZStack {
-                CardDeck(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize)
+                CardDeck(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize, deckColor: areCardsInDeck ? Color.appPrimary : Color.clear)
                 Text("\(game.countOfInDeckCards)")
                     .font(.headline)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(areCardsInDeck ? Color.appSecondary : Color.clear)
             }
 
             Spacer()
@@ -41,21 +41,28 @@ struct ScreenBottom: View {
                 Button(action: dealAction) {
                     Text(TextContent.deal)
                 }
-                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: opacity, color: dealButtonColor))
+                .disabled(!areCardsInDeck)
+                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: areCardsInDeck ? opacityEnabled : opacityDisabled, color: dealButtonColor))
+                
 
                 Button(action: cheatAction) {
                     Text(TextContent.cheat)
                 }
-                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: opacity, color: cheatButtonColor))
+                .buttonStyle(PrimaryButtonStyle(geometrySize: size, opacityLevel: opacityEnabled, color: cheatButtonColor))
             }
 
             Spacer()
         }
     }
     
-    // MARK: - Private View Constants
+    // MARK: - Private View Constants and Computed Properties
     
-    let opacity: Double = 1.0
+    var areCardsInDeck: Bool {
+        game.isInDeckViewCards.count > 0
+    }
+    
+    let opacityEnabled: Double = 1.0
+    let opacityDisabled: Double = 0.3
     let dealButtonColor: Color = Color.rainbowViolet
     let cheatButtonColor: Color = Color.rainbowOrange
 }

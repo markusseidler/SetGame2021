@@ -6,6 +6,11 @@
   
 */
 
+//https://stackoverflow.com/questions/59026093/text-concatenation-for-localization-purposes
+
 "newGame" = "New Game";
-"deal" = "deal";
-"cheat" = "cheat";
+"deal" = "Deal";
+"cheat" = "Cheat";
+"areYouSure" = "Are you sure?";
+"noPoints" = "No Points";
+"firstTimeCheating %lld" = "This is your first time cheating. This time it is for free. Next time it cost you %lld points.\n";

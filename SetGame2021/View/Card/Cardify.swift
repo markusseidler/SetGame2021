@@ -68,7 +68,7 @@ struct Cardify: AnimatableModifier {
     // MARK: - View Constants
     private var viewCornerRadius: CGFloat
     private let frontCardColor: Color = Color.white
-    private let backCardColor: Color = Color.primary
+    private let backCardColor: Color = Color.appPrimary
     private let lineColor: Color = Color.black
     private let borderLineWidth: CGFloat = 4.0
     

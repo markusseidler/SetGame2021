@@ -11,7 +11,7 @@ struct LabelVM: ViewModifier {
     
     var geometrySize: CGSize
     var opacityLevel: Double
-    var color: Color = Color.secondary
+    var color: Color = Color.appSecondary
     var widthPercentage: CGFloat = 30
     
     private var baseLength: CGFloat {

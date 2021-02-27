@@ -9,3 +9,6 @@
 "newGame" = "Neues Spiel";
 "deal" = "Austeilen";
 "cheat" = "Schummeln";
+"areYouSure" = "Bist Du Dir sicher?";
+"noPoints" = "Keine Punkte";
+"firstTimeCheating %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n";
