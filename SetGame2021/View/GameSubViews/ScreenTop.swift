@@ -11,7 +11,7 @@ struct ScreenTop: View {
     
     // MARK: - Public View API
     
-    @StateObject var game: SetGame
+    @EnvironmentObject var game: SetGame
     let size: CGSize
     
     // MARK: - Private View API
@@ -50,10 +50,10 @@ struct ScreenTop: View {
 
 struct ScreenTop_Previews: PreviewProvider {
     static var previews: some View {
-        ScreenTop(game: SetGame(), size: CGSize(width: 300, height: 600))
+        ScreenTop(size: CGSize(width: 300, height: 600))
             .previewLayout(.sizeThatFits)
         
-        ScreenTop(game: SetGame(), size: CGSize(width: 300, height: 600))
+        ScreenTop(size: CGSize(width: 300, height: 600))
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
     }

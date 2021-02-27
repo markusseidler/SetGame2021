@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameViewNew: View {
     
-    @StateObject var game = SetGame()
+    @EnvironmentObject var game: SetGame
     @EnvironmentObject var globalAspect: GlobalAspect
     @State private var blackBackgroundOpacity: Double = 1
     
@@ -34,14 +34,12 @@ struct GameViewNew: View {
                 VStack {
                     
                     ScreenTop(
-                        game: game,
                         size: globalGeo.size)
                         .padding(.top, paddingBase)
                     
                     ZStack {
                         
                         ScreenCenter(
-                            game: game,
                             cardDeckPosition: $cardDeckPosition,
                             cardSize: $cardSize,
                             rotationAngle: $rotationAngle,
@@ -89,11 +87,20 @@ struct GameViewNew: View {
     // MARK: - Private View Properties
     
     private var matchedText: some View {
-        Text(TextContent.matched)
-            .font(Font.system(.largeTitle, design: .rounded))
-            .foregroundColor(Color.rainbowRed)
-            .scaleEffect(matchedTextScale)
-            .opacity(matchedTextOpacity)
+        if game.currentRoundScore > 0 {
+            return Text("+\(game.currentRoundScore)")
+                .font(Font.system(.largeTitle, design: .rounded))
+                .foregroundColor(Color.rainbowRed)
+                .scaleEffect(matchedTextScale)
+                .opacity(matchedTextOpacity)
+        } else {
+            return Text(TextContent.noPoints)
+                .font(Font.system(.largeTitle, design: .rounded))
+                .foregroundColor(Color.black)
+                .scaleEffect(matchedTextScale)
+                .opacity(matchedTextOpacity)
+        }
+       
     }
     
     // MARK: - Private Methods

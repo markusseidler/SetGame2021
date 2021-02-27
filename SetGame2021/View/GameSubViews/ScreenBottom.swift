@@ -11,6 +11,8 @@ struct ScreenBottom: View {
     
     // MARK: - Public View API
     
+    @EnvironmentObject var game: SetGame
+    
     @Binding var cardDeckPosition: CGRect
     @Binding var cardSize: CGSize
     let size: CGSize
@@ -25,7 +27,12 @@ struct ScreenBottom: View {
 
             Spacer()
 
-            CardDeck(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize)
+            ZStack {
+                CardDeck(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize)
+                Text("\(game.countOfInDeckCards)")
+                    .font(.largeTitle)
+                    .foregroundColor(Color.white)
+            }
 
             Spacer()
 

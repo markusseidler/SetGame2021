@@ -52,6 +52,7 @@ struct LaunchView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(GlobalAspect())
+        .environmentObject(SetGame())
     }
 }
 

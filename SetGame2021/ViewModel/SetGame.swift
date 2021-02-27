@@ -46,6 +46,10 @@ class SetGame: ObservableObject {
     @Published var currentRoundScore: Int
     @Published var totalScore: Int = 0
     
+    var countOfInDeckCards: Int {
+        return game.isInDeckCards.count
+    }
+    
     var allViewCards: [ViewCard] { game.setOfCards.map { createViewCard(with: $0) } }
     var isDealtViewCards: [ViewCard] { game.isDealtCards.map { createViewCard(with: $0) } }
     var isInDeckViewCards: [ViewCard] { game.isInDeckCards.map { createViewCard(with: $0)} }
@@ -86,6 +90,7 @@ class SetGame: ObservableObject {
     func dealCards() {
         if isDealtViewCards.count == 0 {
             dealFirstTwelveCards()
+            startScoreDecay()
         } else {
             dealThreeMoreCards()
         }
@@ -275,8 +280,6 @@ class SetGame: ObservableObject {
         let startOfTurnAround: Double = 0.3
         
         let cardCount: Int = isDealtViewCards.count - previouslyDisplayedCards
-        
-        startScoreDecay()
         
         for cardNumber in 0..<cardCount {
             let delayTime = delayFactor * Double(cardNumber)

@@ -11,7 +11,8 @@ struct ScreenCenter: View {
     
     // MARK: - Public View API
     
-    let game: SetGame
+    @EnvironmentObject var game: SetGame
+    
     @Binding var cardDeckPosition: CGRect
     @Binding var cardSize: CGSize
 
@@ -78,7 +79,7 @@ struct ScreenCenter: View {
 
 struct ScreenCenter_Previews: PreviewProvider {
     static var previews: some View {
-        ScreenCenter(game: SetGame(), cardDeckPosition: .constant(CGRect.zero), cardSize: .constant(CGSize(width: 20, height: 60)), rotationAngle: .constant(5.0)) {_ in 
+        ScreenCenter(cardDeckPosition: .constant(CGRect.zero), cardSize: .constant(CGSize(width: 20, height: 60)), rotationAngle: .constant(5.0)) {_ in 
             print("choosing Card")
         } matchingCardAction: {
             print("matching Card")

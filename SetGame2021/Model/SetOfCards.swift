@@ -18,8 +18,8 @@ struct SetOfCards: CardGameable {
     var setOfCards = [SetCard]()
     // only cards on the screen (dealt)
     var isDealtCards: [SetCard] { setOfCards.filter { $0.isDealt } }
-    // only cards which are (still) in the card deck. Cards which are not dealt yet or which are not "wasUsed" yet
-    var isInDeckCards: [SetCard] { setOfCards.filter { !$0.isDealt || !$0.wasUsed } }
+    // only cards which are (still) in the card deck. Cards which are not face up
+    var isInDeckCards: [SetCard] { setOfCards.filter { !$0.isFaceUp && !$0.wasUsed} }
     // only cards which are currently matched (and on the screen) or already matched (and removed from the screen)
     var isMatchedCards: [SetCard] { setOfCards.filter { $0.isMatched } }
     // only cards which are already removed from the screen
