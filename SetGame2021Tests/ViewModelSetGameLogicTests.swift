@@ -126,7 +126,7 @@ class ViewModelLogicTests: XCTestCase {
         XCTAssertEqual(game.currentRoundScore, 100)
         game.startScoreDecay()
        
-        let expectation = self.expectation(description: "score is 0")
+        let expectation = self.expectation(description: "score is 90")
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             expectation.fulfill()
         }
@@ -134,6 +134,24 @@ class ViewModelLogicTests: XCTestCase {
         waitForExpectations(timeout: 11)
         
         XCTAssertEqual(game.currentRoundScore, 90)
+    }
+    
+    func testScoreDecayStop() {
+        
+        XCTAssertEqual(game.currentRoundScore, 100)
+        game.startScoreDecay()
+        
+        let expectation = self.expectation(description: "score is 97")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.game.stopScoreDecay()
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 4)
+        
+        XCTAssertEqual(game.currentRoundScore, 97)
+        
     }
 
 }

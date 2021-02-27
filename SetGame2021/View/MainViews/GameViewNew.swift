@@ -106,6 +106,7 @@ struct GameViewNew: View {
         resetAllMatchedTextStates()
         game.checkIfMatch(
             positiveActionOne: {
+                game.stopScoreDecay()
                 matchedTextScale = scaleMedium
             },
             positiveActionTwo: {
@@ -115,10 +116,11 @@ struct GameViewNew: View {
                 matchedTextOpacity = opacityNone
                 DispatchQueue.main.async {
                     game.addToTotalScore( game.currentRoundScore)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     game.startScoreDecay()
                 }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    game.startScoreDecay()
+//                }
                 
             },
             negativeAction: {

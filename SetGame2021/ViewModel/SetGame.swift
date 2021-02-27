@@ -44,6 +44,7 @@ class SetGame: ObservableObject {
     
     @Published private var game: SetOfCards
     @Published var currentRoundScore: Int
+    @Published var totalScore: Int = 0
     
     var allViewCards: [ViewCard] { game.setOfCards.map { createViewCard(with: $0) } }
     var isDealtViewCards: [ViewCard] { game.isDealtCards.map { createViewCard(with: $0) } }
@@ -55,7 +56,6 @@ class SetGame: ObservableObject {
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
     
-    var totalScore: Int = 0
     let cheatingCost: Int = 5
     let maxMatchingBenefits: Int = 10
     let dealingCost: Int = 5
@@ -64,7 +64,8 @@ class SetGame: ObservableObject {
     private var threeSetCardsMatched: [SetCard] { game.isMatchedCards.filter { $0.isMatched }}
     private var areThreeCardsSelected: Bool { game.isSelectedCards.count == 3 }
     private var areThreeCardsAreMatched: Bool { game.isMatchedCards.count == 3}
-  
+    
+    private var timer: Timer?
 
     
     init() {
@@ -75,6 +76,7 @@ class SetGame: ObservableObject {
     // MARK: - Public API Methods
     
     func newGame() {
+        stopScoreDecay()
         currentRoundScore = startRoundScore
         game.resetGame()
         totalScore = 0
@@ -84,7 +86,6 @@ class SetGame: ObservableObject {
     func dealCards() {
         if isDealtViewCards.count == 0 {
             dealFirstTwelveCards()
-            startScoreDecay()
         } else {
             dealThreeMoreCards()
         }
@@ -155,15 +156,14 @@ class SetGame: ObservableObject {
         
         currentRoundScore = startRoundScore
         
-        Timer.scheduledTimer(withTimeInterval: Double(duration / startRoundScore), repeats: true) { timer in
-            DispatchQueue.main.async {
-                self.currentRoundScore -= 1
-
-                if self.currentRoundScore <= 0 {
-                    timer.invalidate()
-                    self.currentRoundScore = 0
-                }
-            }
+        if timer == nil || !timer!.isValid {
+            timer = Timer.scheduledTimer(timeInterval: Double(duration / startRoundScore), target: self, selector: #selector(decayScore), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func stopScoreDecay() {
+        if let timerUnwrapped = timer {
+            timerUnwrapped.invalidate()
         }
     }
     
@@ -276,6 +276,8 @@ class SetGame: ObservableObject {
         
         let cardCount: Int = isDealtViewCards.count - previouslyDisplayedCards
         
+        startScoreDecay()
+        
         for cardNumber in 0..<cardCount {
             let delayTime = delayFactor * Double(cardNumber)
             let cardIndex = cardNumber + previouslyDisplayedCards
@@ -318,6 +320,15 @@ class SetGame: ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    @objc private func decayScore() {
+        currentRoundScore -= 1
+        
+        if currentRoundScore <= 0 {
+            timer?.invalidate()
+            currentRoundScore = 0
         }
     }
 }
