@@ -55,7 +55,7 @@ struct ScreenCenter: View {
                         
                         if card.isFaceUp {
                             CardContentView(viewCard: card)
-                                .cardify(viewCard: card, angle: rotationAngle)
+                                .cardify(viewCard: card, angle: rotationAngle, geoSize: localGeoTwo.size)
                                 .onTapGesture {
                                     choosingCardAction(card)
                                     matchingCardAction()

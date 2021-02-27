@@ -90,7 +90,6 @@ class SetGame: ObservableObject {
     func dealCards() {
         if isDealtViewCards.count == 0 {
             dealFirstTwelveCards()
-            startScoreDecay()
         } else {
             dealThreeMoreCards()
         }
@@ -99,6 +98,7 @@ class SetGame: ObservableObject {
     func dealAndDisplayCards() {
         if isFaceUpViewCards.count == 0 {
             turningCardsWithAnimation()
+            startScoreDecay()
         } else {
             let displayedCards = isFaceUpViewCards.count
             Animations.standard {

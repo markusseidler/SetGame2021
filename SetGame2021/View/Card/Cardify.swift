@@ -14,11 +14,13 @@ struct Cardify: AnimatableModifier {
     var rotationAngle: Double
     var viewCard: SetGame.ViewCard
     
-    init(_ viewCard: SetGame.ViewCard, rotationAngle: Double) {
+    init(_ viewCard: SetGame.ViewCard, rotationAngle: Double, geoSize: CGSize) {
         self.viewCard = viewCard
         self.rotation = viewCard.turnAround ? 0 : 180
         self.rotation2D = viewCard.isCheated ? rotationAngle : 0
         self.rotationAngle = rotationAngle
+        self.viewCornerRadius = min(geoSize.width, geoSize.height) / 4
+        
     }
     
     var isShowingFaceUp: Bool { rotation < 90 }
@@ -64,7 +66,7 @@ struct Cardify: AnimatableModifier {
 
     
     // MARK: - View Constants
-    private let viewCornerRadius: CGFloat = 25.0
+    private var viewCornerRadius: CGFloat
     private let frontCardColor: Color = Color.white
     private let backCardColor: Color = Color.primary
     private let lineColor: Color = Color.black
@@ -73,8 +75,8 @@ struct Cardify: AnimatableModifier {
 }
 
 extension View {
-    func cardify(viewCard: SetGame.ViewCard, angle: Double = 10) -> some View {
-        self.modifier(Cardify(viewCard, rotationAngle: angle))
+    func cardify(viewCard: SetGame.ViewCard, angle: Double = 10, geoSize: CGSize) -> some View {
+        self.modifier(Cardify(viewCard, rotationAngle: angle, geoSize: geoSize))
     }
 }
 

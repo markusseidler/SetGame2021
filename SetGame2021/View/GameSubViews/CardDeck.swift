@@ -13,7 +13,7 @@ struct CardDeck: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: radius)
+            RoundedRectangle(cornerRadius: min(cardSize.width, cardSize.height) / 4)
                 .fill(deckColor)
                 .frame(width: cardSize.width, height: cardSize.height, alignment: .center)
                 .trackPosition()

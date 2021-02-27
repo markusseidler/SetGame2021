@@ -30,7 +30,7 @@ struct ScreenBottom: View {
             ZStack {
                 CardDeck(cardDeckPosition: $cardDeckPosition, cardSize: $cardSize)
                 Text("\(game.countOfInDeckCards)")
-                    .font(.largeTitle)
+                    .font(.headline)
                     .foregroundColor(Color.white)
             }
 
