@@ -24,7 +24,7 @@ struct TextContent {
         if count == 0 {
             return LocalizedStringKey("cheatingNoSetsDisplayed \(cost)")
         } else if count == 1 {
-            return LocalizedStringKey("cheatingOneSetsDisplayed \(cost)")
+            return LocalizedStringKey("cheatingOneSetDisplayed \(cost)")
         } else {
             return LocalizedStringKey("cheatingMultipleSetsDisplayed \(cost) \(count)")
         }

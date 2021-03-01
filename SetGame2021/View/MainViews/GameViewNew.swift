@@ -113,11 +113,15 @@ struct GameViewNew: View {
         resetAllMatchedTextStates()
         game.checkIfMatch(
             positiveActionOne: {
-                game.stopScoreDecay()
-                matchedTextScale = scaleMedium
+                DispatchQueue.main.async {
+                    game.stopScoreDecay()
+                    matchedTextScale = scaleMedium
+                }
             },
             positiveActionTwo: {
-                matchedTextScale = scaleLarge
+                DispatchQueue.main.async {
+                    matchedTextOpacity = opacityNone
+                }
             },
             positiveActionThree: {
                 matchedTextOpacity = opacityNone
@@ -125,10 +129,6 @@ struct GameViewNew: View {
                     game.addToTotalScore( game.currentRoundScore)
                     game.startScoreDecay()
                 }
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    game.startScoreDecay()
-//                }
-                
             },
             negativeAction: {
                 haptics?.wrongSelection()
@@ -241,7 +241,6 @@ struct GameViewNew: View {
     
     private let scaleNone: CGFloat = 0.01
     private let scaleMedium: CGFloat = 2.0
-    private let scaleLarge: CGFloat = 1000.0
 }
 
 struct GameViewNew_Previews: PreviewProvider {
