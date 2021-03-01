@@ -25,6 +25,7 @@ struct GameViewNew: View {
     
     @State private var isFirstTimeCheat: Bool = true
     @State private var isDealButtonPressed: Bool = true
+    @State private var isCheatButtonPressed: Bool = false
     
     var body: some View {
         GeometryReader { globalGeo in
@@ -128,6 +129,11 @@ struct GameViewNew: View {
                 DispatchQueue.main.async {
                     game.addToTotalScore( game.currentRoundScore)
                     game.startScoreDecay()
+                    
+                    // as game over check
+                    game.checkHowManyMatchingSetsAreAvailable()
+                    availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                    
                 }
             },
             negativeAction: {
@@ -149,6 +155,8 @@ struct GameViewNew: View {
     private enum blockID: String, CaseIterable { case one, two, three }
     
     private func cheatAnimation(block: blockID) {
+        
+        isCheatButtonPressed = true
         
         var internalCount: Double {
             switch block {
@@ -194,17 +202,27 @@ struct GameViewNew: View {
             availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
         }
         
+        isCheatButtonPressed = false
+        
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
-        if isFirstTimeCheat && !isDealButtonPressed {
+        
+        // cheating first time
+        if isCheatButtonPressed && isFirstTimeCheat && !isDealButtonPressed {
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 isFirstTimeCheat = false
-            }) } else if !isFirstTimeCheat && !isDealButtonPressed {
+            }) }
+        
+        // cheating AFTER first time
+        else if isCheatButtonPressed && !isFirstTimeCheat && !isDealButtonPressed {
                 return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 game.deductFromTotalScore(game.cheatingCost)
             })
-            } else {
+            }
+        
+        // dealing when more than three sets are available
+        else if !isCheatButtonPressed && isDealButtonPressed {
                 return Alert(title: Text(TextContent.dealButtonPressed), message: Text(TextContent.getDealCostPointsMessage(cost: game.dealingCost)), primaryButton: .cancel({
                     isDealButtonPressed = false
                 }), secondaryButton: .default(Text(TextContent.deal), action: {
@@ -213,6 +231,11 @@ struct GameViewNew: View {
                     game.deductFromTotalScore(game.dealingCost)
                 }))
             }
+        
+        // TODO: Finish Alert messages ... pop-up when game over, show high-score and then start new Game.
+        else if !isCheatButtonPressed && !isDealButtonPressed {
+            return Alert(title: <#T##Text#>, message: <#T##Text?#>, dismissButton: <#T##Alert.Button?#>)
+        }
     }
     
     private func dealButtonPressed() {
