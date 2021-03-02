@@ -24,7 +24,7 @@ struct GameViewNew: View {
     @State private var availableSets: AvailableSets?
     
     @State private var isFirstTimeCheat: Bool = true
-    @State private var isDealButtonPressed: Bool = true
+    @State private var isDealButtonPressed: Bool = false
     @State private var isCheatButtonPressed: Bool = false
     
     var body: some View {
@@ -132,7 +132,9 @@ struct GameViewNew: View {
                     
                     // as game over check
                     game.checkHowManyMatchingSetsAreAvailable()
-                    availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                    if game.countOfAvailableSetsDisplayed == 0 {
+                        availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                    }
                     
                 }
             },
@@ -232,9 +234,14 @@ struct GameViewNew: View {
                 }))
             }
         
-        // TODO: Finish Alert messages ... pop-up when game over, show high-score and then start new Game.
-        else if !isCheatButtonPressed && !isDealButtonPressed {
-            return Alert(title: <#T##Text#>, message: <#T##Text?#>, dismissButton: <#T##Alert.Button?#>)
+        // game-over-message
+        else if game.countOfAvailableSetsDisplayed == 0 && !isCheatButtonPressed && !isDealButtonPressed {
+            return Alert(title: Text(TextContent.gameOverTitle), message: Text(TextContent.getGameOverMessage(totalScore: game.totalScore)), dismissButton: .default(Text(TextContent.newGame), action: {
+                game.newGame()
+            }))
+        }
+        else {
+            return Alert(title: Text("Error"))
         }
     }
     

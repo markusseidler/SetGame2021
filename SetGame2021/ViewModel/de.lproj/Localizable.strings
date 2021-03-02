@@ -13,8 +13,9 @@
 "noPoints" = "Keine Punkte";
 "matchedSets" = "Passende Sets";
 "ok" = "Ok";
+"gameOverTitle" = "Game Over";
 
-"total %lld" = "Total: %lld";
+"total %lld" = "Gesamt: %lld";
 
 "cheatingNoSetsDisplayed %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt kein Set in den ausgespielten Karten.";
 "cheatingOneSetDisplayed %lld" = "Das ist Dein erstes Mal schummeln. Dieses Mal ist es gratis. Das nächste Mal verlierst Du %lld Punkte.\n\nEs gibt ein Set in den ausgespielten Karten.";
@@ -25,3 +26,8 @@
 "multipleSetsDisplayed %lld %lld" = "Es gibt %lld Sets in den ausgespielten Karten. \n\nSchummeln kostet Dich %lld Punkte.";
 
 "dealCostMessage %lld" = "Es gibt mehr als drei Sets in den gespielten Karten. Das Ausspielen von drei weiteren Karten kostet Dich %lld Punkte.";
+
+"gameOverMessage %lld" = "Congratulations. You finish the full deck of cards. There are no more matching sets in the remaining cards. \n\nYour total score is %lld.";
+
+"gameOverMessage %lld" = "Herzlichen Glückwunsch! Du hast das ganzen Stapel an Karten durchgespielt. Es gibt keine passenden Sets mehr in den restlichen Karten. \n\n Dein endgültiger Punktestand ist %lld.";
+

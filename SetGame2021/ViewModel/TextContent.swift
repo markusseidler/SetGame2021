@@ -15,6 +15,7 @@ struct TextContent {
     static let deal = LocalizedStringKey("deal")
     static let cheat = LocalizedStringKey("cheat")
     static let defaultText = LocalizedStringKey("ok")
+    static let gameOverTitle = LocalizedStringKey("gameOverTitle")
     
     static func getTotalScore(_ score: Int) -> LocalizedStringKey {
         return LocalizedStringKey("total \(score)")
@@ -44,5 +45,8 @@ struct TextContent {
         return LocalizedStringKey("dealCostMessage \(cost)")
     }
     
+    static func getGameOverMessage(totalScore: Int) -> LocalizedStringKey {
+        return LocalizedStringKey("gameOverMessage \(totalScore)")
+    }
     
 }

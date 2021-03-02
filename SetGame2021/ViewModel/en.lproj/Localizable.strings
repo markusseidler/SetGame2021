@@ -16,6 +16,7 @@
 "noPoints" = "No Points";
 "matchedSets" = "Matched Sets";
 "ok" = "Ok";
+"gameOverTitle" = "Game Over";
 
 "total %lld" = "Total: %lld";
 
@@ -26,5 +27,8 @@
 "noSetsDisplayed %lld" = "There are no sets displayed. \\nnCheating cost you %lld points.";
 "oneSetDisplayed %lld" = "There is one sets displayed. \n\nCheating cost you %lld points.";
 "multipleSetsDisplayed %lld %lld" = "There are %lld sets displayed. \n\nCheating cost you %lld points.";
+
 "dealCostMessage %lld" = "There are more than 3 matching sets on the screen. Dealing three more cards will cost you %lld points.";
+
+"gameOverMessage %lld" = "Congratulations! You finish the full deck of cards. There are no more matching sets in the remaining cards. \n\nYour total score is %lld.";
 
