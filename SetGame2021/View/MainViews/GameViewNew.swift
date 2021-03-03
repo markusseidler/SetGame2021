@@ -137,7 +137,6 @@ struct GameViewNew: View {
                         
                         DispatchQueue.main.async {
                             if count == 0 {
-                            print(game.countOfAvailableSetsInUsedCards)
                                 availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
                             }
                         }
@@ -211,8 +210,6 @@ struct GameViewNew: View {
             availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
         }
         
-        isCheatButtonPressed = false
-        
     }
     
     private func getAvailableSetsAlert(count: Int) -> Alert {
@@ -221,12 +218,14 @@ struct GameViewNew: View {
         if isCheatButtonPressed && isFirstTimeCheat && !isDealButtonPressed {
             return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getFirstAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 isFirstTimeCheat = false
+                isCheatButtonPressed = false
             }) }
         
         // cheating AFTER first time
         else if isCheatButtonPressed && !isFirstTimeCheat && !isDealButtonPressed {
                 return Alert(title: Text(TextContent.matchedSets), message: Text(TextContent.getAvailableSetMessage(count: count, cost: game.cheatingCost)), dismissButton: .default(Text(TextContent.defaultText)) {
                 game.deductFromTotalScore(game.cheatingCost)
+                    isCheatButtonPressed = false
             })
             }
         
@@ -242,7 +241,7 @@ struct GameViewNew: View {
             }
         
         // game-over-message
-        else if game.countOfAvailableSetsDisplayed == 0 && !isCheatButtonPressed && !isDealButtonPressed {
+        else if game.countOfAvailableSetsInUsedCards == 0 && !isCheatButtonPressed && !isDealButtonPressed {
             return Alert(title: Text(TextContent.gameOverTitle), message: Text(TextContent.getGameOverMessage(totalScore: game.totalScore)), dismissButton: .default(Text(TextContent.newGame), action: {
                 game.newGame()
             }))
