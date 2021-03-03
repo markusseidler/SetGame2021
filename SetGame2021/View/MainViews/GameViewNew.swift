@@ -131,9 +131,16 @@ struct GameViewNew: View {
                     game.startScoreDecay()
                     
                     // as game over check
-                    game.checkHowManyMatchingSetsAreAvailable()
-                    if game.countOfAvailableSetsDisplayed == 0 {
-                        availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                    // put it background thread as calculations takes too long but ui update are back on main thread again.
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        let count = game.countOfAvailableSetsInUsedCards
+                        
+                        DispatchQueue.main.async {
+                            if count == 0 {
+                            print(game.countOfAvailableSetsInUsedCards)
+                                availableSets = AvailableSets(count: game.countOfAvailableSetsDisplayed)
+                            }
+                        }
                     }
                     
                 }

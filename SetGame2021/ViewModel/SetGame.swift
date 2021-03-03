@@ -59,6 +59,7 @@ class SetGame: ObservableObject {
     var isFaceUpViewCards: [ViewCard] { game.isFaceUpCards.map { createViewCard(with: $0) }}
     var isFaceUpSetCards: [SetCard] { game.isFaceUpCards }
     var countOfAvailableSetsDisplayed: Int { game.countOfAvailableSetsDisplayed }
+    var countOfAvailableSetsInUsedCards: Int { game.countOfAvailableSetsInUnusedCards }
     
     let cheatingCost: Int = 100
     let maxMatchingBenefits: Int = 10

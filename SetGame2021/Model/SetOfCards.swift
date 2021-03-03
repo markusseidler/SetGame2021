@@ -24,10 +24,14 @@ struct SetOfCards: CardGameable {
     var isMatchedCards: [SetCard] { setOfCards.filter { $0.isMatched } }
     // only cards which are already removed from the screen
     var wasUsedCards: [SetCard] { setOfCards.filter { $0.wasUsed } }
+    var unUsedCards: [SetCard] { setOfCards.filter { !$0.wasUsed } }
     // only cards which are currently on the screen and are selected by the user
     var isSelectedCards: [SetCard] { setOfCards.filter { $0.isSelected } }
     var isFaceUpCards: [SetCard] { setOfCards.filter { $0.isFaceUp } }
     var countOfAvailableSetsDisplayed: Int = 0
+    var countOfAvailableSetsInUnusedCards: Int {
+        checkHowManyMatchedSetsAreInUnusedCards()
+    }
     
     
     // MARK: - Public API Methods
@@ -235,6 +239,15 @@ struct SetOfCards: CardGameable {
     private func singleFeatureCheck<T> (feature: [T]) -> Bool where T: Hashable {
             return feature.allEqual() || feature.allDifferent()
     }
+    
+    private func checkHowManyMatchedSetsAreInUnusedCards() -> Int {
+        if let count = checkWhereAreMatchedSets(in: unUsedCards)?.count {
+            return count
+        } else {
+            return 0
+        }
+    }
+    
     
 }
 

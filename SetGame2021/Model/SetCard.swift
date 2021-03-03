@@ -24,8 +24,6 @@ struct SetCard: Cardable, SetCardable, Hashable {
     var wasUsed: Bool = false
     var id = UUID()
     
-//    var iteratingCount: Int = 1
-    
 }
 
 ////https://www.hackingwithswift.com/example-code/language/how-to-make-a-custom-sequence
