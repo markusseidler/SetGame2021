@@ -72,9 +72,13 @@ class SetGame: ObservableObject {
     
     private var timer: Timer?
 
-    
     init() {
         self.game = SetOfCards()
+        self.currentRoundScore = startRoundScore
+    }
+    
+    init(shuffleCards: Bool) {
+        self.game = SetOfCards(shuffleCards: shuffleCards)
         self.currentRoundScore = startRoundScore
     }
     
@@ -125,7 +129,7 @@ class SetGame: ObservableObject {
     func cheatOn() { game.cheatMatchingCardsChangedToIsCheatedTrue() }
     
     func cheatOff() { game.changeAllCardsToIsCheatedFalse() }
-
+    
     func checkIfMatch(positiveActionOne: @escaping () -> Void, positiveActionTwo: @escaping () -> Void, positiveActionThree: @escaping () -> Void, negativeAction: @escaping () -> Void ) {
         checkAndMatchOrNot(
             positiveAction: {
@@ -257,8 +261,6 @@ class SetGame: ObservableObject {
     
     private func dealThreeMoreCards() { game.dealCards(numberOfCards: 3) }
     
-    private func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
-    
     private func turnAllCardsFaceUp() { game.turnAllCardsFaceUp() }
     
     private func changeViewCardToFaceUpTrue(_ viewCard: ViewCard) {
@@ -293,6 +295,8 @@ class SetGame: ObservableObject {
             }
         }
     }
+    
+    private func checkCardsAreASet() { game.checkSelectedCardsIfMatchAndChange() }
     
     private func checkAndMatchOrNot(positiveAction: () -> Void, negativeAction: (() -> Void)?) {
         if areThreeCardsSelected {

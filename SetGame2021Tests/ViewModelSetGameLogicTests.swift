@@ -12,10 +12,12 @@ import SwiftUI
 class ViewModelLogicTests: XCTestCase {
     
     var game: SetGame!
+    var gameNotShuffled: SetGame!
 
     override func setUpWithError() throws {
         
         game = SetGame()
+        gameNotShuffled = SetGame(shuffleCards: false)
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -153,5 +155,40 @@ class ViewModelLogicTests: XCTestCase {
         XCTAssertEqual(game.currentRoundScore, 97)
         
     }
-
+    
+    func testCheckHowManySetsAreAvailable() {
+        XCTAssertEqual(game.countOfAvailableSetsInUsedCards,1080)
+    }
+    
+    func testCheckHowManySetsAreAvailableWithChanges() {
+        
+        for index in 0..<20 {
+            let card = gameNotShuffled.allViewCards[index]
+            gameNotShuffled.chooseCard(card)
+            
+            if index % 3 == 2 {
+                gameNotShuffled.checkIfMatch {} positiveActionTwo: {} positiveActionThree: {} negativeAction: {}
+            }
+        }
+        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsInUsedCards, 489)
+    }
+    
+    func testCheatOnOff() {
+        
+        gameNotShuffled = SetGame(shuffleCards: true)
+        gameNotShuffled.dealCards()
+        
+        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 0)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 0)
+    
+        game.cheatOn()
+        
+        // ToDo: - why is this 0? need to finish the test and add cheatoff test to it
+//        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 0)
+//        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 0)
+        
+        
+    }
+    
+    
 }

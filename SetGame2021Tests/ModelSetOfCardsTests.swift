@@ -381,4 +381,17 @@ class ModelSetOfCardsTests: XCTestCase {
         XCTAssertEqual(isCheatedCardCount, 0)
 
     }
+    
+    func testCheckHowManyCardsAreInUnusedCards() {
+        XCTAssertEqual(testSetNotShuffled.countOfAvailableSetsInUnusedCards, 1080)
+    }
+    
+    func testCheckHowManyCardsAreInUnusedCardsWithCardsUsed() {
+        for index in 0..<10 {
+            testSetNotShuffled.setOfCards[index].wasUsed = true
+        }
+        XCTAssertEqual(testSetNotShuffled.countOfAvailableSetsInUnusedCards, 713)
+    }
+    
+    
 }
