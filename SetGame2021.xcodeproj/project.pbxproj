@@ -396,6 +396,8 @@
 			dependencies = (
 			);
 			name = SetGame2021;
+			packageProductDependencies = (
+			);
 			productName = SetGame2021;
 			productReference = 280A561025AFF6F4004B92A5 /* SetGame2021.app */;
 			productType = "com.apple.product-type.application";
@@ -414,6 +416,8 @@
 				280A562325AFF6F5004B92A5 /* PBXTargetDependency */,
 			);
 			name = SetGame2021Tests;
+			packageProductDependencies = (
+			);
 			productName = SetGame2021Tests;
 			productReference = 280A562125AFF6F5004B92A5 /* SetGame2021Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -468,6 +472,8 @@
 				de,
 			);
 			mainGroup = 280A560725AFF6F4004B92A5;
+			packageReferences = (
+			);
 			productRefGroup = 280A561125AFF6F4004B92A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

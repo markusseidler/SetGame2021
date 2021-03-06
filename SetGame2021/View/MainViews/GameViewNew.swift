@@ -11,6 +11,7 @@ struct GameViewNew: View {
     
     @EnvironmentObject var game: SetGame
     @EnvironmentObject var globalAspect: GlobalAspect
+   
     @State private var blackBackgroundOpacity: Double = 1
     
     @State private var cardSize: CGSize = CGSize.zero
