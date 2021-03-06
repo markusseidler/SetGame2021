@@ -52,7 +52,7 @@ struct LaunchView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(GlobalAspect())
-        .environmentObject(SetGame())
+        .environmentObject(SetGame(shuffleCards: false))
     }
 }
 

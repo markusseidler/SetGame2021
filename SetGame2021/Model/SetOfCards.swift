@@ -28,7 +28,11 @@ struct SetOfCards: CardGameable {
     // only cards which are currently on the screen and are selected by the user
     var isSelectedCards: [SetCard] { setOfCards.filter { $0.isSelected } }
     var isFaceUpCards: [SetCard] { setOfCards.filter { $0.isFaceUp } }
-    var countOfAvailableSetsDisplayed: Int = 0
+    var countOfAvailableSetsDisplayed: Int = 0 {
+        didSet {
+            print("count: \(countOfAvailableSetsDisplayed)")
+        }
+    }
     var countOfAvailableSetsInUnusedCards: Int { checkHowManyMatchedSetsAreInUnusedCards() }
     
     

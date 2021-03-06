@@ -175,20 +175,23 @@ class ViewModelLogicTests: XCTestCase {
     
     func testCheatOnOff() {
         
-        gameNotShuffled = SetGame(shuffleCards: true)
         gameNotShuffled.dealCards()
+        gameNotShuffled.dealAndDisplayCards()
         
         XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 0)
-        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 0)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.count, 12)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.filter { $0.isCheated }.count, 0)
     
-        game.cheatOn()
+        gameNotShuffled.cheatOn()
         
-        // ToDo: - why is this 0? need to finish the test and add cheatoff test to it
-//        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 0)
-//        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 0)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.count, 12)
+        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 13)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 12)
         
+        gameNotShuffled.cheatOff()
         
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.count, 12)
+        XCTAssertEqual(gameNotShuffled.countOfAvailableSetsDisplayed, 13)
+        XCTAssertEqual(gameNotShuffled.isFaceUpViewCards.map { $0.isCheated }.count, 12)
     }
-    
-    
 }
